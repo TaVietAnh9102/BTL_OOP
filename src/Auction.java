@@ -1,6 +1,6 @@
-public class Auction {
-	private void psvm() {
-		// TODO Auto-generated method stub
 
+public class Auction {
+	public static void main(String[] args) {
+		System.out.println("Hello");
 	}
 }
