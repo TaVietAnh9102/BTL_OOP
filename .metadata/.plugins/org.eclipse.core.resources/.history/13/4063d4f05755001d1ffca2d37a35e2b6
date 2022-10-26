@@ -1,6 +1,0 @@
-public class Auction {
-	public static void main(String[] args) {
-		System.out.println("AAAa");
-		System.out.print(1111);
-	}
-}
