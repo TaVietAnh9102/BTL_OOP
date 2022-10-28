@@ -1,0 +1,135 @@
+SET FOREIGN_KEY_CHECKS=0;
+
+-- ----------------------------
+-- Table structure for admin
+-- ----------------------------
+DROP TABLE IF EXISTS `admin`;
+CREATE TABLE `admin` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `Fname` varchar(20) DEFAULT NULL,
+  `Lname` varchar(20) DEFAULT NULL,
+  `Email` varchar(50) DEFAULT NULL,
+  `Pass` varchar(30) DEFAULT NULL,
+  `profilePic` varchar(100) DEFAULT NULL,
+  `Gender` tinyint(1) DEFAULT NULL,
+  `BirthDate` varchar(20) DEFAULT NULL,
+  `phone` varchar(11) DEFAULT NULL,
+  `IP` varchar(15) DEFAULT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Table structure for category
+-- ----------------------------
+DROP TABLE IF EXISTS `category`;
+CREATE TABLE `category` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `Cat_Name` varchar(20) DEFAULT NULL,
+  `Admin_ID` int(11) DEFAULT NULL,
+  PRIMARY KEY (`ID`),
+  KEY `Admin_ID` (`Admin_ID`),
+  CONSTRAINT `category_ibfk_1` FOREIGN KEY (`Admin_ID`) REFERENCES `admin` (`ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Table structure for systemuser
+-- ----------------------------
+DROP TABLE IF EXISTS `systemuser`;
+CREATE TABLE `systemuser` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `Fname` varchar(20) DEFAULT NULL,
+  `Lname` varchar(20) DEFAULT NULL,
+  `Email` varchar(50) DEFAULT NULL,
+  `Pass` varchar(30) DEFAULT NULL,
+  `profilePic` varchar(100) DEFAULT NULL,
+  `Gender` int(1) DEFAULT NULL,
+  `BirthDate` varchar(20) DEFAULT NULL,
+  `phone` varchar(11) DEFAULT NULL,
+  `Authorization` int(1) DEFAULT NULL,
+  `IP` varchar(50) DEFAULT NULL,
+  `State` int(1) DEFAULT '0',
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Table structure for sessions
+-- ----------------------------
+DROP TABLE IF EXISTS `sessions`;
+CREATE TABLE `sessions` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `Session_date` varchar(20) DEFAULT NULL,
+  `Start_time` int(11) DEFAULT NULL,
+  `End_time` int(11) DEFAULT NULL,
+  `reserved` int(2) NOT NULL DEFAULT '0',
+  `Winner_ID` int(11) DEFAULT NULL,
+  PRIMARY KEY (`ID`),
+  KEY `Winner_ID` (`Winner_ID`),
+  CONSTRAINT `sessions_ibfk_1` FOREIGN KEY (`Winner_ID`) REFERENCES `systemuser` (`ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=116 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Table structure for item
+-- ----------------------------
+DROP TABLE IF EXISTS `item`;
+CREATE TABLE `item` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `Item_name` varchar(30) DEFAULT NULL,
+  `Details` varchar(500) DEFAULT NULL,
+  `picture` varchar(50) DEFAULT NULL,
+  `price` double DEFAULT NULL,
+  `Cat_ID` int(11) DEFAULT NULL,
+  `session_ID` int(11) DEFAULT NULL,
+  `seller_ID` int(11) DEFAULT NULL,
+  `Admin_ID` int(11) DEFAULT NULL,
+  `Accepted` int(11) NOT NULL DEFAULT '0',
+  `Served` int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`ID`),
+  KEY `Cat_ID` (`Cat_ID`),
+  KEY `session_ID` (`session_ID`),
+  KEY `seller_ID` (`seller_ID`),
+  KEY `Admin_ID` (`Admin_ID`),
+  CONSTRAINT `item_ibfk_1` FOREIGN KEY (`Cat_ID`) REFERENCES `category` (`ID`),
+  CONSTRAINT `item_ibfk_2` FOREIGN KEY (`session_ID`) REFERENCES `sessions` (`ID`),
+  CONSTRAINT `item_ibfk_3` FOREIGN KEY (`seller_ID`) REFERENCES `systemuser` (`ID`),
+  CONSTRAINT `item_ibfk_4` FOREIGN KEY (`Admin_ID`) REFERENCES `admin` (`ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=94 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Table structure for session_participants
+-- ----------------------------
+DROP TABLE IF EXISTS `session_participants`;
+CREATE TABLE `session_participants` (
+  `session_ID` int(11) NOT NULL,
+  `bidder_ID` int(11) NOT NULL,
+  `item_ID` int(11) NOT NULL,
+  `price` double(50,0) DEFAULT '0',
+  PRIMARY KEY (`session_ID`,`bidder_ID`,`item_ID`),
+  KEY `Bidder_ID` (`bidder_ID`),
+  KEY `session_participants_ibfk_3` (`item_ID`),
+  CONSTRAINT `session_participants_ibfk_1` FOREIGN KEY (`session_ID`) REFERENCES `sessions` (`ID`),
+  CONSTRAINT `session_participants_ibfk_2` FOREIGN KEY (`bidder_ID`) REFERENCES `systemuser` (`ID`),
+  CONSTRAINT `session_participants_ibfk_3` FOREIGN KEY (`item_ID`) REFERENCES `item` (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Table structure for notification
+-- ----------------------------
+DROP TABLE IF EXISTS `notification`;
+CREATE TABLE `notification` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `message` varchar(500) DEFAULT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Table structure for user_notification
+-- ----------------------------
+DROP TABLE IF EXISTS `user_notification`;
+CREATE TABLE `user_notification` (
+  `User_ID` int(11) NOT NULL,
+  `notification_ID` int(11) NOT NULL,
+  PRIMARY KEY (`User_ID`,`notification_ID`),
+  KEY `notification_ID` (`notification_ID`),
+  CONSTRAINT `user_notification_ibfk_1` FOREIGN KEY (`User_ID`) REFERENCES `systemuser` (`ID`),
+  CONSTRAINT `user_notification_ibfk_2` FOREIGN KEY (`notification_ID`) REFERENCES `notification` (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
