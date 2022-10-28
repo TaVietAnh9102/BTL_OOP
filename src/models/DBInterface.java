@@ -7,7 +7,7 @@ public class DBInterface {
 	private static DBInterface instance;
 	
     private String dbName = "auction";
-    private String dbURL = "jdbc:mysql://localhost:3306//" + dbName;
+    private String dbURL = "jdbc:mysql://localhost:3306/" + dbName;
     private String dbUsername = "root";
     private String dbPassword = "2112";
     
@@ -17,8 +17,10 @@ public class DBInterface {
     
     // Contructor
     private DBInterface() {
+    	// remember add .jar file
         try {
             connection = DriverManager.getConnection(dbURL, dbUsername, dbPassword);
+            System.out.println("Connected");
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -75,6 +77,7 @@ public class DBInterface {
     }
 
     public ArrayList<Object[]> select(String table) {
+    	// select *
         query = prepareQuery(table, "*", "");
 
         //for checking
@@ -97,6 +100,7 @@ public class DBInterface {
     }
 
     public ArrayList<Object[]> select(String table, String options, String whereStatement) {
+    	// select (have condition)
         query = prepareQuery(table, options, whereStatement);
 
         //for checking
@@ -107,7 +111,8 @@ public class DBInterface {
         return resultList;
     }
     
-    public ArrayList<Object[]> select(String table, String options ,int userID ){
+    public ArrayList<Object[]> select(String table, String options ,int userID ) {
+    	// use for notifiction and user_notification in SystemUser
         table += " INNER JOIN User_notification on Notification.ID = User_notification.notification_ID WHERE User_notification.User_ID = " + userID;
         query = prepareQuery(table,options,"");
         executeQuery(query, true);
@@ -117,7 +122,7 @@ public class DBInterface {
     //Helper Methods
     private String prepareQuery(String table,String options, String whereStatement) {
     	
-    	// select () from (table) where ... 
+    	// create statement: select () from (table) where ... 
     	
         query = "SELECT " + options + " FROM " + table;
 
@@ -129,86 +134,35 @@ public class DBInterface {
     }
     
     private void executeQuery(String query, Boolean dataRetireval) {
-//      Statement statement = null;
-    	PreparedStatement preparedStatement = null;
-    	ResultSet results = null;
-
     	try {
-//          statement = connection.createStatement();
-          	preparedStatement = connection.prepareStatement(query);
-          	
-          	
-//          String enclosingMethod = this.getClass().getEnclosingMethod().getName();
-//          if (enclosingMethod == "select") {
-//              //only for select statements
-//              statement.executeQuery(query);
-//              results = statement.getResultSet();
-//              //return results;
-//          }
-//          else {
-//              statement.executeUpdate(query);
-//          }
-//          String enclosingMethod = null;
-//          try {
-//              enclosingMethod = this.getClass().getEnclosingMethod().;
-//          }
-//          catch (NullPointerException ex) {
-//              System.out.println("Error: " + ex.getMessage());
-//              System.out.println("Stack state: " + ex.getStackTrace());
-//          }
-
+    		PreparedStatement preparedStatement = connection.prepareStatement(query);
+    		ResultSet results = null;
+    		
           	if (dataRetireval) {
 	            //only for select statements
 	          	preparedStatement.executeQuery();
 	            results = preparedStatement.getResultSet();
-	            //return results;
 	
-	            //extracting objectArrays from ResultSet
+	            // extracting objectArrays from ResultSet
 	            extractResults(results);
-          	}
-	        else {
+          	} else {
+          		// for insert, update, delete
 	            preparedStatement.executeUpdate();
 	        }
-
-
+          	
+          	
     	} catch (SQLException ex){
-          	// handle any errors
-    		System.out.println("SQLException: " + ex.getMessage());
-	        System.out.println("SQLState: " + ex.getSQLState());
-	        System.out.println("VendorError: " + ex.getErrorCode());
-    	} finally {
-          // release resources
-          // in a finally{} block
-          // in reverse-order of their creation
-          // if they are no-longer needed
-
-    		if (results != null) {
-    			try {
-    				results.close();
-    			} catch (SQLException sqlEx) {} // ignore
-    		}
-
-    		if (preparedStatement != null) {
-    			try {
-    				preparedStatement.close();
-    			} catch (SQLException sqlEx) {} // ignore
-    		}
-
-//          if (statement != null) {
-//              try {
-//                  statement.close();
-//              } catch (SQLException sqlEx) {} // ignore
-//          }
-
+    		ex.printStackTrace();
     	}
     }
 
     private void extractResults(ResultSet resultSet) throws SQLException{
+    	// read ResultSet
     	resultList = new ArrayList<>();
     	while(resultSet.next()) {
     		int columns = resultSet.getMetaData().getColumnCount();
     		Object[] array = new Object[columns];
-    		for(int i=0; i < columns; i++){
+    		for(int i = 0; i < columns; i++){
     			array[i] = resultSet.getObject(i+1);
     		}
     		resultList.add(array);

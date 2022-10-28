@@ -1,18 +1,18 @@
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.Scanner;
+
+import models.DBInterface;
 
 public class Auction {
 	public static void main(String[] args) {
-		Connection connection = null;
-	    String dbName = "auction";
-	    String dbURL = "jdbc:mysql://localhost:3306/" + dbName;
-	    String dbUsername = "root";
-	    String dbPassword = "2112";
-
-        try {
-            connection = DriverManager.getConnection(dbURL, dbUsername, dbPassword);
-            System.out.print("Database Open Successfully");
-        } catch (SQLException e) {
-            e.printStackTrace();
+		DBInterface dbInterface = DBInterface.getInstance();
+		Scanner scanner = new Scanner(System.in);
+		String table = scanner.next();
+		ArrayList<Object[]> list = dbInterface.select(table);
+		for(Object[] user : list) {
+           System.out.println(user[1]);
         }
+		scanner.close();
 	}
 }
