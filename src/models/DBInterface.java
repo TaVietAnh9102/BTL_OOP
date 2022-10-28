@@ -149,7 +149,9 @@ public class DBInterface {
           		// for insert, update, delete
 	            preparedStatement.executeUpdate();
 	        }
-          	
+          	// Clean up
+          	results.close();
+            preparedStatement.close();
           	
     	} catch (SQLException ex){
     		ex.printStackTrace();
