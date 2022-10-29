@@ -29,7 +29,7 @@ public class Sessions extends DataManager{
 	
 	public void initializeSessions() {
 		try {
-			
+			getData();
 		} catch (NullPointerException e) {
 			System.out.println("Error DB (Sessions)");
 		}
