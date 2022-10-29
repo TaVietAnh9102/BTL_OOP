@@ -42,7 +42,6 @@ CREATE TABLE `systemuser` (
   `BirthDate` varchar(20) DEFAULT NULL,
   `phone` varchar(11) DEFAULT NULL,
   `Authorization` int(1) DEFAULT NULL,
-  `State` int(1) DEFAULT '0',
   PRIMARY KEY (`ID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=utf8;
 
@@ -83,6 +82,27 @@ CREATE TABLE `sessions` (
 
 
 
+
+-- ----------------------------
+-- Table structure for session_participants
+-- ----------------------------
+DROP TABLE IF EXISTS `session_participants`;
+CREATE TABLE `session_participants` (
+  `session_ID` int(11) NOT NULL,
+  `bidder_ID` int(11) NOT NULL,
+  `item_ID` int(11) NOT NULL,
+  `price` double(50,0) DEFAULT '0',
+  PRIMARY KEY (`session_ID`,`bidder_ID`,`item_ID`),
+  KEY `Bidder_ID` (`bidder_ID`),
+  KEY `session_participants_ibfk_3` (`item_ID`),
+  CONSTRAINT `session_participants_ibfk_1` FOREIGN KEY (`session_ID`) REFERENCES `sessions` (`ID`),
+  CONSTRAINT `session_participants_ibfk_2` FOREIGN KEY (`bidder_ID`) REFERENCES `systemuser` (`ID`),
+  CONSTRAINT `session_participants_ibfk_3` FOREIGN KEY (`item_ID`) REFERENCES `item` (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+
+
 -- ----------------------------
 -- Table structure for item
 -- ----------------------------
@@ -111,23 +131,6 @@ CREATE TABLE `item` (
 ) ENGINE=InnoDB AUTO_INCREMENT=94 DEFAULT CHARSET=utf8;
 
 
-
--- ----------------------------
--- Table structure for session_participants
--- ----------------------------
-DROP TABLE IF EXISTS `session_participants`;
-CREATE TABLE `session_participants` (
-  `session_ID` int(11) NOT NULL,
-  `bidder_ID` int(11) NOT NULL,
-  `item_ID` int(11) NOT NULL,
-  `price` double(50,0) DEFAULT '0',
-  PRIMARY KEY (`session_ID`,`bidder_ID`,`item_ID`),
-  KEY `Bidder_ID` (`bidder_ID`),
-  KEY `session_participants_ibfk_3` (`item_ID`),
-  CONSTRAINT `session_participants_ibfk_1` FOREIGN KEY (`session_ID`) REFERENCES `sessions` (`ID`),
-  CONSTRAINT `session_participants_ibfk_2` FOREIGN KEY (`bidder_ID`) REFERENCES `systemuser` (`ID`),
-  CONSTRAINT `session_participants_ibfk_3` FOREIGN KEY (`item_ID`) REFERENCES `item` (`ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
 
