@@ -212,7 +212,7 @@ public class SystemUser extends DataManager {
 
     @Override
     protected String getValues() {
-        return Fname + "','" + Lname + "','" + email + "','" + pass + "','" + Gender + "," + Birthdate + ",'" + phone + "'," + authorization ;
+        return Fname + ",'" + Lname + ",'" + email + ",'" + pass + ",'" + Gender + "," + Birthdate + ",'" + phone + "'," + authorization ;
     }
 
     @Override
