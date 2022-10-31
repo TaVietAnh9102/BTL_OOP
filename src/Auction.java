@@ -16,14 +16,14 @@ public class Auction {
 //        }
 //		scanner.close();
 //		new LoginView();
-		DBInterface dbInterface = DBInterface.getInstance();
-		Scanner scanner = new Scanner(System.in);
-		String table = scanner.next();
-		ArrayList<Object[]> list = dbInterface.select(table);
-		for(Object[] user : list) {
-           System.out.println(user[1]);
-        }
-		scanner.close();
+//		DBInterface dbInterface = DBInterface.getInstance();
+//		Scanner scanner = new Scanner(System.in);
+//		String table = scanner.next();
+//		ArrayList<Object[]> list = dbInterface.select(table);
+//		for(Object[] user : list) {
+//           System.out.println(user[1]);
+//        }
+//		scanner.close();
 		new LoginView();
 	}
 }

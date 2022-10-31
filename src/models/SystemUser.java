@@ -2,8 +2,6 @@ package models;
 
 import java.util.ArrayList;
 
-import excpt.EmailException;
-import excpt.PasswordException;
 
 
 /*
@@ -32,9 +30,10 @@ public class SystemUser extends DataManager {
 
     //Constructor
     public SystemUser(){
-        getData();
+      //  getData();
     }
-
+    
+   
     public SystemUser(int id, String Fname, String Lname, String Email, String password, 
     					int gender, String Birthdate, String phone, int authorization) {
         this.id = id;
@@ -97,46 +96,26 @@ public class SystemUser extends DataManager {
 
     }
     
-    public int login(String email, String password) throws EmailException, PasswordException {
-    	if(!isEmail(email)) {
-    		throw new EmailException(email);
-    	}
-    	if(!isCorrectPassword(password)) {
-    		throw new PasswordException();
-    	}
-    	for (SystemUser user : systemUsersList) {
-            if (user.email.equalsIgnoreCase(email)) {
-                if (user.pass.equals(password)) {
-                    System.out.println("Email & Password are Correct \nLogin Successfully\n\n\n" +
-                            "WELCOME " + user.Fname + " " + user.Lname);
-                    id = user.id;
-                    setFname(user.Fname);
-                    setLname(user.Lname);
-                    setEmail(user.email);
-                    setPassword(user.pass);
-                    setGender(user.Gender);
-                    setBirthdate(user.Birthdate);
-                    setPhone(user.phone);
-                    setAuthorization(user.authorization);
-                    return user.authorization;
-                } else {
-                    throw new PasswordException();
-                }
-            }
-    	}
-    	throw new EmailException(email);
+    
+    public static boolean isNewSystemUser(String Fname, String Lname, String Email, String password, 
+    					int gender, String Birthdate, String phone) {
     	
+    	if(Fname.equals("") || Lname.equals("") || Email.equals("") || password.equals("") || gender != 0 || gender!=1 || Birthdate.equals("") || phone.equals("")) {
+    		return false;
+    	}
+    	return true;
     }
     
-    private boolean isEmail(String email) {
-    	if(!email.equals("")&& Character.isAlphabetic(email.charAt(0)) && !email.endsWith("@gmail.com") && !email.contains(" ")) {
+    
+    private static boolean correctEmail(String email) {
+    	if(!email.equals("")&& Character.isLetter(email.charAt(0)) && email.endsWith("@gmail.com") && !email.contains(" ")) {
     		return true;
     	}
     	return false;
     }
     
-    private boolean isCorrectPassword(String password) {
-    	if(!password.equals("") && password.length() >= 8 && !password.contains(" ") && (Character.isAlphabetic(password.charAt(0)) || Character.isDigit(password.charAt(0)) )){
+    private static boolean isCorrectPassword(String password) {
+    	if(!password.equals("") && password.length() >= 8 && !password.contains(" ") && (Character.isLetter(password.charAt(0)) || Character.isDigit(password.charAt(0)) )){
     		return true;
     	}
     	return false;

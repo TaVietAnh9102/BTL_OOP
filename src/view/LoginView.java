@@ -47,9 +47,9 @@ public class LoginView extends JFrame {
 	private JTextField emailField;
 	private JPasswordField passwordField;
 	private JButton loginButton;
-	private JButton forgotPassword;
+	private JButton resetPassword;
 	private JButton signUpButton;
-	
+	private JTextField messagesLabel;
 	
 	public LoginView() {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(LoginView.class.getResource("/pic/icon_app.png")));
@@ -66,6 +66,8 @@ public class LoginView extends JFrame {
 		initComponents();		
 		setBackground();
 		contentPane.add(transparentPanel);
+		
+		
 		contentPane.add(background);
 		setVisible(true);
 		
@@ -88,18 +90,18 @@ public class LoginView extends JFrame {
 		transparentPanel.setBounds(141, 73, 731, 396);
 		transparentPanel.setLayout(null);
 		
-		JLabel email = new JLabel("UserName");
+		JLabel email = new JLabel("Email");
 		email.setFont(FONT);
 		email.setForeground(FOREGROUND_COLOR);
 		email.setHorizontalAlignment(SwingConstants.CENTER);
-		email.setBounds(116, 132, 125, 28);
+		email.setBounds(166, 132, 96, 28);
 		transparentPanel.add(email);
 		
 		JLabel passwordLabel = new JLabel("Password");
 		passwordLabel.setFont(FONT);
 		passwordLabel.setForeground(FOREGROUND_COLOR);
 		passwordLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		passwordLabel.setBounds(116, 190, 125, 28);
+		passwordLabel.setBounds(166, 190, 96, 28);
 		transparentPanel.add(passwordLabel);
 		
 		emailField = new JTextField();
@@ -116,13 +118,28 @@ public class LoginView extends JFrame {
 		passwordField.setBackground(TEXTFIELD_BACKGROUND_COLOR);
 		transparentPanel.add(passwordField);
 		
+		messagesLabel = new JTextField("");
+		messagesLabel.setBackground(new Color(128, 128, 128));
+		messagesLabel.setEditable(false);
+		messagesLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		messagesLabel.setBounds(165, 228, 161, 21);
+		messagesLabel.setFont(new Font("Comic Sans MS", Font.BOLD, 15));
+		messagesLabel.setBorder(null);
+		messagesLabel.setForeground(Color.RED);
+		transparentPanel.add(messagesLabel);
+		
 		initButtons();
 		
 	}
 	
-	private void initButtons() {
+	public static void main(String[] args) {
+		LoginView v = new LoginView();
+		LoginController ctl = new LoginController(v);
+	}
+	
+	void initButtons() {
 		loginButton = new JButton("Login");
-		loginButton.setBounds(401, 276, 145, 28);
+		loginButton.setBounds(385, 276, 161, 28);
 		loginButton.setFont(FONT);
 		loginButton.setBackground(new Color(0, 102, 255));
 		loginButton.setForeground(FOREGROUND_COLOR);
@@ -131,34 +148,38 @@ public class LoginView extends JFrame {
 		
 		signUpButton = new JButton("Sign Up");
 		signUpButton.setFont(FONT);
-		signUpButton.setBounds(165, 276, 145, 28);
+		signUpButton.setBounds(165, 276, 161, 28);
 		signUpButton.setBackground(new Color(7, 255, 82));
 		signUpButton.setForeground(FOREGROUND_COLOR);
 		signUpButton.setBorderPainted(false);
 		transparentPanel.add(signUpButton);
 		
-		forgotPassword = new JButton("Forgot Password?");
-		forgotPassword.setFont(new Font("Comic Sans MS", Font.PLAIN, 12));
-		forgotPassword.setBackground(new Color(255, 0, 51));
-		forgotPassword.setForeground(FOREGROUND_COLOR);
-		forgotPassword.setBounds(401, 228, 145, 21);
-		forgotPassword.setBorderPainted(false);
-		transparentPanel.add(forgotPassword);
+		resetPassword = new JButton("Reset Password");
+		resetPassword.setFont(new Font("Comic Sans MS", Font.PLAIN, 12));
+		resetPassword.setBackground(new Color(255, 0, 51));
+		resetPassword.setForeground(FOREGROUND_COLOR);
+		resetPassword.setBounds(385, 228, 161, 21);
+		resetPassword.setBorderPainted(false);
+		transparentPanel.add(resetPassword);
 	}
 	
 	public void addListener(ActionListener listener) {
 		loginButton.addActionListener(listener);
 		signUpButton.addActionListener(listener);
-		forgotPassword.addActionListener(listener);
+		resetPassword.addActionListener(listener);
 	}
 	
 	
 	public String getEmail() {
-		return emailField.getText();
+		return emailField.getText().strip();
 	}
 	
 	public String getPassword() {
-		return passwordField.getText();
+		return passwordField.getText().strip();
+	}
+	
+	public void setMessage(String message) {
+		messagesLabel.setText(message);
 	}
 	
 }
