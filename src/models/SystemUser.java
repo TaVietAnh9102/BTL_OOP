@@ -97,15 +97,6 @@ public class SystemUser extends DataManager {
     }
     
     
-    public static boolean isNewSystemUser(String Fname, String Lname, String Email, String password, 
-    					int gender, String Birthdate, String phone) {
-    	
-    	if(Fname.equals("") || Lname.equals("") || Email.equals("") || password.equals("") || gender != 0 || gender!=1 || Birthdate.equals("") || phone.equals("")) {
-    		return false;
-    	}
-    	return true;
-    }
-    
     
     private static boolean correctEmail(String email) {
     	if(!email.equals("")&& Character.isLetter(email.charAt(0)) && email.endsWith("@gmail.com") && !email.contains(" ")) {

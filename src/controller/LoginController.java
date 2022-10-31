@@ -4,6 +4,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
 
+import javax.swing.LookAndFeel;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
+
 import models.SystemUser;
 import view.LoginView;
 import view.SignUpView;
@@ -13,8 +17,8 @@ public class LoginController {
 	private SystemUser systemUser;
 	private static boolean ok = false; 
 	
-	public LoginController(LoginView loginView) {
-		this.loginView = loginView;
+	public LoginController() {
+		this.loginView = new LoginView();
 		systemUser = new SystemUser();
 		this.loginView.addListener(new ActionListener() {
 			
@@ -24,9 +28,11 @@ public class LoginController {
 				switch (ev) {
 				case "Login": {
 					login();
+					break;
 				}
 				case "Sign Up":{
 					signUp();
+					break;
 				}
 				case "Reset Password":{
 					
@@ -70,19 +76,13 @@ public class LoginController {
 	
 	
 	public void signUp() {
-		SignUpView signUpView = new SignUpView();
-		signUpView.addListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				if(SystemUser.isNewSystemUser(signUpView.getFirstName(), signUpView.getLastName(), signUpView.getEmail(), signUpView.getPassword(), signUpView.getGender(), signUpView.getBirthDay(), signUpView.getPhone())) {
-					
-				}
-			}
-		});
-		
+		new SignUpController();
 	}
 	
+	public static void main(String[] args) throws ClassNotFoundException, InstantiationException, IllegalAccessException, UnsupportedLookAndFeelException {
+		UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+		new LoginController();
+	}
 	
 	
 	

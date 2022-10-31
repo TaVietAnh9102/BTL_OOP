@@ -4,18 +4,24 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
+import javax.swing.plaf.BorderUIResource;
 import javax.swing.plaf.IconUIResource;
 import javax.swing.text.IconView;
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
 import java.awt.Color;
+import java.awt.Component;
 
 import javax.swing.JLabel;
 
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemListener;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
@@ -33,12 +39,13 @@ import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JEditorPane;
+import java.awt.Toolkit;
 
 public class SignUpView extends JDialog {
 
 	private static Font LABEL_FONT = new Font("Arial", Font.BOLD, 13);
 	
-	private static Color LABEL_FORE_GROUND_COLOR = Color.white;
+	private static Color LABEL_FORE_GROUND_COLOR = Color.BLACK;
 	
 	private JPanel contentPane;
 	private JPanel backGround;
@@ -57,35 +64,21 @@ public class SignUpView extends JDialog {
 	private JRadioButton femaleButton;
 	private JLabel birthDayLabel;
 	private JLabel phoneLabel;
+	private JLabel signUpStatus;
 	private JTextField phoneField;
 	private JButton signUpButton;
 	private JComboBox Years;
 	private JComboBox Months;
 	private JComboBox Days;
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					SignUpView frame = new SignUpView();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
-	 */
+	
+	 
 	public SignUpView() {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(SignUpView.class.getResource("/pic/icon_app.png")));
 		getContentPane().setBackground(new Color(248, 248, 255));
 		setDefaultCloseOperation(JDialog.HIDE_ON_CLOSE);
 		this.setResizable(false);
-		setSize(450, 500);
+		setSize(400, 500);
+		
 		setLocationRelativeTo(null);
 		
 		initComponents();
@@ -98,46 +91,30 @@ public class SignUpView extends JDialog {
 	private void initComponents() {
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		backGround = new JPanel();
-		backGround.setBackground(new Color(0, 255, 255));
-		backGround.setBounds(0, 0, 436, 463);
-		backGround.setLayout(null);
-		
-		contentPane.add(backGround);
 		initMainPanel();
+		contentPane.add(mainPanel);
+		
+		
 		
 		
 	}
 	
 	private void initMainPanel() {
 		mainPanel = new JPanel();
-		mainPanel.setBackground(new Color(0.1f, 0.1f, 0.1f, 0.3f));
-		mainPanel.setBounds(69, 28, 305, 368);
+//		mainPanel.setBackground(new Color(51, 204, 153));
+		mainPanel.setBounds(0, 0, 386, 463);
 		mainPanel.setLayout(null);
 
 		initLabels();
 		initTextFields();
 		initGroupButtons();
 		initButtons();
-		
-		backGround.add(mainPanel);
-		
-		Years = new JComboBox();
-		Years.setBounds(207, 199, 70, 21);
-		mainPanel.add(Years);
-		
-		Months = new JComboBox();
-		Months.setBounds(153, 199, 44, 21);
-		mainPanel.add(Months);
-		
-		Days = new JComboBox();
-		Days.setBounds(108, 200, 35, 21);
-		mainPanel.add(Days);
+		initBirthDayBox();
 	}
 	
 	private void initButtons() {
 		signUpButton = new JButton("Sign Up Now!!!");
-		signUpButton.setBounds(60, 294, 203, 64);	
+		signUpButton.setBounds(95, 347, 203, 64);	
 		signUpButton.setFont(new Font("Arial", Font.BOLD, 18));
 		signUpButton.setBackground(new Color(65, 105, 225));
 		signUpButton.setForeground(new Color(255, 255, 255));
@@ -149,24 +126,24 @@ public class SignUpView extends JDialog {
 	private void initTextFields() {
 		
 		emailField = new JTextField();
-		emailField.setBounds(108, 95, 169, 19);
+		emailField.setBounds(156, 110, 185, 27);
 		mainPanel.add(emailField);
 		
 		passwordField = new JPasswordField();
-		passwordField.setBounds(108, 130, 169, 19);
+		passwordField.setBounds(156, 150, 185, 27);
 		mainPanel.add(passwordField);
 		
 		firstNameField = new JTextField();
 		firstNameField.setToolTipText("@gmail.com");
-		firstNameField.setBounds(108, 25, 169, 19);
+		firstNameField.setBounds(156, 30, 185, 27);
 		mainPanel.add(firstNameField);
 		
 		lastNameField = new JTextField();
-		lastNameField.setBounds(108, 60, 70, 19);
+		lastNameField.setBounds(156, 70, 87, 27);
 		mainPanel.add(lastNameField);
 		
 		phoneField = new JTextField();
-		phoneField.setBounds(108, 235, 96, 19);
+		phoneField.setBounds(156, 270, 117, 27);
 		mainPanel.add(phoneField);
 	}
 	
@@ -174,14 +151,16 @@ public class SignUpView extends JDialog {
 		buttonGroupGender = new ButtonGroup();
 		
 		maleButton = new JRadioButton("Male");
-		maleButton.setBounds(108, 165, 70, 19);
+		maleButton.setBounds(156, 190, 87, 27);
 		maleButton.setBackground(new Color(65, 105, 225));
+		maleButton.setFont(LABEL_FONT);
 		buttonGroupGender.add(maleButton);
 		mainPanel.add(maleButton);
 		
 		femaleButton = new JRadioButton("Female");
-		femaleButton.setBounds(207, 165, 70, 19);
+		femaleButton.setBounds(254, 190, 87, 27);
 		femaleButton.setBackground(new Color(255, 102, 204));
+		femaleButton.setFont(LABEL_FONT);
 		buttonGroupGender.add(femaleButton);
 		mainPanel.add(femaleButton);
 		
@@ -194,58 +173,103 @@ public class SignUpView extends JDialog {
 		firstNameLabel.setFont(LABEL_FONT);
 		firstNameLabel.setForeground(LABEL_FORE_GROUND_COLOR);
 		firstNameLabel.setHorizontalAlignment(SwingConstants.LEFT);
-		firstNameLabel.setBounds(22, 25, 70, 19);
+		firstNameLabel.setBounds(49, 30, 70, 27);
 		mainPanel.add(firstNameLabel);
 		
 		lastNameLabel = new JLabel("Last Name");
 		lastNameLabel.setFont(LABEL_FONT);
 		lastNameLabel.setForeground(LABEL_FORE_GROUND_COLOR);
 		lastNameLabel.setHorizontalAlignment(SwingConstants.LEFT);
-		lastNameLabel.setBounds(22, 60, 70, 19);
+		lastNameLabel.setBounds(49, 70, 70, 27);
 		mainPanel.add(lastNameLabel);
 		
-		iconEmail = new JLabel("email");
+		iconEmail = new JLabel("Email");
 		iconEmail.setFont(LABEL_FONT);
 		iconEmail.setForeground(LABEL_FORE_GROUND_COLOR);
 		iconEmail.setHorizontalAlignment(SwingConstants.LEFT);
-		iconEmail.setBounds(22, 95, 70, 19);
+		iconEmail.setBounds(49, 110, 70, 27);
 		mainPanel.add(iconEmail);
 		
-		iconPassword = new JLabel("pass");
+		iconPassword = new JLabel("Password");
 		iconPassword.setFont(LABEL_FONT);
 		iconPassword.setForeground(LABEL_FORE_GROUND_COLOR);
-		iconPassword.setBounds(22, 130, 70, 19);
+		iconPassword.setBounds(49, 150, 70, 27);
 		mainPanel.add(iconPassword);
 		
 		genderLabel = new JLabel("Gender");
 		genderLabel.setFont(LABEL_FONT);
 		genderLabel.setForeground(LABEL_FORE_GROUND_COLOR);
-		genderLabel.setBounds(22, 165, 70, 19);
+		genderLabel.setBounds(49, 190, 70, 27);
 		mainPanel.add(genderLabel);
 		
 		birthDayLabel = new JLabel("Birth Day");
 		birthDayLabel.setFont(LABEL_FONT);
 		birthDayLabel.setForeground(LABEL_FORE_GROUND_COLOR);
-		birthDayLabel.setBounds(22, 200, 70, 19);
+		birthDayLabel.setBounds(49, 230, 70, 27);
 		mainPanel.add(birthDayLabel);
 		
 		phoneLabel = new JLabel("Phone");
 		phoneLabel.setFont(LABEL_FONT);
 		phoneLabel.setForeground(LABEL_FORE_GROUND_COLOR);
-		phoneLabel.setBounds(22, 235, 70, 19);
+		phoneLabel.setBounds(49, 270, 70, 27);
 		mainPanel.add(phoneLabel);
 		
+		signUpStatus = new JLabel("Missing Infor !");
+		signUpStatus.setHorizontalAlignment(SwingConstants.CENTER);
+		signUpStatus.setFont(new Font("Arial", Font.BOLD, 16));
+		signUpStatus.setForeground(new Color(204, 0, 0));
+		signUpStatus.setBounds(47, 314, 294, 23);
+		mainPanel.add(signUpStatus);
+		signUpStatus.setVisible(false);
 	}
 	
-	private void setListMonths() {
+	private void initBirthDayBox() {
+		Years = new JComboBox();
+		setListYears();
+		Years.setBounds(279, 230, 62, 27);
+		mainPanel.add(Years);
 		
+		Months = new JComboBox();
+		setListMonths();
+		Months.setBounds(218, 230, 55, 27);
+		mainPanel.add(Months);
+		
+		Days = new JComboBox();
+		setListDays(31);
+		Days.setBounds(156, 230, 44, 27);
+		mainPanel.add(Days);
 	}
 	
+	public void setListYears() {
+		List<String> listYears = new ArrayList<>();
+		for(int year = 1930; year <= 2004; year++) {
+			listYears.add(year + "");
+		}
+		Years.setModel(new DefaultComboBoxModel(listYears.toArray()));
+	}
+	
+	
+	public void setListMonths() {
+		List<String> listMonth = new ArrayList<>();
+		for(int month = 1; month <= 12; month++) {
+			listMonth.add(month + "");
+		}
+		Months.setModel(new DefaultComboBoxModel(listMonth.toArray()));
+	}
+	
+	public void setListDays(int lengthMonth) {
+		List<String> listDate = new ArrayList<>();
+		for(int date = 1; date <= lengthMonth; date++) {
+			listDate.add(date + "");
+		}
+		Days.setModel(new DefaultComboBoxModel(listDate.toArray()));
+	}
 	
 	
 	public String getFirstName() {
 		return firstNameField.getText();
 	}
+	
 	
 	public String getLastName() {
 		return lastNameField.getText();
@@ -264,9 +288,14 @@ public class SignUpView extends JDialog {
 		return 0;
 	}
 	
-	public String getBirthDay() {
-		return Days.getSelectedItem().toString() + "/" + Months.getSelectedItem().toString() + "/" + Years.getSelectedItem().toString();
+	public String getMonth() {
+		return (String) Months.getSelectedItem();
 	}
+	
+	public String getYear() {
+		return (String) Years.getSelectedItem();
+	}
+	
 	
 	public String getPhone() {
 		return phoneField.getText();
@@ -283,4 +312,12 @@ public class SignUpView extends JDialog {
 		signUpButton.addActionListener(e);
 	}
 	
+	public void switchMessageLabel(boolean status) {
+		signUpStatus.setVisible(status);
+	}
+	
+	public void addItemListener(ItemListener i) {
+		Years.addItemListener(i);
+		Months.addItemListener(i);
+	}
 }

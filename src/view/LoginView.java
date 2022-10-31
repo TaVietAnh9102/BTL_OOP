@@ -132,10 +132,6 @@ public class LoginView extends JFrame {
 		
 	}
 	
-	public static void main(String[] args) {
-		LoginView v = new LoginView();
-		LoginController ctl = new LoginController(v);
-	}
 	
 	void initButtons() {
 		loginButton = new JButton("Login");
