@@ -48,7 +48,7 @@ public class LoginView extends JFrame {
 	private JPasswordField passwordField;
 	private JButton loginButton;
 	private JButton resetPassword;
-	private JButton signUpButton;
+	private JButton registerButton;
 	private JTextField messagesLabel;
 	
 	public LoginView() {
@@ -106,6 +106,7 @@ public class LoginView extends JFrame {
 		
 		emailField = new JTextField();
 		emailField.setBounds(272, 132, 274, 28);
+		emailField.setDocument(new JTextFieldLimit(30));
 		emailField.setFont(FONT);
 		emailField.setForeground(FOREGROUND_COLOR);
 		emailField.setBackground(TEXTFIELD_BACKGROUND_COLOR);
@@ -113,6 +114,7 @@ public class LoginView extends JFrame {
 		
 		passwordField = new JPasswordField();
 		passwordField.setBounds(272, 190, 274, 28);
+		passwordField.setDocument(new JTextFieldLimit(30));
 		passwordField.setFont(FONT);
 		passwordField.setForeground(FOREGROUND_COLOR);
 		passwordField.setBackground(TEXTFIELD_BACKGROUND_COLOR);
@@ -142,13 +144,13 @@ public class LoginView extends JFrame {
 		loginButton.setBorderPainted(false);
 		transparentPanel.add(loginButton);
 		
-		signUpButton = new JButton("Sign Up");
-		signUpButton.setFont(FONT);
-		signUpButton.setBounds(165, 276, 161, 28);
-		signUpButton.setBackground(new Color(7, 255, 82));
-		signUpButton.setForeground(FOREGROUND_COLOR);
-		signUpButton.setBorderPainted(false);
-		transparentPanel.add(signUpButton);
+		registerButton = new JButton("Register");
+		registerButton.setFont(FONT);
+		registerButton.setBounds(165, 276, 161, 28);
+		registerButton.setBackground(new Color(7, 255, 82));
+		registerButton.setForeground(FOREGROUND_COLOR);
+		registerButton.setBorderPainted(false);
+		transparentPanel.add(registerButton);
 		
 		resetPassword = new JButton("Reset Password");
 		resetPassword.setFont(new Font("Comic Sans MS", Font.PLAIN, 12));
@@ -161,7 +163,7 @@ public class LoginView extends JFrame {
 	
 	public void addListener(ActionListener listener) {
 		loginButton.addActionListener(listener);
-		signUpButton.addActionListener(listener);
+		registerButton.addActionListener(listener);
 		resetPassword.addActionListener(listener);
 	}
 	

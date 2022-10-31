@@ -16,18 +16,18 @@ import java.awt.Image;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.Font;
+import javax.swing.SwingConstants;
+import javax.swing.JTextArea;
 
 public class ResetPasswordView extends JFrame {
 
 	private JPanel contentPane;
 	private JPanel backGround;
-	private JPanel groupTextField;
+	private JPanel mainPanel;
 	private JTextField emailField;
-	private JPasswordField passwordField;
-	private JPasswordField repeatPasswordField;
 	private JLabel iconEmail;
-	private JLabel iconPassword;
-	private JLabel iconPasswordRp;
+	private JLabel newPasswordLabel;
+	
 	/**
 	 * Launch the application.
 	 */
@@ -50,74 +50,53 @@ public class ResetPasswordView extends JFrame {
 	public ResetPasswordView() {
 		getContentPane().setBackground(new Color(248, 248, 255));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.setResizable(false);
-		setSize(450, 500);
+		setResizable(false);
+		setSize(300, 350);
 		setLocationRelativeTo(null);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		initMainPanel();
+		contentPane.add(mainPanel);
 		
-		initComponents();
+		newPasswordLabel = new JLabel("password is your phone number.");
+		newPasswordLabel.setForeground(Color.RED);
+		newPasswordLabel.setFont(new Font("Arial", Font.ITALIC, 10));
+		newPasswordLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		newPasswordLabel.setBounds(56, 112, 174, 21);
+		mainPanel.add(newPasswordLabel);
 		
 		setContentPane(contentPane);
 		getContentPane().setLayout(null);
 		setVisible(true);
 	}
 	
-	private void initComponents() {
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		backGround = new JPanel();
-		backGround.setBackground(new Color(0, 255, 255));
-		backGround.setBounds(0, 0, 436, 463);
-		backGround.setLayout(null);
-		initGroupTextField();
-		contentPane.add(backGround);
-		
-		
-	}
-	
-	private void initGroupTextField() {
-		groupTextField = new JPanel();
-		groupTextField.setBackground(new Color(0.1f, 0.1f, 0.1f, 0.3f));
-		groupTextField.setBounds(69, 28, 305, 343);
-		backGround.add(groupTextField);
-		groupTextField.setLayout(null);
+	private void initMainPanel() {
+		mainPanel = new JPanel();
+		mainPanel.setBackground(Color.WHITE);
+		mainPanel.setBounds(0, 0, 286, 313);
+		mainPanel.setLayout(null);
 		
 		emailField = new JTextField();
-		emailField.setBounds(90, 43, 187, 30);
-		groupTextField.add(emailField);
+		emailField.setBounds(77, 43, 174, 30);
+		mainPanel.add(emailField);
 		
-		passwordField = new JPasswordField();
-		passwordField.setBounds(90, 94, 187, 30);
-		groupTextField.add(passwordField);
 		
-		repeatPasswordField = new JPasswordField();
-		repeatPasswordField.setToolTipText("reapeat password\r\n");
-		repeatPasswordField.setBounds(90, 144, 187, 30);
-		groupTextField.add(repeatPasswordField);
 		
 		iconEmail = new JLabel("email");
 		iconEmail.setIcon(getIcon("/pic/email.png"));
-		iconEmail.setBounds(36, 41, 32, 32);
-		groupTextField.add(iconEmail);
+		iconEmail.setBounds(21, 41, 32, 32);
+		mainPanel.add(iconEmail);
 		
-		iconPassword = new JLabel("pass");
-		iconPassword.setIcon(getIcon("/pic/padlock.png"));
-		iconPassword.setBounds(36, 92, 32, 32);
-		groupTextField.add(iconPassword);
-		
-		iconPasswordRp = new JLabel("pass");
-		iconPasswordRp.setIcon(getIcon("/pic/padlock.png"));
-		iconPasswordRp.setBounds(36, 142, 32, 32);
-		groupTextField.add(iconPasswordRp);
 		
 		JButton signUpButton = new JButton("Reset");
-		signUpButton.setBounds(60, 205, 203, 64);
+		signUpButton.setBounds(40, 202, 203, 64);
 		
 		signUpButton.setFont(new Font("Arial", Font.BOLD, 18));
 		signUpButton.setBackground(new Color(65, 105, 225));
 		signUpButton.setForeground(new Color(255, 255, 255));
 		signUpButton.setBorderPainted(false);
 		signUpButton.setIcon(getIcon("/pic/icon_app.png"));
-		groupTextField.add(signUpButton);
+		mainPanel.add(signUpButton);
 	}
 	
 	private ImageIcon getIcon(String src) {
@@ -126,6 +105,4 @@ public class ResetPasswordView extends JFrame {
 		Image imgScale = image.getScaledInstance(32, 32, Image.SCALE_SMOOTH);
 		return new ImageIcon(imgScale);
 	}
-	
-	
 }

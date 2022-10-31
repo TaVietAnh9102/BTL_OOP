@@ -10,7 +10,6 @@ import javax.swing.UnsupportedLookAndFeelException;
 
 import models.SystemUser;
 import view.LoginView;
-import view.SignUpView;
 
 public class LoginController {
 	private LoginView loginView;
@@ -18,9 +17,9 @@ public class LoginController {
 	private static boolean ok = false; 
 	
 	public LoginController() {
-		this.loginView = new LoginView();
+		loginView = new LoginView();
 		systemUser = new SystemUser();
-		this.loginView.addListener(new ActionListener() {
+		loginView.addListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -30,12 +29,13 @@ public class LoginController {
 					login();
 					break;
 				}
-				case "Sign Up":{
-					signUp();
+				case "Register":{
+					register();
 					break;
 				}
 				case "Reset Password":{
 					
+					break;
 				}
 				default:
 					return;
@@ -75,8 +75,8 @@ public class LoginController {
 	}
 	
 	
-	public void signUp() {
-		new SignUpController();
+	public void register() {
+		new RegisterController();
 	}
 	
 	public static void main(String[] args) throws ClassNotFoundException, InstantiationException, IllegalAccessException, UnsupportedLookAndFeelException {

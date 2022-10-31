@@ -41,10 +41,10 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JEditorPane;
 import java.awt.Toolkit;
 
-public class SignUpView extends JDialog {
+public class RegisterView extends JDialog {
 
 	private static Font LABEL_FONT = new Font("Arial", Font.BOLD, 13);
-	
+	private static Font FIELD_FONT = new Font("Arial", Font.PLAIN, 15);
 	private static Color LABEL_FORE_GROUND_COLOR = Color.BLACK;
 	
 	private JPanel contentPane;
@@ -64,16 +64,18 @@ public class SignUpView extends JDialog {
 	private JRadioButton femaleButton;
 	private JLabel birthDayLabel;
 	private JLabel phoneLabel;
-	private JLabel signUpStatus;
+	private JLabel registerStatus;
 	private JTextField phoneField;
-	private JButton signUpButton;
-	private JComboBox Years;
-	private JComboBox Months;
-	private JComboBox Days;
+	private JButton registerButton;
+	private JComboBox birthYear;
+	private JComboBox birthMonth;
+	private JComboBox birthDate;
 	
 	 
-	public SignUpView() {
-		setIconImage(Toolkit.getDefaultToolkit().getImage(SignUpView.class.getResource("/pic/icon_app.png")));
+	public RegisterView() {
+		setForeground(Color.BLACK);
+		setTitle("Register");
+		setIconImage(Toolkit.getDefaultToolkit().getImage(RegisterView.class.getResource("/pic/icon_app.png")));
 		getContentPane().setBackground(new Color(248, 248, 255));
 		setDefaultCloseOperation(JDialog.HIDE_ON_CLOSE);
 		this.setResizable(false);
@@ -113,37 +115,51 @@ public class SignUpView extends JDialog {
 	}
 	
 	private void initButtons() {
-		signUpButton = new JButton("Sign Up Now!!!");
-		signUpButton.setBounds(95, 347, 203, 64);	
-		signUpButton.setFont(new Font("Arial", Font.BOLD, 18));
-		signUpButton.setBackground(new Color(65, 105, 225));
-		signUpButton.setForeground(new Color(255, 255, 255));
-		signUpButton.setBorderPainted(false);
-		signUpButton.setIcon(getIcon("/pic/icon_app.png"));
-		mainPanel.add(signUpButton);
+		registerButton = new JButton("Register Now!!!");
+		
+		registerButton.setBounds(95, 347, 203, 64);	
+		registerButton.setFont(new Font("Arial", Font.BOLD, 18));
+		registerButton.setBackground(new Color(65, 105, 225));
+		registerButton.setForeground(new Color(255, 255, 255));
+		registerButton.setBorderPainted(false);
+		registerButton.setIcon(getIcon("/pic/icon_app.png"));
+		mainPanel.add(registerButton);
 	}
 	
 	private void initTextFields() {
 		
 		emailField = new JTextField();
+		emailField.setToolTipText("Example: userName@gmail.com");
 		emailField.setBounds(156, 110, 185, 27);
+		emailField.setDocument(new JTextFieldLimit(30));
+		emailField.setFont(FIELD_FONT);
 		mainPanel.add(emailField);
 		
 		passwordField = new JPasswordField();
+		passwordField.setToolTipText("Not contain special characters");
+		passwordField.setDocument(new JTextFieldLimit(30));
 		passwordField.setBounds(156, 150, 185, 27);
+		passwordField.setFont(FIELD_FONT);
 		mainPanel.add(passwordField);
 		
-		firstNameField = new JTextField();
-		firstNameField.setToolTipText("@gmail.com");
+		firstNameField = new JTextField(20);
+		firstNameField.setDocument(new JTextFieldLimit(20));
+		firstNameField.setToolTipText("");
 		firstNameField.setBounds(156, 30, 185, 27);
+		firstNameField.setFont(FIELD_FONT);
 		mainPanel.add(firstNameField);
 		
 		lastNameField = new JTextField();
-		lastNameField.setBounds(156, 70, 87, 27);
+		lastNameField.setDocument(new JTextFieldLimit(20));
+		lastNameField.setBounds(156, 70, 185, 27);
+		lastNameField.setFont(FIELD_FONT);
 		mainPanel.add(lastNameField);
 		
 		phoneField = new JTextField();
+		phoneField.setToolTipText("only contain digits");
+		phoneField.setDocument(new JTextFieldLimit(11));
 		phoneField.setBounds(156, 270, 117, 27);
+		phoneField.setFont(FIELD_FONT);
 		mainPanel.add(phoneField);
 	}
 	
@@ -214,55 +230,55 @@ public class SignUpView extends JDialog {
 		phoneLabel.setBounds(49, 270, 70, 27);
 		mainPanel.add(phoneLabel);
 		
-		signUpStatus = new JLabel("Missing Infor !");
-		signUpStatus.setHorizontalAlignment(SwingConstants.CENTER);
-		signUpStatus.setFont(new Font("Arial", Font.BOLD, 16));
-		signUpStatus.setForeground(new Color(204, 0, 0));
-		signUpStatus.setBounds(47, 314, 294, 23);
-		mainPanel.add(signUpStatus);
-		signUpStatus.setVisible(false);
+		registerStatus = new JLabel("Missing Infor !");
+		registerStatus.setHorizontalAlignment(SwingConstants.CENTER);
+		registerStatus.setFont(new Font("Arial", Font.BOLD, 16));
+		registerStatus.setForeground(new Color(204, 0, 0));
+		registerStatus.setBounds(47, 314, 294, 23);
+		mainPanel.add(registerStatus);
+		registerStatus.setVisible(false);
 	}
 	
 	private void initBirthDayBox() {
-		Years = new JComboBox();
-		setListYears();
-		Years.setBounds(279, 230, 62, 27);
-		mainPanel.add(Years);
+		birthYear = new JComboBox();
+		setListBirthYear();
+		birthYear.setBounds(275, 230, 66, 27);
+		mainPanel.add(birthYear);
 		
-		Months = new JComboBox();
-		setListMonths();
-		Months.setBounds(218, 230, 55, 27);
-		mainPanel.add(Months);
+		birthMonth = new JComboBox();
+		setListBirthMonth();
+		birthMonth.setBounds(210, 230, 55, 27);
+		mainPanel.add(birthMonth);
 		
-		Days = new JComboBox();
-		setListDays(31);
-		Days.setBounds(156, 230, 44, 27);
-		mainPanel.add(Days);
+		birthDate = new JComboBox();
+		setListBirthDate(31);
+		birthDate.setBounds(156, 230, 44, 27);
+		mainPanel.add(birthDate);
 	}
 	
-	public void setListYears() {
-		List<String> listYears = new ArrayList<>();
+	public void setListBirthYear() {
+		List<String> listbirthYear = new ArrayList<>();
 		for(int year = 1930; year <= 2004; year++) {
-			listYears.add(year + "");
+			listbirthYear.add(year + "");
 		}
-		Years.setModel(new DefaultComboBoxModel(listYears.toArray()));
+		birthYear.setModel(new DefaultComboBoxModel(listbirthYear.toArray()));
 	}
 	
 	
-	public void setListMonths() {
+	public void setListBirthMonth() {
 		List<String> listMonth = new ArrayList<>();
 		for(int month = 1; month <= 12; month++) {
 			listMonth.add(month + "");
 		}
-		Months.setModel(new DefaultComboBoxModel(listMonth.toArray()));
+		birthMonth.setModel(new DefaultComboBoxModel(listMonth.toArray()));
 	}
 	
-	public void setListDays(int lengthMonth) {
+	public void setListBirthDate(int lengthMonth) {
 		List<String> listDate = new ArrayList<>();
 		for(int date = 1; date <= lengthMonth; date++) {
 			listDate.add(date + "");
 		}
-		Days.setModel(new DefaultComboBoxModel(listDate.toArray()));
+		birthDate.setModel(new DefaultComboBoxModel(listDate.toArray()));
 	}
 	
 	
@@ -288,14 +304,17 @@ public class SignUpView extends JDialog {
 		return 0;
 	}
 	
-	public String getMonth() {
-		return (String) Months.getSelectedItem();
+	public String getBirthMonth() {
+		return (String) birthMonth.getSelectedItem();
 	}
 	
-	public String getYear() {
-		return (String) Years.getSelectedItem();
+	public String getBirthYear() {
+		return (String) birthYear.getSelectedItem();
 	}
 	
+	public String getBirthDate() {
+		return (String) birthDate.getSelectedItem();
+	}
 	
 	public String getPhone() {
 		return phoneField.getText();
@@ -309,15 +328,15 @@ public class SignUpView extends JDialog {
 	}
 	
 	public void addListener(ActionListener e) {
-		signUpButton.addActionListener(e);
+		registerButton.addActionListener(e);
 	}
 	
-	public void switchMessageLabel(boolean status) {
-		signUpStatus.setVisible(status);
+	public void setVisibleMessage(boolean status) {
+		registerStatus.setVisible(status);
 	}
 	
 	public void addItemListener(ItemListener i) {
-		Years.addItemListener(i);
-		Months.addItemListener(i);
+		birthYear.addItemListener(i);
+		birthMonth.addItemListener(i);
 	}
 }

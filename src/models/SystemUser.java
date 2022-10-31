@@ -97,7 +97,6 @@ public class SystemUser extends DataManager {
     }
     
     
-    
     private static boolean correctEmail(String email) {
     	if(!email.equals("")&& Character.isLetter(email.charAt(0)) && email.endsWith("@gmail.com") && !email.contains(" ")) {
     		return true;
