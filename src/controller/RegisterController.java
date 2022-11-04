@@ -50,21 +50,18 @@ public class RegisterController {
 	
 	private void register() {
 		if(registerView.getFirstName().equals("") || registerView.getLastName().equals("") || registerView.getEmail().equals("")||
-				registerView.getPassword().equals("") || registerView.getPhone().equals("") || newUser.canRegister(registerView.getEmail())) {
+				registerView.getPassword().equals("") || registerView.getPhone().equals("") ) { //|| !newUser.existedEmail(registerView.getEmail())
 			registerView.setVisibleMessage(true);
+			
 		}
 		else {
 			registerView.setVisibleMessage(false);
-			newUser.Register(registerView.getFirstName(), registerView.getLastName(), registerView.getEmail(), registerView.getPassword(), registerView.getPhone(), registerView.getBirthDate() + "/" 
-					+ registerView.getBirthMonth() + registerView.getBirthMonth(), registerView.getGender());
+//			newUser.Register(registerView.getFirstName(), registerView.getLastName(), registerView.getEmail(), registerView.getPassword(), registerView.getPhone(), registerView.getBirthDate() + "/" 
+//					+ registerView.getBirthMonth() + registerView.getBirthMonth(), registerView.getGender());
 			registerView.setVisible(false);
-			
 		}
 	}
 	
-	public static void main(String[] args) {
-		new RegisterController();
-	}
 	
 	
 }

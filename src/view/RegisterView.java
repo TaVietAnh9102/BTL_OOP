@@ -93,15 +93,6 @@ public class RegisterView extends JDialog {
 	private void initComponents() {
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		initMainPanel();
-		contentPane.add(mainPanel);
-		
-		
-		
-		
-	}
-	
-	private void initMainPanel() {
 		mainPanel = new JPanel();
 //		mainPanel.setBackground(new Color(51, 204, 153));
 		mainPanel.setBounds(0, 0, 386, 463);
@@ -112,6 +103,7 @@ public class RegisterView extends JDialog {
 		initGroupButtons();
 		initButtons();
 		initBirthDayBox();
+		contentPane.add(mainPanel);
 	}
 	
 	private void initButtons() {
@@ -243,16 +235,19 @@ public class RegisterView extends JDialog {
 		birthYear = new JComboBox();
 		setListBirthYear();
 		birthYear.setBounds(275, 230, 66, 27);
+		birthYear.setSelectedIndex(0);
 		mainPanel.add(birthYear);
 		
 		birthMonth = new JComboBox();
 		setListBirthMonth();
 		birthMonth.setBounds(210, 230, 55, 27);
+		birthMonth.setSelectedIndex(0);
 		mainPanel.add(birthMonth);
 		
 		birthDate = new JComboBox();
 		setListBirthDate(31);
 		birthDate.setBounds(156, 230, 44, 27);
+		birthDate.setSelectedIndex(0);
 		mainPanel.add(birthDate);
 	}
 	
@@ -274,11 +269,13 @@ public class RegisterView extends JDialog {
 	}
 	
 	public void setListBirthDate(int lengthMonth) {
+		int indexSelected = birthDate.getSelectedIndex();
 		List<String> listDate = new ArrayList<>();
 		for(int date = 1; date <= lengthMonth; date++) {
 			listDate.add(date + "");
 		}
 		birthDate.setModel(new DefaultComboBoxModel(listDate.toArray()));
+		birthDate.setSelectedIndex(indexSelected);
 	}
 	
 	

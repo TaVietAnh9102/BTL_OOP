@@ -25,23 +25,21 @@ public class LoginController {
 			public void actionPerformed(ActionEvent e) {
 				String ev = e.getActionCommand();
 				switch (ev) {
-				case "Login": {
-					login();
-					break;
-				}
-				case "Register":{
-					register();
-					break;
-				}
-				case "Reset Password":{
-					
-					break;
-				}
-				default:
-					return;
-					//throw new IllegalArgumentException("Unexpected value: " + ev);
+					case "Login": {
+						login();
+						break;
+					}
+					case "Register":{
+						register();
+						break;
+					}
+					case "Reset Password":{
+						resetPassword();
+						break;
+					}
 				}
 			}
+			
 		});
 		
 	}
@@ -52,10 +50,11 @@ public class LoginController {
 		switch (status) {
 			case 0:{
 				
-//				new AdminController();
+//				 AdminController();
 			}
 			case 1:{
-//				new CustomerController();
+	//			CustomerController();
+				break;
 			}
 			case -4:{
 				message = "Email don't exist";
@@ -77,6 +76,10 @@ public class LoginController {
 	
 	public void register() {
 		new RegisterController();
+	}
+	
+	public void resetPassword() {
+		new ResetPasswordController();
 	}
 	
 	public static void main(String[] args) throws ClassNotFoundException, InstantiationException, IllegalAccessException, UnsupportedLookAndFeelException {

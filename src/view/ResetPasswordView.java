@@ -12,44 +12,31 @@ import java.awt.Color;
 import javax.swing.JLabel;
 
 import java.awt.Image;
+import java.awt.event.ActionListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JDialog;
+
 import java.awt.Font;
 import javax.swing.SwingConstants;
 import javax.swing.JTextArea;
 
-public class ResetPasswordView extends JFrame {
+public class ResetPasswordView extends JDialog {
 
 	private JPanel contentPane;
 	private JPanel backGround;
 	private JPanel mainPanel;
 	private JTextField emailField;
 	private JLabel iconEmail;
-	private JLabel newPasswordLabel;
-	
+	private JLabel statusLabel;
+	private JButton resetButton;
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					ResetPasswordView frame = new ResetPasswordView();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
-	 */
 	public ResetPasswordView() {
 		getContentPane().setBackground(new Color(248, 248, 255));
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JDialog.HIDE_ON_CLOSE);
 		setResizable(false);
 		setSize(300, 350);
 		setLocationRelativeTo(null);
@@ -58,12 +45,12 @@ public class ResetPasswordView extends JFrame {
 		initMainPanel();
 		contentPane.add(mainPanel);
 		
-		newPasswordLabel = new JLabel("password is your phone number.");
-		newPasswordLabel.setForeground(Color.RED);
-		newPasswordLabel.setFont(new Font("Arial", Font.ITALIC, 10));
-		newPasswordLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		newPasswordLabel.setBounds(56, 112, 174, 21);
-		mainPanel.add(newPasswordLabel);
+		statusLabel = new JLabel("");
+		statusLabel.setForeground(Color.RED);
+		statusLabel.setFont(new Font("Arial", Font.ITALIC, 10));
+		statusLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		statusLabel.setBounds(56, 112, 174, 21);
+		mainPanel.add(statusLabel);
 		
 		setContentPane(contentPane);
 		getContentPane().setLayout(null);
@@ -80,23 +67,31 @@ public class ResetPasswordView extends JFrame {
 		emailField.setBounds(77, 43, 174, 30);
 		mainPanel.add(emailField);
 		
-		
-		
 		iconEmail = new JLabel("email");
 		iconEmail.setIcon(getIcon("/pic/email.png"));
 		iconEmail.setBounds(21, 41, 32, 32);
 		mainPanel.add(iconEmail);
 		
-		
-		JButton signUpButton = new JButton("Reset");
-		signUpButton.setBounds(40, 202, 203, 64);
-		
-		signUpButton.setFont(new Font("Arial", Font.BOLD, 18));
-		signUpButton.setBackground(new Color(65, 105, 225));
-		signUpButton.setForeground(new Color(255, 255, 255));
-		signUpButton.setBorderPainted(false);
-		signUpButton.setIcon(getIcon("/pic/icon_app.png"));
-		mainPanel.add(signUpButton);
+		resetButton = new JButton("Reset");
+		resetButton.setBounds(40, 202, 203, 64);
+		resetButton.setFont(new Font("Arial", Font.BOLD, 18));
+		resetButton.setBackground(new Color(65, 105, 225));
+		resetButton.setForeground(new Color(255, 255, 255));
+		resetButton.setBorderPainted(false);
+		resetButton.setIcon(getIcon("/pic/icon_app.png"));
+		mainPanel.add(resetButton);
+	}
+	
+	public String getEmail() {
+		return emailField.getText();
+	}
+	
+	public void updateStatus(String status) {
+		statusLabel.setText(status);
+	}
+	
+	public void addListener(ActionListener e) {
+		resetButton.addActionListener(e);
 	}
 	
 	private ImageIcon getIcon(String src) {

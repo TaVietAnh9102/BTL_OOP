@@ -59,18 +59,13 @@ public class LoginView extends JFrame {
 		setSize(1000, 650);
 		setLocationRelativeTo(null);
 		contentPane = new JPanel();
-		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
-		
 		initComponents();		
 		setBackground();
 		contentPane.add(transparentPanel);
-		
-		
 		contentPane.add(background);
+		setContentPane(contentPane);
 		setVisible(true);
-		
 	}
 	
 	private void setBackground() {
