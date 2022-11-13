@@ -47,13 +47,14 @@ public class LoginController {
 	public void login() {
 		int status = systemUser.Login(loginView.getEmail(), loginView.getPassword());
 		String message = "";
-		switch (status) {
+		switch (1) {
 			case 0:{
 				
 //				 AdminController();
 			}
 			case 1:{
-	//			CustomerController();
+				new CustomerController();
+				loginView.setVisible(false);
 				break;
 			}
 			case -4:{
