@@ -13,8 +13,7 @@ public class Sessions extends DataManager{
 	private SystemUser winner = null;
 	private int reserved;
 	
-	public ArrayList<Sessions> SessionList = new ArrayList<>();
-	private ArrayList<Object[]> list;
+	public ArrayList<Sessions> SessionList = new ArrayList<>();	// get all sessions
 	
 	public Sessions() {
 	}
@@ -29,7 +28,7 @@ public class Sessions extends DataManager{
 	
 	public void initializeSessions() {
 		try {
-			
+			getData();
 		} catch (NullPointerException e) {
 			System.out.println("Error DB (Sessions)");
 		}
@@ -113,7 +112,7 @@ public class Sessions extends DataManager{
     }
 	
 	public void getData() throws NullPointerException {
-        list = getAll();
+		ArrayList<Object[]> list = getAll();
         for (Object[] session : list) {
             SessionList.add(new Sessions((int) session[0], (String) session[1], (int) session[2], (int) session[3] , (int)session[4]));
         }

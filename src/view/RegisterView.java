@@ -28,17 +28,10 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.Font;
 import javax.swing.JRadioButton;
-import javax.swing.JRadioButtonMenuItem;
-import javax.swing.JScrollBar;
-import javax.swing.JTextArea;
 import javax.swing.SwingConstants;
-import javax.swing.JList;
-import javax.swing.ListSelectionModel;
-import javax.swing.AbstractListModel;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.JEditorPane;
 import java.awt.Toolkit;
 
 public class RegisterView extends JDialog {
@@ -48,7 +41,6 @@ public class RegisterView extends JDialog {
 	private static Color LABEL_FORE_GROUND_COLOR = Color.BLACK;
 	
 	private JPanel contentPane;
-	private JPanel backGround;
 	private JPanel mainPanel;
 	private JTextField emailField;
 	private JPasswordField passwordField;

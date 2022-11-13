@@ -8,6 +8,7 @@ import javax.swing.LookAndFeel;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
+import models.Member;
 import models.SystemUser;
 import view.LoginView;
 
@@ -53,7 +54,7 @@ public class LoginController {
 //				 AdminController();
 			}
 			case 1:{
-				new CustomerController();
+				new CustomerController(new Member(systemUser, systemUser.getAuthorization()));
 				loginView.setVisible(false);
 				break;
 			}

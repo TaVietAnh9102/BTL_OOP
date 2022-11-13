@@ -3,12 +3,14 @@ package controller;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import models.Member;
 import view.CustomerView;
 
 public class CustomerController {
 	private CustomerView customerView;
-	
-	public CustomerController() {
+	private Member member;
+	public CustomerController(Member member) {
+		this.member = member;
 		customerView = new CustomerView();
 		customerView.addListener(new ActionListener() {
 			

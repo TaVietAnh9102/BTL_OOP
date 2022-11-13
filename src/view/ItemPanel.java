@@ -9,7 +9,7 @@ import javax.swing.JButton;
 
 public class ItemPanel extends JPanel {
 	
-//	private Item
+
 	
 	public ItemPanel() {
 		setBackground(new Color(102, 204, 204));

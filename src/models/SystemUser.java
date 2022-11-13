@@ -23,8 +23,10 @@ public class SystemUser extends DataManager {
     //Attributes
     protected int id, authorization, Gender;
     protected String Fname, Lname, email, pass, Birthdate, phone;
-    protected String Uauthorization = "",UGender = "",UFname = "",ULname = "",Uemail = "",Upassword = "",Uprofilepic = "",Uphone = "",UBirthdate = "";
     public ArrayList<SystemUser> systemUsersList = new ArrayList<SystemUser>();
+    
+    protected String Uauthorization = "",UGender = "",UFname = "",ULname = "",Uemail = "",Upassword = "",Uprofilepic = "",Uphone = "",UBirthdate = ""; // for getOptions
+    
     private ArrayList<Object[]> list;
     private ArrayList<String> Email;
 
@@ -230,7 +232,7 @@ public class SystemUser extends DataManager {
 
     @Override
     protected String getValues() {
-        return Fname + ",'" + Lname + ",'" + email + ",'" + pass + ",'" + Gender + "," + Birthdate + ",'" + phone + "'," + authorization ;
+        return "'" + Fname + "','" + Lname + "','" + email + "','" + pass + "'," + Gender + ",'" + Birthdate + "','" + phone + "'," + authorization;
     }
 
     @Override
@@ -252,7 +254,8 @@ public class SystemUser extends DataManager {
     protected Object get() {
         return null;
     }
-
+    
+    @Override
     public void add() {
         super.add();
     }
