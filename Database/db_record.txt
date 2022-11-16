@@ -11,22 +11,11 @@ INSERT INTO `admin` VALUES ('1', 'Admin', 'Ad', 'admin', 'admin', '0', '1/1/2002
 -- ----------------------------
 
 INSERT INTO `systemuser` VALUES ('1', 'Admin', 'Ad', 'admin', 'admin',  '0', '1/1/2002', '0123456789', '0');
-INSERT INTO `systemuser` VALUES ('21', 'a', 'a', 'a', 'a', '0', '1/1/2002', '0123456789', '1');
-INSERT INTO `systemuser` VALUES ('22', 'b', 'b', 'b', 'b', '1', '1/1/2002', '0123456789', '1');
-INSERT INTO `systemuser` VALUES ('23', 'c', 'c', 'c', 'c', '0', '1/1/2002', '0123456789', '1');
-INSERT INTO `systemuser` VALUES ('24', 'd', 'd', 'd', 'd', '1', '1/1/2002', '0123456789', '1');
-INSERT INTO `systemuser` VALUES ('25', 'e', 'e', 'e', 'e', '0', '1/1/2002', '0123456789', '1');
-INSERT INTO `systemuser` VALUES ('26', 'f', 'f', 'f', 'f', '1', '1/1/2002', '0123456789', '1');
-INSERT INTO `systemuser` VALUES ('27', 'g', 'g', 'g', 'g', '0', '1/1/2002', '0123456789', '1');
-INSERT INTO `systemuser` VALUES ('28', 'h', 'h', 'h', 'h', '1', '1/1/2002', '0123456789', '1');
-INSERT INTO `systemuser` VALUES ('29', 'i', 'i', 'i', 'i', '0', '1/1/2002', '0123456789', '1');
-INSERT INTO `systemuser` VALUES ('30', 'j', 'j', 'j', 'j', '1', '1/1/2002', '0123456789', '1');
-INSERT INTO `systemuser` VALUES ('31', 'k', 'k', 'k', 'k', '0', '1/1/2002', '0123456789', '1');
-INSERT INTO `systemuser` VALUES ('32', 'l', 'l', 'l', 'l', '1', '1/1/2002', '0123456789', '1');
-INSERT INTO `systemuser` VALUES ('33', 'm', 'm', 'm', 'm', '0', '1/1/2002', '0123456789', '1');
-INSERT INTO `systemuser` VALUES ('34', 'n', 'n', 'n', 'n', '1', '1/1/2002', '0123456789', '1');
-INSERT INTO `systemuser` VALUES ('35', 'o', 'o', 'o', 'o', '0', '1/1/2002', '0123456789', '1');
-
+INSERT INTO `systemuser` VALUES ('21', 'a@gmail.com', 'a', 'a', 'a', '0', '1/1/2002', '0123456789', '1');
+INSERT INTO `systemuser` VALUES ('22', 'b@gmail.com', 'b', 'b', 'b', '1', '1/1/2002', '0123456789', '1');
+INSERT INTO `systemuser` VALUES ('23', 'c@gmail.com', 'c', 'c', 'c', '0', '1/1/2002', '0123456789', '1');
+INSERT INTO `systemuser` VALUES ('24', 'd@gmail.com', 'd', 'd', 'd', '1', '1/1/2002', '0123456789', '1');
+INSERT INTO `systemuser` VALUES ('25', 'e@gmail.com', 'e', 'e', 'e', '0', '1/1/2002', '0123456789', '1');
 
 
 
@@ -36,10 +25,7 @@ INSERT INTO `systemuser` VALUES ('35', 'o', 'o', 'o', 'o', '0', '1/1/2002', '012
 -- ----------------------------
 INSERT INTO `category` VALUES ('1', 'Laptops', '1');
 INSERT INTO `category` VALUES ('2', 'TVs', '1');
-INSERT INTO `category` VALUES ('3', 'Fashion', '1');
-INSERT INTO `category` VALUES ('4', 'Electronics', '1');
-INSERT INTO `category` VALUES ('5', 'Health', '1');
-INSERT INTO `category` VALUES ('6', 'Smart Phones', '1');
+INSERT INTO `category` VALUES ('3', 'Smart Phones', '1');
 
 
 
@@ -124,38 +110,10 @@ INSERT INTO `item` VALUES ('46', 'Toshiba LCD 32-inch', 'new product', '../Resou
 INSERT INTO `item` VALUES ('47', 'Toshiba Android Smart', 'new product', '../Resources/Images/shop/TVs/8.jpg', '9000', '2', '83', '21', '1', '1', '0');
 INSERT INTO `item` VALUES ('48', 'Kogan 32-Inch LED', 'new product', '../Resources/Images/shop/TVs/9.jpg', '5000', '2', '84', '21', '1', '1', '0');
 INSERT INTO `item` VALUES ('49', 'Panasonic 55cm LED', 'new product', '../Resources/Images/shop/TVs/10.jpg', '7000', '2', '85', '21', '1', '1', '0');
-INSERT INTO `item` VALUES ('58', 'GYM Equip-1', 'new product', '../Resources/Images/shop/Health/3.png', '10500', '5', '86', '25', '1', '1', '0');
-INSERT INTO `item` VALUES ('59', 'GYM Equip-2', 'new product', '../Resources/Images/shop/Health/2.png', '5000', '5', '87', '25', '1', '1', '0');
-INSERT INTO `item` VALUES ('60', 'Fitness Ultra Speed', 'new product', '../Resources/Images/shop/Health/1.jpg', '5000', '5', '88', '21', '1', '1', '0');
-INSERT INTO `item` VALUES ('62', 'Smart LG LED 43-inch', 'new product', '../Resources/Images/shop/TVs/2.jpg', '8700', '2', '90', '26', '1', '1', '0');
 INSERT INTO `item` VALUES ('63', 'HP Z50 i3 15.5 inch', 'new product', '../Resources/Images/shop/Laptops/l3.jpg', '7500', '1', '91', '27', '1', '1', '0');
-INSERT INTO `item` VALUES ('66', 'Fitness Equip', 'new product', '../Resources/Images/shop/Health/4.jpg', '8000', '5', '92', '26', '1', '1', '0');
-INSERT INTO `item` VALUES ('67', 'GYM Equip 17-EQ', 'new product', '../Resources/Images/shop/Health/5.jpg', '15000', '5', '93', '26', '1', '1', '0');
-INSERT INTO `item` VALUES ('68', 'GYM Equip 50cm', 'new product', '../Resources/Images/shop/Health/6.jpg', '4000', '5', '94', '26', '1', '1', '0');
-INSERT INTO `item` VALUES ('69', 'Heavy GYM 17-G', 'new product', '../Resources/Images/shop/Health/7.jpg', '20500', '5', '95', '26', '1', '1', '0');
-INSERT INTO `item` VALUES ('70', 'Fitness GYM Equip', 'new product', '../Resources/Images/shop/Health/8.jpg', '17000', '5', '96', '26', '1', '1', '0');
-INSERT INTO `item` VALUES ('71', 'Multi Fitness Equip', 'new product', '../Resources/Images/shop/Health/9.jpg', '21500', '5', '97', '26', '1', '1', '0');
-INSERT INTO `item` VALUES ('72', 'Super GYM Equip', 'new product', '../Resources/Images/shop/Health/10.jpg', '7500', '5', '98', '26', '1', '1', '0');
-INSERT INTO `item` VALUES ('73', 'Dwight Instrument', 'new product', '../Resources/Images/shop/Electronics/1.jpg', '4000', '4', '99', '27', '1', '1', '0');
-INSERT INTO `item` VALUES ('74', 'Electronic Calibration', 'new product', '../Resources/Images/shop/Electronics/2.jpg', '5000', '4', '100', '27', '1', '1', '0');
-INSERT INTO `item` VALUES ('75', 'Power Quality Analyzer', 'new product', '../Resources/Images/shop/Electronics/3.jpg', '4000', '4', '101', '27', '1', '1', '0');
-INSERT INTO `item` VALUES ('76', 'Megger MFT 1720', 'new product', '../Resources/Images/shop/Electronics/4.jpg', '3000', '4', '102', '27', '1', '1', '0');
-INSERT INTO `item` VALUES ('77', 'Calibration Services ', 'new product', '../Resources/Images/shop/Electronics/5.jpg', '4000', '4', '103', '27', '1', '1', '0');
-INSERT INTO `item` VALUES ('78', 'Test Equipment', 'new product', '../Resources/Images/shop/Electronics/6.jpg', '5000', '4', '105', '27', '1', '1', '0');
-INSERT INTO `item` VALUES ('79', 'Black Addidas Shoes', 'new product', '../Resources/Images/shop/Fashion/1.jpg', '2200', '3', '109', '29', '1', '2', '0');
-INSERT INTO `item` VALUES ('81', 'Black Addidas', 'new product', '../Resources/Images/shop/Fashion/1.jpg', '2200', '3', '104', '29', '1', '1', '0');
-INSERT INTO `item` VALUES ('82', 'neo Addidas', 'new product', '../Resources/Images/shop/Fashion/2.jpg', '1500', '3', '106', '29', '1', '1', '0');
-INSERT INTO `item` VALUES ('83', 'Simple Addidas White', 'new product', '../Resources/Images/shop/Fashion/3.jpg', '900', '3', '107', '29', '1', '1', '0');
-INSERT INTO `item` VALUES ('84', 'Brown Watch Original', 'new product', '../Resources/Images/shop/Fashion/4.jpg', '1800', '3', '108', '29', '1', '1', '0');
-INSERT INTO `item` VALUES ('85', 'Black Casio Watch', 'new product', '../Resources/Images/shop/Fashion/5.jpg', '2400', '3', '110', '29', '1', '1', '0');
-INSERT INTO `item` VALUES ('86', 'DM Brown Model 17', 'new product', '../Resources/Images/shop/Fashion/6.jpg', '5000', '3', '111', '29', '1', '1', '0');
-INSERT INTO `item` VALUES ('87', 'Simple Dress Gray', 'new product', '../Resources/Images/shop/Fashion/7.jpg', '2800', '3', '113', '29', '1', '1', '0');
-INSERT INTO `item` VALUES ('88', 'Red Fashion Dress', 'new product', '../Resources/Images/shop/Fashion/8.jpg', '7000', '3', '109', '29', '1', '1', '0');
-INSERT INTO `item` VALUES ('89', 'Addidas Black', 'new product', '../Resources/Images/shop/Fashion/1.jpg', '2500', '3', '112', '21', '1', '2', '0');
 INSERT INTO `item` VALUES ('90', 'Smart tv', 'new product', '../Resources/Images/shop/TVs/2.jpg', '5000', '2', '114', '25', '1', '2', '0');
 INSERT INTO `item` VALUES ('91', 'Smart tv', 'new product', '../Resources/Images/shop/TVs/1.jpg', '8500', '2', '114', '26', '1', '2', '0');
 INSERT INTO `item` VALUES ('92', 'Smart Phone', 'new product', '../Resources/Images/shop/TVs/b7.jpg', '7500', '2', '114', '26', '1', '2', '0');
-INSERT INTO `item` VALUES ('93', 'Black Addidas', 'new product', '../Resources/Images/shop/Fashion/1.jpg', '2400', '3', '112', '21', '1', '1', '0');
 
 
 

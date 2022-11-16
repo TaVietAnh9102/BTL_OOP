@@ -2,6 +2,7 @@ package models;
 
 import java.util.ArrayList;
 
+// for querry from database
 public abstract class DataManager {
 
 	// Getters

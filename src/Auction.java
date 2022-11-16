@@ -2,6 +2,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import models.DBInterface;
+import models.SystemUser;
 
 public class Auction {
 	public static void main(String[] args) {
@@ -12,6 +13,7 @@ public class Auction {
 		for(Object[] user : list) {
            System.out.println(user[1]);
         }
+
 		
 	}
 }

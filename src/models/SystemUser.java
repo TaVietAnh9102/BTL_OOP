@@ -20,14 +20,12 @@ import java.util.ArrayList;
 public class SystemUser extends DataManager {
 	
     //Attributes
-    protected int id, authorization, Gender;
-    protected String Fname, Lname, email, pass, Birthdate, phone;
-    public ArrayList<SystemUser> systemUsersList = new ArrayList<SystemUser>();
+	private int id, authorization, Gender;
+    private String Fname, Lname, email, pass, Birthdate, phone;
     
-    protected String Uauthorization = "",UGender = "",UFname = "",ULname = "",Uemail = "",Upassword = "",Uprofilepic = "",Uphone = "",UBirthdate = ""; // for getOptions
-    
-    private ArrayList<Object[]> list;
-    private ArrayList<String> Email;
+    // for class member
+    protected ArrayList<SystemUser> systemUsersList = new ArrayList<SystemUser>();
+    //private String Uauthorization = "", UGender = "", UFname = "", ULname = "", Uemail = "", Upassword = "", Uprofilepic = "", Uphone = "", UBirthdate = ""; // for getOptions
 
     //Constructor
     public SystemUser(){
@@ -49,7 +47,7 @@ public class SystemUser extends DataManager {
 
     //Methods
     public ArrayList<String> GetEmails(){
-        Email = new ArrayList<String>();
+    	ArrayList<String> Email = new ArrayList<String>();
         for (SystemUser user : systemUsersList) {
             Email.add(user.email);
         }
@@ -57,7 +55,7 @@ public class SystemUser extends DataManager {
     }
     
     public void getData() throws NullPointerException {
-        list = getAll();
+    	ArrayList<Object[]> list = getAll();
         for(Object[] user : list) {
             systemUsersList.add(new SystemUser((int) user[0], (String) user[1], (String) user[2], (String) user[3], 
             									(String) user[4], (int) user[5], (String) user[6], (String) user[7], (int) user[9]));
@@ -101,22 +99,22 @@ public class SystemUser extends DataManager {
         systemUser = null;
     }
     
-    public ArrayList<String> getNotifications(int userID) {
-        ArrayList<Object[]> AllUsersNotifications = new ArrayList<>();
-        ArrayList<String> UserNotifications = new ArrayList<>();
-
-        // get instance from DBInterface to work on database
-        DBInterface DB = DBInterface.getInstance();
-
-        // get all notifications
-        AllUsersNotifications = DB.select("Notification" , "message" , userID);
-
-        for (Object[] obj : AllUsersNotifications) {
-            UserNotifications.add(obj[0].toString());
-        }
-
-        return UserNotifications;
-    }
+//    public ArrayList<String> getNotifications(int userID) {
+//        ArrayList<Object[]> AllUsersNotifications = new ArrayList<>();
+//        ArrayList<String> UserNotifications = new ArrayList<>();
+//
+//        // get instance from DBInterface to work on database
+//        DBInterface DB = DBInterface.getInstance();
+//
+//        // get all notifications
+//        AllUsersNotifications = DB.select("Notification" , "message" , userID);
+//
+//        for (Object[] obj : AllUsersNotifications) {
+//            UserNotifications.add(obj[0].toString());
+//        }
+//
+//        return UserNotifications;
+//    }
 
 
     //Getters and Setters
@@ -126,42 +124,34 @@ public class SystemUser extends DataManager {
     }
 
     public void setFname(String fname) {
-        UFname = "Fname = '" + fname + "'";
         Fname = fname;
     }
 
     public void setLname(String lname) {
-        ULname = "Lname = '" + lname + "'";
         Lname = lname;
     }
 
     public void setEmail(String email) {
-        Uemail = "email = '" + email + "'";
         this.email = email;
     }
 
     public void setPassword(String password) {
-        Upassword = "pass = '" + password + "'";
         this.pass = password;
     }
 
     public void setGender(int gender) {
-        UGender = "Gender = " + gender;
         Gender = gender;
     }
 
     public void setBirthdate(String birthdate) {
-        UBirthdate = "Birthdate = " + birthdate;
         Birthdate = birthdate;
     }
     
     public void setPhone(String phone) {
-        Uphone = "phone = '" + phone + "'";
         this.phone = phone;
     }
 
     public void setAuthorization(int authorization) {
-        Uauthorization = "authorization = " + authorization;
         this.authorization = authorization;
     }
     
@@ -219,7 +209,7 @@ public class SystemUser extends DataManager {
 
     @Override
     protected String getOptions() {
-        return UFname + "," + ULname + "," + Upassword;
+        return "Fname = '" + Fname + "'" + "," + "Lname = '" + Lname + "'" + "," + "pass = '" + pass + "'";
     }
 
     @Override
