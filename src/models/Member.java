@@ -88,7 +88,7 @@ public class Member extends SystemUser{
     //seller
 
     // this params are required as it needed to be added in the DB .. admin will be static
-    public void submitItem(int sellerID , String name , String Pic, String details , double price , int sessionID ,  int categoryID ,int adminID ,int Accepted,int reserved ) {
+    public void submitItem(int sellerID , String name , String Pic, String details , long price , int sessionID ,  int categoryID ,int adminID ,int Accepted,int reserved ) {
     	Item SubmittedItem = new Item();
         SubmittedItem.setAdmin_ID(adminID);
         SubmittedItem.setSession_ID(sessionID);
@@ -193,7 +193,7 @@ public class Member extends SystemUser{
     public ArrayList<Item>  searchOnSpecificProduct (String CategoryName , String itemName){
     	System.out.println(CategoryName);
     	System.out.println(itemName);
-    	int categoryID = 0;
+    	//int categoryID = 0;
     	Item item = new Item();
     	item.initializeItems();
     	Category category = new Category();
@@ -205,7 +205,7 @@ public class Member extends SystemUser{
     	for (Category c : AllCtegories) {
     		if (CategoryName.equals(c.getCat_Name())) {
     			System.out.println("found Category");
-    			categoryID = c.getId();
+    			//categoryID = c.getId();
     			for (Item obj : AllItems) {
     				if (obj.getItem_name().equals(itemName)){
     					System.out.println("found item &added");

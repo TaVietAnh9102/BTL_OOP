@@ -4,35 +4,27 @@ import java.util.ArrayList;
 
 public class Item extends DataManager {
     //Attributes
-    private int ID;
-    private String Item_name;
-    private String Details;
-    private String picture;
-    private double Price;
-    private int  Cat_ID;
-    private int session_ID;
-    private int seller_ID;
-    private int Admin_ID;
-    private int Accepted;
+    private int ID, Cat_ID, session_ID, seller_ID, Admin_ID, Accepted;
+    private String Item_name, details, picture;
+    private long price;
+    
     private String state;
-    public  ArrayList<Item> ItemList;
-    private ArrayList<Object[]> list;
-    private String UAccepted = "";
+    private  ArrayList<Item> ItemList;
+    
     private Sessions session ;
     private Category category;
     private SystemUser seller;
     private String CatName, SellerName;
-    private int StartTime;
-    private int served;
+    private int StartTime, served;
 
     //Constructor
-    public Item(int id, String name,String details, String pic, double price,int category,
-                int session,int seller,int admin,int accept,int served) {
+    public Item(int id, String name, String details, String pic, long price, int category,
+                int session, int seller, int admin, int accept, int served) {
         this.ID = id;
         this.Item_name = name;
-        this.Details = details;
+        this.details = details;
         this.picture = pic;
-        this.Price = price;
+        this.price = price;
         this.Cat_ID = category;
         this.session_ID = session;
         this.seller_ID = seller;
@@ -46,14 +38,14 @@ public class Item extends DataManager {
     
     public void initializeItems() {
         try {
-            getData();   //read Database Data
+            getData();   
         } catch (Exception e) {
             System.out.println("Error in DB");
         }
 
         Sessions x = new Sessions();
         Category y = new Category();
-        SystemUser z = new SystemUser(); //change this class to initialize as session and categories
+        SystemUser z = new SystemUser(); 
         x.initializeSessions();
         y.initializeCategories();
         ArrayList<SystemUser> UsersList = z.getSystemUsersList();
@@ -95,7 +87,6 @@ public class Item extends DataManager {
 
     //Getters and Setters
     public void setAccepted(int accepted) {
-        UAccepted = "Accepted = " + accepted;
         Accepted = accepted;
     }
     
@@ -108,15 +99,15 @@ public class Item extends DataManager {
     }
     
     public String getDetails() {
-        return this.Details;
+        return this.details;
     }
     
     public String getpicture() {
         return this.picture;
     }
     
-    public double getPrice() {
-    	return this.Price;
+    public long getPrice() {
+    	return this.price;
     }
     
     public int getCat_ID() {
@@ -147,11 +138,11 @@ public class Item extends DataManager {
     	return this.Accepted;
     }
     
-    public Sessions getsession() {
+    public Sessions getSession() {
     	return this.session;
     }
     
-    public Category getcategory() { 
+    public Category getCategory() { 
     	return this.category;
     }
     
@@ -196,15 +187,15 @@ public class Item extends DataManager {
     }
     
     public void setDetails(String details) {
-        this.Details = details;
+        this.details = details;
     }
     
     public void setpicture(String pic) {
     	this.picture = pic;
     }
     
-    public void setPrice(double price) {
-        this.Price = price;
+    public void setPrice(long price) {
+        this.price = price;
     }
     
     public void setCat_ID(int category) {
@@ -240,11 +231,12 @@ public class Item extends DataManager {
     
     @Override
     protected String getValues() {
-        return   ID + ",'" + Item_name + "','" + Details + "','"+picture+"',"+Price+","+Cat_ID+","+session_ID+","+seller_ID+","+Admin_ID+","+Accepted +","+served;
+        return   ID + ",'" + Item_name + "','" + details + "','"+picture+"',"+price+","+Cat_ID+","+session_ID+","+seller_ID+","+Admin_ID+","+Accepted +","+served;
     }
 
+    @Override
     protected String getOptions() {
-        return UAccepted;
+        return "Accepted = " + Accepted;
     }
 
     @Override
@@ -268,10 +260,10 @@ public class Item extends DataManager {
 
     public void getData() throws NullPointerException {
         ItemList = new ArrayList<>();
-        list = getAll();
+        ArrayList<Object[]> list = getAll();
         for(Object[] item : list) {
             ItemList.add(new Item((int) item[0], (String) item[1], (String) item[2], (String) item[3],
-                    (double) item[4], (int) item[5],(int) item[6],(int) item[7],(int) item[8],(int) item[9] , (int) item[10] ));
+                    (long) item[4], (int) item[5],(int) item[6],(int) item[7],(int) item[8],(int) item[9] , (int) item[10] ));
         }
     }
 
@@ -306,13 +298,13 @@ public class Item extends DataManager {
         return (double) x.get(0)[0];
     }
     
-    public void submitnewPrice(int session_ID,int item_ID,int bidder_ID,String price){
+    public void submitNewPrice(int session_ID,int item_ID,int bidder_ID,String price){
         DBInterface db = DBInterface.getInstance();
         db.update("session_participants","price",price," session_ID = "+session_ID+" and item_ID = "+
                 item_ID +" and bidder_ID = "+bidder_ID);
     }
     
-    public void setitemServed(int itemID){
+    public void setItemServed(int itemID){
         DBInterface.getInstance().update(
                 "item","Served","1","ID = "+itemID
         );

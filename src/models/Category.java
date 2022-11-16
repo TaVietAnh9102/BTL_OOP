@@ -2,13 +2,10 @@ package models;
 import java.util.ArrayList;
 
 public class Category extends DataManager {
-    private int ID;
-    private String Cat_Name;
-    private int Admin_ID;
-    private String Admin_Name;
-    private String Uname;//to update name
-    public ArrayList<Category> CategoryList = new ArrayList<Category>();
-    private ArrayList<Object[]> list;
+    private int ID, Admin_ID;
+    private String Cat_Name, Admin_Name;
+    
+    private ArrayList<Category> CategoryList = new ArrayList<Category>();
 
 
     public Category(){
@@ -39,7 +36,6 @@ public class Category extends DataManager {
     }
     
     public void setName(String name) {
-        Uname = "  Cat_Name= '" + Cat_Name + "'";
         this.Cat_Name = name;
     }
     
@@ -80,7 +76,7 @@ public class Category extends DataManager {
 
     @Override
     protected String getOptions() {
-        return Uname;
+        return "  Cat_Name= '" + Cat_Name + "'";
     }
 
     @Override
@@ -104,7 +100,7 @@ public class Category extends DataManager {
     }
     
     public void getData() throws NullPointerException {
-        list = getAll();
+    	ArrayList<Object[]> list = getAll();
         for(Object[] category : list) {
             CategoryList.add(new Category((int) category[0], (String) category[1], (int) category[2]));
         }
