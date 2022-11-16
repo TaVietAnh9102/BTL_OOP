@@ -24,8 +24,12 @@ public class Auction {
 //
 //           
 //        }
-		SystemUser m = new SystemUser();
-		m.Login("admin@gmail.com", "admin");
+		
+		Member m = new Member();
+		//m.Login("b@gmail.com", "b");
+		m.resetPassword("c@gmail.com");
+//		Member n = new Member();
+//		n.canRegister("z@gmail.com");
 		
 	}
 }

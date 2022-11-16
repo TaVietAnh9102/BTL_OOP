@@ -88,16 +88,14 @@ public class Member extends SystemUser{
     //seller
 
     // this params are required as it needed to be added in the DB .. admin will be static
-    public void submitItem(int sellerID , String name , String Pic, String details , long price , int sessionID ,  int categoryID ,int adminID ,int Accepted,int reserved ) {
+    public void submitItem(int sellerID , String name , String Pic, String details , long price , int sessionID ,  int categoryID ,int reserved ) {
     	Item SubmittedItem = new Item();
-        SubmittedItem.setAdmin_ID(adminID);
         SubmittedItem.setSession_ID(sessionID);
         SubmittedItem.setCat_ID(categoryID);
         SubmittedItem.setPrice(price);
         SubmittedItem.setpicture(Pic);
         SubmittedItem.setDetails(details);
         SubmittedItem.setName(name);
-        SubmittedItem.setAccepted(Accepted);
         SubmittedItem.setSeller_ID(sellerID);
         SubmittedItem.setServed(reserved);
         
@@ -149,7 +147,7 @@ public class Member extends SystemUser{
     	item.initializeItems();
     	ArrayList<Item> AllRetrunedItems = item.getItemList();
     	for (Item it: AllRetrunedItems) {
-    		if (it.getAccepted() == 1 && it.getServed() == 0){   //accept and not served then can be in product menu
+    		if (it.getServed() == 0){   // not served then can be in product menu
     			System.out.println(it.getServed());
     			AcceptedItems.add(it);
     		}

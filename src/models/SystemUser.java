@@ -99,6 +99,18 @@ public class SystemUser extends DataManager {
         systemUser = null;
     }
     
+    public void resetPassword(String mail) {
+    	for (SystemUser user : systemUsersList) {
+    		if (user.getEmail().equals(mail)) {
+    			user.setPassword("123456");
+    			user.update();
+    			return;
+    		}
+    	}
+    	
+    	System.out.println("done");
+    }
+    
 //    public ArrayList<String> getNotifications(int userID) {
 //        ArrayList<Object[]> AllUsersNotifications = new ArrayList<>();
 //        ArrayList<String> UserNotifications = new ArrayList<>();
@@ -193,10 +205,7 @@ public class SystemUser extends DataManager {
     public ArrayList<SystemUser> getSystemUsersList() {
         return systemUsersList;
     }
-
-
-
-    
+  
     @Override
     protected String getAttributes() {
         return "Fname,Lname,email,pass,Gender,Birthdate,phone,authorization";

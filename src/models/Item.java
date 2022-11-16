@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Item extends DataManager {
     //Attributes
-    private int ID, Cat_ID, session_ID, seller_ID, Admin_ID, Accepted;
+    private int ID, Cat_ID, session_ID, seller_ID;
     private String Item_name, details, picture;
     private long price;
     
@@ -19,7 +19,7 @@ public class Item extends DataManager {
 
     //Constructor
     public Item(int id, String name, String details, String pic, long price, int category,
-                int session, int seller, int admin, int accept, int served) {
+                int session, int seller, int served) {
         this.ID = id;
         this.Item_name = name;
         this.details = details;
@@ -28,8 +28,6 @@ public class Item extends DataManager {
         this.Cat_ID = category;
         this.session_ID = session;
         this.seller_ID = seller;
-        this.Admin_ID = admin;
-        this.Accepted = accept;
         this.served = served;
     }
     
@@ -71,23 +69,8 @@ public class Item extends DataManager {
                     i.SellerName = u.getFname() + " " + u.getLname();
                 }
             }
-            initItemState(i);
         }
 
-    }
-    
-    private void initItemState(Item i) {
-        if (i.Accepted == 0)
-            i.state = "Pending";
-        else if (i.Accepted == 1)
-            i.state = "Accepted";
-        else if (i.Accepted == 2)
-            i.state = "Rejected";
-    }
-
-    //Getters and Setters
-    public void setAccepted(int accepted) {
-        Accepted = accepted;
     }
     
     public String getItem_name() {
@@ -122,20 +105,12 @@ public class Item extends DataManager {
     	return this.seller_ID;
     }
     
-    public int getAdmin_ID() {
-    	return this.Admin_ID;
-    }
-    
     public String getState() { 
     	return this.state;
     }
     
     public void setState(String s) { 
     	this.state = s;
-    }
-    
-    public int getAccepted() {
-    	return this.Accepted;
     }
     
     public Sessions getSession() {
@@ -210,10 +185,6 @@ public class Item extends DataManager {
     	this.seller_ID=seller;
     }
     
-    public void setAdmin_ID(int admin) {
-    	this.Admin_ID=admin;
-    }
-    
     public void setServed(int i){
         this.served = i;
     }
@@ -231,12 +202,7 @@ public class Item extends DataManager {
     
     @Override
     protected String getValues() {
-        return   ID + ",'" + Item_name + "','" + details + "','"+picture+"',"+price+","+Cat_ID+","+session_ID+","+seller_ID+","+Admin_ID+","+Accepted +","+served;
-    }
-
-    @Override
-    protected String getOptions() {
-        return "Accepted = " + Accepted;
+        return   ID + ",'" + Item_name + "','" + details + "','"+picture+"',"+price+","+Cat_ID+","+session_ID+","+seller_ID+","+served;
     }
 
     @Override
@@ -253,6 +219,11 @@ public class Item extends DataManager {
     protected Object get() {
         return null;
     }
+    
+	@Override
+	protected String getOptions() {
+		return null;
+	}
 
     public ArrayList<Item> getItemList() {
     	return this.ItemList;
@@ -263,7 +234,7 @@ public class Item extends DataManager {
         ArrayList<Object[]> list = getAll();
         for(Object[] item : list) {
             ItemList.add(new Item((int) item[0], (String) item[1], (String) item[2], (String) item[3],
-                    (long) item[4], (int) item[5],(int) item[6],(int) item[7],(int) item[8],(int) item[9] , (int) item[10] ));
+                    (long) item[4], (int) item[5],(int) item[6],(int) item[7], (int) item[8]));
         }
     }
 
