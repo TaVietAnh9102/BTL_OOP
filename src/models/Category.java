@@ -45,7 +45,7 @@ public class Category extends DataManager {
 
     @Override
     protected String getAttributes() {
-        return "ID, Cat_Name,Admin_ID";
+        return "ID, Cat_Name";
     }
 
     @Override

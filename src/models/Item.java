@@ -6,20 +6,20 @@ public class Item extends DataManager {
     //Attributes
     private int ID, Cat_ID, session_ID, seller_ID;
     private String Item_name, details, picture;
-    private long price;
+    private int price;
     
     private String state;
     private  ArrayList<Item> ItemList;
     
-    private Sessions session ;
+    private Sessions session;
     private Category category;
     private SystemUser seller;
     private String CatName, SellerName;
     private int StartTime, served;
 
     //Constructor
-    public Item(int id, String name, String details, String pic, long price, int category,
-                int session, int seller, int served) {
+    public Item(int id, String name, String details, String pic, int price, 
+    			int category, int session, int seller, int served) {
         this.ID = id;
         this.Item_name = name;
         this.details = details;
@@ -89,7 +89,7 @@ public class Item extends DataManager {
         return this.picture;
     }
     
-    public long getPrice() {
+    public int getPrice() {
     	return this.price;
     }
     
@@ -153,10 +153,6 @@ public class Item extends DataManager {
         this.ID = id;
     }
     
-    public int getID() {
-    	return this.ID;
-    }
-    
     public void setName(String name) {
     	this.Item_name = name;
     }
@@ -169,7 +165,7 @@ public class Item extends DataManager {
     	this.picture = pic;
     }
     
-    public void setPrice(long price) {
+    public void setPrice(int price) {
         this.price = price;
     }
     
@@ -197,7 +193,7 @@ public class Item extends DataManager {
     //Methods
     @Override
     protected String getAttributes() {
-        return "ID,Item_name,Details,picture,Price,Cat_ID,session_ID,seller_ID,Admin_ID,Accepted,Served";
+        return "ID,Item_name,Details,picture,Price,Cat_ID,session_ID,seller_ID,Served";
     }
     
     @Override
@@ -229,12 +225,12 @@ public class Item extends DataManager {
     	return this.ItemList;
     }
 
-    public void getData() throws NullPointerException {
+    private void getData() throws NullPointerException {
         ItemList = new ArrayList<>();
         ArrayList<Object[]> list = getAll();
         for(Object[] item : list) {
             ItemList.add(new Item((int) item[0], (String) item[1], (String) item[2], (String) item[3],
-                    (long) item[4], (int) item[5],(int) item[6],(int) item[7], (int) item[8]));
+                    (int) item[4], (int) item[5],(int) item[6],(int) item[7], (int) item[8]));
         }
     }
 

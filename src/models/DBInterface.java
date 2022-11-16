@@ -110,14 +110,6 @@ public class DBInterface {
 
         return resultList;
     }
-    
-//    public ArrayList<Object[]> select(String table, String options ,int userID ) {
-//    	// use for notifiction and user_notification in SystemUser
-//        table += " INNER JOIN User_notification on Notification.ID = User_notification.notification_ID WHERE User_notification.User_ID = " + userID;
-//        query = prepareQuery(table,options,"");
-//        executeQuery(query, true);
-//        return resultList;
-//    }
 
     //Helper Methods
     private String prepareQuery(String table,String options, String whereStatement) {

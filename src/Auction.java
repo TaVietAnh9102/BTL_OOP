@@ -2,6 +2,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import models.DBInterface;
+import models.Item;
 import models.Member;
 import models.SystemUser;
 
@@ -20,17 +21,21 @@ public class Auction {
 //           System.out.println(user[5]);
 //           System.out.println(user[6]);
 //           System.out.println(user[7]);
-//           System.out.println(user[8]);
 //
 //           
 //        }
+//		
+//		Member m = new Member();
+//		m.Login("b@gmail.com", "b");
+//		m.resetPassword("c@gmail.com");
 		
-		Member m = new Member();
-		//m.Login("b@gmail.com", "b");
-		m.resetPassword("c@gmail.com");
-//		d
-//		Member n = new Member();
-//		n.canRegister("z@gmail.com");
+		
+		Item m = new Item();
+		m.initializeItems();
+		ArrayList<Item> li= m.getItemList();
+		for (Item it : li) {
+			System.out.println(it.getId());
+		}
 		
 	}
 }
