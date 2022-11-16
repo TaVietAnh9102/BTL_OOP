@@ -2,6 +2,7 @@ package controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.time.LocalTime;
 import java.util.List;
 
 import javax.swing.LookAndFeel;
@@ -14,12 +15,13 @@ import view.LoginView;
 
 public class LoginController {
 	private LoginView loginView;
-	private SystemUser systemUser;
+	private SystemUser client;
 	private static boolean ok = false; 
 	
 	public LoginController() {
 		loginView = new LoginView();
-		systemUser = new SystemUser();
+		client = new SystemUser();
+		client.getData();
 		loginView.addListener(new ActionListener() {
 			
 			@Override
@@ -46,15 +48,15 @@ public class LoginController {
 	}
 	
 	public void login() {
-		int status = systemUser.Login(loginView.getEmail(), loginView.getPassword());
+		int status = client.Login(loginView.getEmail(), loginView.getPassword());
 		String message = "";
-		switch (1) {
+		switch (status) {
 			case 0:{
 				
 //				 AdminController();
 			}
 			case 1:{
-				new CustomerController(new Member(systemUser, systemUser.getAuthorization()));
+				new CustomerController(new Member(client, client.getAuthorization()));
 				loginView.setVisible(false);
 				break;
 			}
@@ -87,6 +89,7 @@ public class LoginController {
 	public static void main(String[] args) throws ClassNotFoundException, InstantiationException, IllegalAccessException, UnsupportedLookAndFeelException {
 		UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 		new LoginController();
+		//System.out.println(LocalTime.now());
 	}
 	
 	

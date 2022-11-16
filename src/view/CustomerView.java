@@ -11,6 +11,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 
 import javax.swing.border.LineBorder;
+import javax.swing.plaf.BorderUIResource;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import java.awt.Font;
@@ -23,13 +24,14 @@ import java.awt.GridLayout;
 import java.awt.Label;
 import java.awt.ScrollPane;
 import java.awt.event.ActionListener;
+import javax.swing.border.CompoundBorder;
 
 public class CustomerView extends JFrame {
 
 	private static Font FONT_BUTTON = new Font("Arial", Font.BOLD, 12);
 	private static Color FOREGROUND_COLOR = new Color(93,97,140);
 	private JPanel contentPane;
-
+	
 	private JButton homeButton;
 	private JButton personalDetailButton;
 	private JButton submitItemButton;
@@ -37,25 +39,7 @@ public class CustomerView extends JFrame {
 	private JPanel personalDetail;
 	private JPanel submitItemPanel;
 	private HomePanel homePanel;
-	/**
-	 * Launch the application.
-	 */
-//	public static void main(String[] args) {
-//		EventQueue.invokeLater(new Runnable() {
-//			public void run() {
-//				try {
-//					CustomerView frame = new CustomerView();
-//					frame.setVisible(true);
-//				} catch (Exception e) {
-//					e.printStackTrace();
-//				}
-//			}
-//		});
-//	}
 
-	/**
-	 * Create the frame.
-	 */
 	public CustomerView() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("Auction Application");
@@ -70,9 +54,9 @@ public class CustomerView extends JFrame {
 		contentPane.setLayout(null);
 		initTitlePanel();
 		initMenuPanel();
-		initHomePanel();
-		initPersonalDetail();
-		initSubmitItemPanel();
+//		initHomePanel();
+//		initPersonalDetail();
+//		initSubmitItemPanel();
 		setVisible(true);
 		
 	}
@@ -107,7 +91,9 @@ public class CustomerView extends JFrame {
 		menuPanel.setLayout(null);
 		
 		homeButton = new JButton("Home");
+		homeButton.setBackground(new Color(255, 255, 255));
 		homeButton.setBounds(0, 0, 120, 45);
+		homeButton.setBorder(new LineBorder(new Color(0, 0, 0)));
 		homeButton.setForeground(FOREGROUND_COLOR);
 		homeButton.setFont(FONT_BUTTON);
 		menuPanel.add(homeButton);
@@ -127,41 +113,42 @@ public class CustomerView extends JFrame {
 		
 	}
 	
-	private void initHomePanel() {
-		homePanel = new HomePanel();
-		homePanel.setBounds(152, 87, 800, 505);
-		homePanel.setBackground(new Color(255, 255, 255));
-		homePanel.addItem();
-		contentPane.add(homePanel);
-		homePanel.setVisible(true);
+	public void addPanel(JPanel panel) {
+		contentPane.add(panel);
 	}
 	
-	
-	private void initPersonalDetail() {
-		personalDetail = new JPanel();
-		personalDetail.setBounds(152, 87, 800, 505);
-		contentPane.add(personalDetail);
-		personalDetail.setVisible(false);
-	}
-	
-	private void initSubmitItemPanel() {
-		submitItemPanel = new JPanel();
-		submitItemPanel.setBounds(152, 87, 800, 505);
-		contentPane.add(submitItemPanel);
-		submitItemPanel.setVisible(false);
-	}
-	
+//	private void initHomePanel() {
+//		homePanel = new HomePanel();
+//		homePanel.setBounds(152, 87, 800, 505);
+//		homePanel.setBackground(new Color(255, 255, 255));
+//	//	homePanel.addItem();
+//		contentPane.add(homePanel);
+//		homePanel.setVisible(true);
+//	}
+//	
+//	
+//	private void initPersonalDetail() {
+//		
+//	}
+//	
+//	private void initSubmitItemPanel() {
+//		submitItemPanel = new JPanel();
+//		submitItemPanel.setBounds(152, 87, 800, 505);
+//		contentPane.add(submitItemPanel);
+//		submitItemPanel.setVisible(false);
+//	}
+//	
 	public void addListener(ActionListener e) {
 		homeButton.addActionListener(e);
 		personalDetailButton.addActionListener(e);
 		submitItemButton.addActionListener(e);
 	}
 	
-	public void switchPanel(boolean homePanelStatus, boolean personalDetailStatus, boolean submitItemStatus) {
-		this.homePanel.setVisible(homePanelStatus);
-		this.personalDetail.setVisible(personalDetailStatus);
-		this.submitItemPanel.setVisible(submitItemStatus);
-	}
+//	public void switchPanel(boolean homePanelStatus, boolean personalDetailStatus, boolean submitItemStatus) {
+//		this.homePanel.setVisible(homePanelStatus);
+//		this.personalDetail.setVisible(personalDetailStatus);
+//		this.submitItemPanel.setVisible(submitItemStatus);
+//	}
 	
 	
 }

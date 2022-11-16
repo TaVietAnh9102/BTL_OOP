@@ -9,7 +9,11 @@ public class DBInterface {
     private String dbName = "auction";	// create database name auction
     private String dbURL = "jdbc:mysql://localhost:3306/" + dbName;
     private String dbUsername = "root";
+<<<<<<< Updated upstream
     private String dbPassword = "Tranminhchau2";	// your sql password
+=======
+    private String dbPassword = "Tranminhchau2";
+>>>>>>> Stashed changes
     
     private Connection connection = null;
     private String query = null;
@@ -155,9 +159,15 @@ public class DBInterface {
             preparedStatement.close();
           	
     	} catch (SQLException ex){
+<<<<<<< Updated upstream
     		ex.printStackTrace();
     	} catch (NullPointerException e) {
 			// TODO: handle exception
+=======
+    		//ex.printStackTrace();
+    	} catch (NullPointerException e) {
+			
+>>>>>>> Stashed changes
 		}
     }
 

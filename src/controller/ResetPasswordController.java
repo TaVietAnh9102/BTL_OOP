@@ -23,7 +23,11 @@ public class ResetPasswordController {
 				}
 				else {
 					resetPasswordView.updateStatus("Your password is 123456");
+<<<<<<< Updated upstream
 					user.resetPassword(resetPasswordView.getEmail());
+=======
+					user.resetPassword("b@gmail.com");
+>>>>>>> Stashed changes
 					//resetPasswordView.setVisible(false);
 				}
 			}

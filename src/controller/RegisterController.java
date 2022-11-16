@@ -15,15 +15,18 @@ import java.util.Date;
 import java.util.List;
 
 import models.Member;
+import models.SystemUser;
 import view.RegisterView;
 
 public class RegisterController {
 	private RegisterView registerView;
-	private Member newUser;
+	private Member client;
 	
 	public RegisterController() {
 		registerView = new RegisterView();
-		newUser = new Member();
+		client = new Member();
+		client.getData();
+		client.GetEmails();
 		registerView.addListener(new ActionListener() {
 			
 			@Override
@@ -50,16 +53,17 @@ public class RegisterController {
 	
 	private void register() {
 		if(registerView.getFirstName().equals("") || registerView.getLastName().equals("") || registerView.getEmail().equals("")||
-				registerView.getPassword().equals("") || registerView.getPhone().equals("") ) { //|| !newUser.existedEmail(registerView.getEmail())
+				registerView.getPassword().equals("") || registerView.getPhone().equals("") || !client.canRegister(registerView.getEmail())) { //|| !newUser.existedEmail(registerView.getEmail())
 			registerView.setVisibleMessage(true);
 			
 		}
 		else {
-			registerView.setVisibleMessage(false);
-//			newUser.Register(registerView.getFirstName(), registerView.getLastName(), registerView.getEmail(), registerView.getPassword(), registerView.getPhone(), registerView.getBirthDate() + "/" 
-//					+ registerView.getBirthMonth() + registerView.getBirthMonth(), registerView.getGender());
+			//registerView.setVisibleMessage(false);
+			client.Register(registerView.getFirstName(), registerView.getLastName(), registerView.getEmail(), registerView.getPassword(), registerView.getPhone(), registerView.getBirthDate() + "/" 
+					+ registerView.getBirthMonth()+"/" + registerView.getBirthYear(), registerView.getGender(), 1);
 			registerView.setVisible(false);
 		}
+		
 	}
 	
 	

@@ -67,7 +67,9 @@ public class SystemUser extends DataManager {
     public int Login(String EMAIL,String Password) {
         try {
             for (SystemUser user : systemUsersList) {
+            	System.out.println(EMAIL + " " + Password);
                 if (user.email.equalsIgnoreCase(EMAIL)) {
+                	System.out.println(user.email + " " + user.pass);
                     if (user.pass.equals(Password)) {
                         System.out.println("Email & Password are Correct \nLogin Successfully\n\n\n" +
                                 "WELCOME " + user.Fname + " " + user.Lname);
@@ -95,23 +97,6 @@ public class SystemUser extends DataManager {
         }
 
     }
-    
-    
-    private static boolean correctEmail(String email) {
-    	if(!email.equals("")&& Character.isLetter(email.charAt(0)) && email.endsWith("@gmail.com") && !email.contains(" ")) {
-    		return true;
-    	}
-    	return false;
-    }
-    
-    private static boolean isCorrectPassword(String password) {
-    	if(!password.equals("") && password.length() >= 8 && !password.contains(" ") && (Character.isLetter(password.charAt(0)) || Character.isDigit(password.charAt(0)) )){
-    		return true;
-    	}
-    	return false;
-    }
-    
-    
     
     public void Logout(SystemUser systemUser){
         systemUser.systemUsersList.clear();
@@ -147,13 +132,23 @@ public class SystemUser extends DataManager {
 //        return UserNotifications;
 //    }
 
-
+    public void resetPassword(String email) {
+    	for(SystemUser user : systemUsersList) {
+    		if(user.email.equals(email)){
+    			user.setPassword("123456");
+    			user.update();
+    			return;
+    		}
+    		
+    	}
+    }
+    
     //Getters and Setters
 
     public void setId(int id) {
         this.id = id;
     }
-
+    
     public void setFname(String fname) {
         Fname = fname;
     }
@@ -186,8 +181,6 @@ public class SystemUser extends DataManager {
         this.authorization = authorization;
     }
     
-    
-
     public String getFname() {
         return Fname;
     }
@@ -223,7 +216,12 @@ public class SystemUser extends DataManager {
     public ArrayList<SystemUser> getSystemUsersList() {
         return systemUsersList;
     }
+<<<<<<< Updated upstream
   
+=======
+
+    
+>>>>>>> Stashed changes
     @Override
     protected String getAttributes() {
         return "Fname,Lname,email,pass,Gender,Birthdate,phone,authorization";
@@ -269,8 +267,6 @@ public class SystemUser extends DataManager {
         super.update();
     }
 
-    
-    
     
     // get user by id
     public SystemUser getUserbyid(int id){

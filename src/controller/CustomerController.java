@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 
 import models.Member;
 import view.CustomerView;
+import view.HomePanel;
 
 public class CustomerController {
 	private CustomerView customerView;
@@ -12,6 +13,7 @@ public class CustomerController {
 	public CustomerController(Member member) {
 		this.member = member;
 		customerView = new CustomerView();
+		new HomeController(customerView);
 		customerView.addListener(new ActionListener() {
 			
 			@Override
@@ -19,13 +21,14 @@ public class CustomerController {
 				String ev = e.getActionCommand();
 				switch (ev) {
 				case "Home": 
-					customerView.switchPanel(true, false, false);
+					new HomeController(customerView);
+					//customerView.switchPanel(true, false, false);
 					break;
 				case "Personal Detail":
-					customerView.switchPanel(false, true, false);
+				//	customerView.switchPanel(false, true, false);
 					break;
 				case "Submit Item":
-					customerView.switchPanel(false, false, true);
+				//	customerView.switchPanel(false, false, true);
 					break;
 				default:
 				}
