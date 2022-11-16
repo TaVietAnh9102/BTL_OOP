@@ -25,7 +25,7 @@ public class SystemUser extends DataManager {
     
     // for class member
     protected ArrayList<SystemUser> systemUsersList = new ArrayList<SystemUser>();
-    //private String Uauthorization = "", UGender = "", UFname = "", ULname = "", Uemail = "", Upassword = "", Uprofilepic = "", Uphone = "", UBirthdate = ""; // for getOptions
+    
 
     //Constructor
     public SystemUser(){
@@ -58,7 +58,7 @@ public class SystemUser extends DataManager {
     	ArrayList<Object[]> list = getAll();
         for(Object[] user : list) {
             systemUsersList.add(new SystemUser((int) user[0], (String) user[1], (String) user[2], (String) user[3], 
-            									(String) user[4], (int) user[5], (String) user[6], (String) user[7], (int) user[9]));
+            									(String) user[4], (int) user[5], (String) user[6], (String) user[7], (int) user[8]));
         }
     }
     
