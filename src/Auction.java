@@ -34,7 +34,7 @@ public class Auction {
 		m.initializeItems();
 		ArrayList<Item> li= m.getItemList();
 		for (Item it : li) {
-			System.out.println(it.getId());
+			System.out.println(it.getCatName());
 		}
 		
 	}

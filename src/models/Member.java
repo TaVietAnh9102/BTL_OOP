@@ -13,7 +13,6 @@ public class Member extends SystemUser{
         this.setEmail(LoginClient.getEmail());
         this.setFname(LoginClient.getFname());
         this.setLname(LoginClient.getLname());
-        this.setAuthorization(LoginClient.getAuthorization());
         this.setPassword(LoginClient.getPassword());
         this.setBirthdate(LoginClient.getBirthdate());
         this.setId(LoginClient.getId());
@@ -49,7 +48,6 @@ public class Member extends SystemUser{
         this.setPhone(phone);
         this.setPassword(password);
         this.setGender(gender);
-        this.setAuthorization(auth);
         this.setEmail(Email);
         // insert info into database
         this.add();
@@ -88,7 +86,7 @@ public class Member extends SystemUser{
     //seller
 
     // this params are required as it needed to be added in the DB .. admin will be static
-    public void submitItem(int sellerID , String name , String Pic, String details , long price , int sessionID ,  int categoryID ,int reserved ) {
+    public void submitItem(int sellerID , String name , String Pic, String details , int price , int sessionID ,  int categoryID ,int reserved ) {
     	Item SubmittedItem = new Item();
         SubmittedItem.setSession_ID(sessionID);
         SubmittedItem.setCat_ID(categoryID);

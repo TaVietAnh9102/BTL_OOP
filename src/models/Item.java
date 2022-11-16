@@ -38,7 +38,7 @@ public class Item extends DataManager {
         try {
             getData();   
         } catch (Exception e) {
-            System.out.println("Error in DB");
+            System.out.println("Error in DB (Item)");
         }
 
         Sessions x = new Sessions();
