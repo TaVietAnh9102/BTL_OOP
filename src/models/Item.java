@@ -225,7 +225,7 @@ public class Item extends DataManager {
     	return this.ItemList;
     }
 
-    private void getData() throws NullPointerException {
+    public void getData() throws NullPointerException {
         ItemList = new ArrayList<>();
         ArrayList<Object[]> list = getAll();
         for(Object[] item : list) {
