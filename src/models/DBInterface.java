@@ -6,10 +6,10 @@ import java.util.ArrayList;
 public class DBInterface {
 	private static DBInterface instance;
 	
-    private String dbName = "auction";
+    private String dbName = "auction_system";	// create database name auction
     private String dbURL = "jdbc:mysql://localhost:3306/" + dbName;
     private String dbUsername = "root";
-    private String dbPassword = "2112";
+    private String dbPassword = "2112";	// your sql password
     
     private Connection connection = null;
     private String query = null;
@@ -20,7 +20,7 @@ public class DBInterface {
     	// remember add .jar file
         try {
             connection = DriverManager.getConnection(dbURL, dbUsername, dbPassword);
-            System.out.println("Connected");
+            System.out.println("Connected (DBInterface)");
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -40,7 +40,7 @@ public class DBInterface {
         query = "INSERT INTO " + table + "(" + attributes + ") VALUES(" + values + ")";
 
         //for checking
-        System.out.println(query);
+        System.out.println(query + "(43 - DBInterface)");
 
         executeQuery(query, false);
     }
@@ -49,7 +49,7 @@ public class DBInterface {
         query = "DELETE FROM " + table + " WHERE ID = " + objectId;
 
         //for checking
-        System.out.println(query);
+        System.out.println(query + "(52 - DBInterface)");
 
         executeQuery(query, false);
     }
@@ -62,7 +62,7 @@ public class DBInterface {
         }
 
         //for checking
-        System.out.println(query);
+        System.out.println(query + "(65 - DBInterface)");
 
         executeQuery(query, false);
     }
@@ -71,7 +71,7 @@ public class DBInterface {
         query = "Update " + table + " SET " + attr + " = " + values + " Where " + Where;
         
         //for checking
-        System.out.println(query);
+        System.out.println(query + "(74 - DBInterface)");
         
         executeQuery(query,false);
     }
@@ -81,7 +81,7 @@ public class DBInterface {
         query = prepareQuery(table, "*", "");
 
         //for checking
-        System.out.println(query);
+        System.out.println(query + "(84 - DBInterface)");
 
         executeQuery(query, true);
 
@@ -92,7 +92,7 @@ public class DBInterface {
         query = prepareQuery(table, options, "");
 
         //for checking
-        System.out.println(query);
+        System.out.println(query + "(95 - DBInterface)");
 
         executeQuery(query, true);
 
@@ -104,20 +104,20 @@ public class DBInterface {
         query = prepareQuery(table, options, whereStatement);
 
         //for checking
-        System.out.println(query);
+        System.out.println(query + "(107 - DBInterface)");
 
         executeQuery(query, true);
 
         return resultList;
     }
     
-    public ArrayList<Object[]> select(String table, String options ,int userID ) {
-    	// use for notifiction and user_notification in SystemUser
-        table += " INNER JOIN User_notification on Notification.ID = User_notification.notification_ID WHERE User_notification.User_ID = " + userID;
-        query = prepareQuery(table,options,"");
-        executeQuery(query, true);
-        return resultList;
-    }
+//    public ArrayList<Object[]> select(String table, String options ,int userID ) {
+//    	// use for notifiction and user_notification in SystemUser
+//        table += " INNER JOIN User_notification on Notification.ID = User_notification.notification_ID WHERE User_notification.User_ID = " + userID;
+//        query = prepareQuery(table,options,"");
+//        executeQuery(query, true);
+//        return resultList;
+//    }
 
     //Helper Methods
     private String prepareQuery(String table,String options, String whereStatement) {
@@ -133,6 +133,7 @@ public class DBInterface {
         return query;
     }
     
+    		// StackOverFlow
     private void executeQuery(String query, Boolean dataRetireval) {
     	try {
     		PreparedStatement preparedStatement = connection.prepareStatement(query);
