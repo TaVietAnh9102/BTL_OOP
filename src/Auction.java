@@ -28,6 +28,7 @@ public class Auction {
 		Member m = new Member();
 		//m.Login("b@gmail.com", "b");
 		m.resetPassword("c@gmail.com");
+//		d
 //		Member n = new Member();
 //		n.canRegister("z@gmail.com");
 		
