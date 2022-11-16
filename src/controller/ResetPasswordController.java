@@ -11,17 +11,20 @@ public class ResetPasswordController {
 	private Member user;
 	public ResetPasswordController() {
 		user = new Member();
+		user.getData();
 		resetPasswordView = new ResetPasswordView();
 		resetPasswordView.addListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				if(!user.canRegister(resetPasswordView.getEmail())) {
+				if(user.canRegister(resetPasswordView.getEmail().trim())) {
 					resetPasswordView.updateStatus("Email is not exist!");
 				}
 				else {
-					resetPasswordView.setVisible(false);
+					resetPasswordView.updateStatus("Your password is 123456");
+					user.resetPassword(resetPasswordView.getEmail());
+					//resetPasswordView.setVisible(false);
 				}
 			}
 		});

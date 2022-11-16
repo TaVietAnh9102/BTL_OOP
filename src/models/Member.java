@@ -146,10 +146,8 @@ public class Member extends SystemUser{
     	item.initializeItems();
     	ArrayList<Item> AllRetrunedItems = item.getItemList();
     	for (Item it: AllRetrunedItems) {
-    		if (it.getAccepted() == 1 && it.getServed() == 0){   //accept and not served then can be in product menu
     			System.out.println(it.getServed());
     			AcceptedItems.add(it);
-    		}
     	}
 
     	return AcceptedItems;
