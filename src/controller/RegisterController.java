@@ -60,7 +60,7 @@ public class RegisterController {
 		else {
 			//registerView.setVisibleMessage(false);
 			client.Register(registerView.getFirstName(), registerView.getLastName(), registerView.getEmail(), registerView.getPassword(), registerView.getPhone(), registerView.getBirthDate() + "/" 
-					+ registerView.getBirthMonth()+"/" + registerView.getBirthYear(), registerView.getGender(), 1);
+					+ registerView.getBirthMonth()+"/" + registerView.getBirthYear(), registerView.getGender());
 			registerView.setVisible(false);
 		}
 		

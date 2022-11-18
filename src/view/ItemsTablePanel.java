@@ -46,7 +46,7 @@ import java.awt.RenderingHints.Key;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 
-public class HomePanel extends JPanel {
+public class ItemsTablePanel extends JPanel {
 	
 	private JPanel categoryPanel;
 	private HashMap<String, ItemTableScrollPane> tabs;
@@ -54,17 +54,22 @@ public class HomePanel extends JPanel {
 	private ActionListener itemListener;
 	private ActionListener categoryListener;
 	
-	public HomePanel(ActionListener itemListener, ActionListener categoryListener) {
+	public ItemsTablePanel() {
 		setLayout(null);
 		setBounds(152, 87, 810, 505);
 		initCategoryScroll();
 		tabs = new HashMap<>();
-		this.itemListener = itemListener;
-		this.categoryListener = categoryListener;
 		currentTab = "All";
-		addCategory(new Category(-1, "All", "admin"));
 	}
 	
+	
+	public void setCategoryListener(ActionListener categoryListener) {
+		this.categoryListener = categoryListener;
+	}
+	
+	public void setItemListener(ActionListener itemListener) {
+		this.itemListener = itemListener;
+	}
 	
 	public void initCategoryScroll() {
 		JScrollPane scrollPaneCategory = new JScrollPane();
@@ -116,6 +121,7 @@ public class HomePanel extends JPanel {
 	
 	
 	public void showTab(String categoryName) {
+		
 		tabs.get(currentTab).setVisible(false);
 		currentTab = categoryName;
 		tabs.get(currentTab).setVisible(true);
@@ -145,6 +151,7 @@ public class HomePanel extends JPanel {
 			if(!tabs.containsKey(category.getCat_Name())) {
 				addCategory(category);
 			}
+			
 		}
 	}
 	
@@ -158,12 +165,10 @@ public class HomePanel extends JPanel {
 			button.setForeground(new Color(93,97,140));
 			button.setFont(new Font("Arial", Font.BOLD, 10));
 			button.setBorder(new LineBorder(new Color(93,97,140)));
-			
 			ItemTableScrollPane tab = new ItemTableScrollPane();
 			tab.setBounds(0, 35, 810, 470);
 			tab.setVisible(false);
 			add(tab);
-			
 			tabs.put(category.getCat_Name(), tab);
 		}
 	}

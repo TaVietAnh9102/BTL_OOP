@@ -33,12 +33,15 @@ public class CustomerView extends JFrame {
 	private JPanel contentPane;
 	
 	private JButton homeButton;
+	private JButton soldButton;
+	private JButton participatedButton;
 	private JButton personalDetailButton;
 	private JButton submitItemButton;
+	private JButton logOutButton;
 	
 	private JPanel personalDetail;
 	private JPanel submitItemPanel;
-	private HomePanel homePanel;
+	private ItemsTablePanel homePanel;
 
 	public CustomerView() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -54,11 +57,7 @@ public class CustomerView extends JFrame {
 		contentPane.setLayout(null);
 		initTitlePanel();
 		initMenuPanel();
-//		initHomePanel();
-//		initPersonalDetail();
-//		initSubmitItemPanel();
 		setVisible(true);
-		
 	}
 	
 	private void initTitlePanel() {
@@ -88,67 +87,60 @@ public class CustomerView extends JFrame {
 		JPanel menuPanel = new JPanel();
 		menuPanel.setBackground(new Color(255, 255, 255));
 		menuPanel.setBounds(10, 87, 120, 505);
-		menuPanel.setLayout(null);
+		menuPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 0, 0));
 		
 		homeButton = new JButton("Home");
-		homeButton.setBackground(new Color(255, 255, 255));
-		homeButton.setBounds(0, 0, 120, 45);
-		homeButton.setBorder(new LineBorder(new Color(0, 0, 0)));
+		homeButton.setPreferredSize(new Dimension(120, 35));
 		homeButton.setForeground(FOREGROUND_COLOR);
 		homeButton.setFont(FONT_BUTTON);
 		menuPanel.add(homeButton);
 		
+		participatedButton = new JButton("Participated");
+		participatedButton.setPreferredSize(new Dimension(120, 35));
+		participatedButton.setForeground(FOREGROUND_COLOR);
+		participatedButton.setFont(FONT_BUTTON);
+		menuPanel.add(participatedButton);
+		
+		soldButton = new JButton("Sold product");
+		soldButton.setPreferredSize(new Dimension(120, 35));
+		soldButton.setForeground(FOREGROUND_COLOR);
+		soldButton.setFont(FONT_BUTTON);
+		menuPanel.add(soldButton);
+		
+		submitItemButton = new JButton("Submit Item");
+		submitItemButton.setPreferredSize(new Dimension(120, 35));
+		submitItemButton.setForeground(FOREGROUND_COLOR);
+		submitItemButton.setFont(FONT_BUTTON);
+		menuPanel.add(submitItemButton);
+				
 		personalDetailButton = new JButton("Personal Detail");
-		personalDetailButton.setBounds(0, 43, 120, 45);
+		personalDetailButton.setPreferredSize(new Dimension(120, 35));
 		personalDetailButton.setForeground(FOREGROUND_COLOR);
 		personalDetailButton.setFont(FONT_BUTTON);
 		menuPanel.add(personalDetailButton);
 		
-		submitItemButton = new JButton("Submit Item");
-		submitItemButton.setBounds(0, 86, 120, 45);
-		submitItemButton.setForeground(FOREGROUND_COLOR);
-		submitItemButton.setFont(FONT_BUTTON);
-		menuPanel.add(submitItemButton);
+		logOutButton = new JButton("LogOut");
+		logOutButton.setPreferredSize(new Dimension(120, 35));
+		logOutButton.setForeground(FOREGROUND_COLOR);
+		logOutButton.setFont(FONT_BUTTON);
+		menuPanel.add(logOutButton);
 		contentPane.add(menuPanel);
-		
 	}
 	
 	public void addPanel(JPanel panel) {
 		contentPane.add(panel);
 	}
 	
-//	private void initHomePanel() {
-//		homePanel = new HomePanel();
-//		homePanel.setBounds(152, 87, 800, 505);
-//		homePanel.setBackground(new Color(255, 255, 255));
-//	//	homePanel.addItem();
-//		contentPane.add(homePanel);
-//		homePanel.setVisible(true);
-//	}
-//	
-//	
-//	private void initPersonalDetail() {
-//		
-//	}
-//	
-//	private void initSubmitItemPanel() {
-//		submitItemPanel = new JPanel();
-//		submitItemPanel.setBounds(152, 87, 800, 505);
-//		contentPane.add(submitItemPanel);
-//		submitItemPanel.setVisible(false);
-//	}
-//	
+	public void removePanel(JPanel panel) {
+		contentPane.remove(panel);
+	}
+
 	public void addListener(ActionListener e) {
 		homeButton.addActionListener(e);
+		participatedButton.addActionListener(e);
+		soldButton.addActionListener(e);
 		personalDetailButton.addActionListener(e);
 		submitItemButton.addActionListener(e);
+		logOutButton.addActionListener(e);
 	}
-	
-//	public void switchPanel(boolean homePanelStatus, boolean personalDetailStatus, boolean submitItemStatus) {
-//		this.homePanel.setVisible(homePanelStatus);
-//		this.personalDetail.setVisible(personalDetailStatus);
-//		this.submitItemPanel.setVisible(submitItemStatus);
-//	}
-	
-	
 }

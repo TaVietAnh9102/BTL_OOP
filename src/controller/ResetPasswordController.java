@@ -17,18 +17,12 @@ public class ResetPasswordController {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
 				if(user.canRegister(resetPasswordView.getEmail().trim())) {
 					resetPasswordView.updateStatus("Email is not exist!");
 				}
 				else {
 					resetPasswordView.updateStatus("Your password is 123456");
-<<<<<<< Updated upstream
 					user.resetPassword(resetPasswordView.getEmail());
-=======
-					user.resetPassword("b@gmail.com");
->>>>>>> Stashed changes
-					//resetPasswordView.setVisible(false);
 				}
 			}
 		});

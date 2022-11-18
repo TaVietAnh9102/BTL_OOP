@@ -6,7 +6,7 @@ public class Item extends DataManager {
     //Attributes
     private int ID, Cat_ID, session_ID, seller_ID;
     private String Item_name, details, picture;
-    private long price;
+    private int price;
     
     private String state;
     private  ArrayList<Item> ItemList;
@@ -18,7 +18,7 @@ public class Item extends DataManager {
     private int StartTime, served;
 
     //Constructor
-    public Item(int id, String name, String details, String pic, long price, int category,
+    public Item(int id, String name, String details, String pic, int price, int category,
                 int session, int seller, int served) {
         this.ID = id;
         this.Item_name = name;
@@ -169,7 +169,7 @@ public class Item extends DataManager {
     	this.picture = pic;
     }
     
-    public void setPrice(long price) {
+    public void setPrice(int price) {
         this.price = price;
     }
     
@@ -197,7 +197,7 @@ public class Item extends DataManager {
     //Methods
     @Override
     protected String getAttributes() {
-        return "ID,Item_name,Details,picture,Price,Cat_ID,session_ID,seller_ID,Admin_ID,Accepted,Served";
+        return "ID,Item_name,Details,picture,Price,Cat_ID,session_ID,seller_ID,Served";
     }
     
     @Override
@@ -234,7 +234,7 @@ public class Item extends DataManager {
         ArrayList<Object[]> list = getAll();
         for(Object[] item : list) {
             ItemList.add(new Item((int) item[0], (String) item[1], (String) item[2], (String) item[3],
-                    (long) item[4], (int) item[5],(int) item[6],(int) item[7], (int) item[8]));
+                    (int) item[4], (int) item[5],(int) item[6],(int) item[7], (int) item[8]));
         }
     }
 
@@ -254,7 +254,7 @@ public class Item extends DataManager {
         DBInterface db = DBInterface.getInstance();
         return db.select(
           "systemuser,session_participants",
-                "ID,Fname,Lname,profilePic,phone,price,State",
+                "ID,Fname,Lname,phone,price",
                     "systemuser.ID = session_participants.bidder_ID and session_ID = "+sessionID+" and item_ID ="+itemID+" ORDER BY price DESC"
         );
     }
@@ -280,4 +280,6 @@ public class Item extends DataManager {
                 "item","Served","1","ID = "+itemID
         );
     }
+    
+    
 }

@@ -5,6 +5,8 @@ import java.util.ArrayList;
 
 public class Sessions extends DataManager{
 	
+	
+	
 	// attributes
 	protected int ID;
 	private String Session_date;
@@ -188,4 +190,6 @@ public class Sessions extends DataManager{
                 "1",
                 "sessions.ID = " + sessionid);
     }
+    
+    
 }

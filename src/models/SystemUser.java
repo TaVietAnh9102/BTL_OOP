@@ -3,10 +3,8 @@ package models;
 import java.util.ArrayList;
 
 
-
 /*
  * 	LOGIN
- * 	(0)		Admin
  * 	(1)		Member
  * 
  * 	(-2)	pass is wrong
@@ -21,7 +19,7 @@ import java.util.ArrayList;
 public class SystemUser extends DataManager {
 	
     //Attributes
-	private int id, authorization, Gender;
+	private int id, Gender;
     private String Fname, Lname, email, pass, Birthdate, phone;
     
     // for class member
@@ -30,12 +28,11 @@ public class SystemUser extends DataManager {
 
     //Constructor
     public SystemUser(){
-      //  getData();
+        getData();
     }
-    
-   
+
     public SystemUser(int id, String Fname, String Lname, String Email, String password, 
-    					int gender, String Birthdate, String phone, int authorization) {
+    					int gender, String Birthdate, String phone) {
         this.id = id;
         this.Fname = Fname;
         this.Lname = Lname;
@@ -44,7 +41,6 @@ public class SystemUser extends DataManager {
         this.Gender = gender;
         this.Birthdate = Birthdate;
         this.phone = phone;
-        this.authorization = authorization;
     }
 
     //Methods
@@ -60,16 +56,14 @@ public class SystemUser extends DataManager {
     	ArrayList<Object[]> list = getAll();
         for(Object[] user : list) {
             systemUsersList.add(new SystemUser((int) user[0], (String) user[1], (String) user[2], (String) user[3], 
-            									(String) user[4], (int) user[5], (String) user[6], (String) user[7], (int) user[8]));
+            									(String) user[4], (int) user[5], (String) user[6], (String) user[7]));
         }
     }
     
     public int Login(String EMAIL,String Password) {
         try {
             for (SystemUser user : systemUsersList) {
-            	System.out.println(EMAIL + " " + Password);
                 if (user.email.equalsIgnoreCase(EMAIL)) {
-                	System.out.println(user.email + " " + user.pass);
                     if (user.pass.equals(Password)) {
                         System.out.println("Email & Password are Correct \nLogin Successfully\n\n\n" +
                                 "WELCOME " + user.Fname + " " + user.Lname);
@@ -81,8 +75,7 @@ public class SystemUser extends DataManager {
                         setGender(user.Gender);
                         setBirthdate(user.Birthdate);
                         setPhone(user.phone);
-                        setAuthorization(user.authorization);
-                        return user.authorization;
+                        return 1;
                     } else {
                         System.out.println("Password is wrong");
                         return -2;
@@ -115,40 +108,14 @@ public class SystemUser extends DataManager {
     	System.out.println("done");
     }
     
-//    public ArrayList<String> getNotifications(int userID) {
-//        ArrayList<Object[]> AllUsersNotifications = new ArrayList<>();
-//        ArrayList<String> UserNotifications = new ArrayList<>();
-//
-//        // get instance from DBInterface to work on database
-//        DBInterface DB = DBInterface.getInstance();
-//
-//        // get all notifications
-//        AllUsersNotifications = DB.select("Notification" , "message" , userID);
-//
-//        for (Object[] obj : AllUsersNotifications) {
-//            UserNotifications.add(obj[0].toString());
-//        }
-//
-//        return UserNotifications;
-//    }
 
-    public void resetPassword(String email) {
-    	for(SystemUser user : systemUsersList) {
-    		if(user.email.equals(email)){
-    			user.setPassword("123456");
-    			user.update();
-    			return;
-    		}
-    		
-    	}
-    }
-    
+
     //Getters and Setters
 
     public void setId(int id) {
         this.id = id;
     }
-    
+
     public void setFname(String fname) {
         Fname = fname;
     }
@@ -177,10 +144,11 @@ public class SystemUser extends DataManager {
         this.phone = phone;
     }
 
-    public void setAuthorization(int authorization) {
-        this.authorization = authorization;
-    }
     
+    
+    
+    
+
     public String getFname() {
         return Fname;
     }
@@ -209,27 +177,20 @@ public class SystemUser extends DataManager {
         return phone;
     }
     
-    public int getAuthorization() {
-        return authorization;
-    }
+   
     
     public ArrayList<SystemUser> getSystemUsersList() {
         return systemUsersList;
     }
-<<<<<<< Updated upstream
   
-=======
-
-    
->>>>>>> Stashed changes
     @Override
     protected String getAttributes() {
-        return "Fname,Lname,email,pass,Gender,Birthdate,phone,authorization";
+        return "Fname,Lname,email,pass,Gender,Birthdate,phone";
     }
 
     @Override
     protected String getValues() {
-        return "'" + Fname + "','" + Lname + "','" + email + "','" + pass + "'," + Gender + ",'" + Birthdate + "','" + phone + "'," + authorization;
+        return "'" + Fname + "','" + Lname + "','" + email + "','" + pass + "'," + Gender + ",'" + Birthdate + "','" + phone + "'" ;
     }
 
     @Override
@@ -267,6 +228,8 @@ public class SystemUser extends DataManager {
         super.update();
     }
 
+    
+    
     
     // get user by id
     public SystemUser getUserbyid(int id){

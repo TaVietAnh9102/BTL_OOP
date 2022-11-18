@@ -8,12 +8,11 @@ public class Member extends SystemUser{
     public Member(){
     }
 
-    public Member(SystemUser LoginClient , int auth){
+    public Member(SystemUser LoginClient ){
         this.systemUsersList = LoginClient.getSystemUsersList();
         this.setEmail(LoginClient.getEmail());
         this.setFname(LoginClient.getFname());
         this.setLname(LoginClient.getLname());
-        this.setAuthorization(LoginClient.getAuthorization());
         this.setPassword(LoginClient.getPassword());
         this.setBirthdate(LoginClient.getBirthdate());
         this.setId(LoginClient.getId());
@@ -22,11 +21,11 @@ public class Member extends SystemUser{
     }
 
     //Methods
-    public void editInfo (String EditedFname , String EditedLname , String EditedPassword) {
-        setFname(EditedFname);
-        setLname(EditedLname);
-        setPassword(EditedPassword);
-        update();
+    public void editInfo (SystemUser user , String EditedFname , String EditedLname , String EditedPassword) {
+        user.setFname(EditedFname);
+        user.setLname(EditedLname);
+        user.setPassword(EditedPassword);
+        user.update();
     }
     
     public boolean canRegister(String email){
@@ -41,7 +40,7 @@ public class Member extends SystemUser{
     }
     
     public void Register (String Fname , String Lname ,String Email , String password  , String phone ,
-                          String  Birthdata, int gender , int auth) {
+                          String  Birthdata, int gender ) {
         this.setFname(Fname);
         this.setLname(Lname);
         this.setEmail(Email);
@@ -49,7 +48,6 @@ public class Member extends SystemUser{
         this.setPhone(phone);
         this.setPassword(password);
         this.setGender(gender);
-        this.setAuthorization(auth);
         this.setEmail(Email);
         // insert info into database
         this.add();
@@ -81,6 +79,7 @@ public class Member extends SystemUser{
     	for (Object[] e: records) {
     		info.add((Integer)e[0]);
     	}
+    	
     	return info;
     }
     
@@ -88,27 +87,15 @@ public class Member extends SystemUser{
     //seller
 
     // this params are required as it needed to be added in the DB .. admin will be static
-    public void submitItem(int sellerID , String name , String Pic, String details , double price , int sessionID ,  int categoryID ,int adminID ,int Accepted,int reserved ) {
+    public void submitItem(int sellerID, String name , String Pic, String details , int price ,  int categoryID ,int reserved ) {
     	Item SubmittedItem = new Item();
-<<<<<<< Updated upstream
-        SubmittedItem.setSession_ID(sessionID);
-        SubmittedItem.setCat_ID(categoryID);
-        SubmittedItem.setpicture(Pic);
-        SubmittedItem.setDetails(details);
-        SubmittedItem.setName(name);
-=======
-        SubmittedItem.setAdmin_ID(adminID);
-        SubmittedItem.setSession_ID(sessionID);
         SubmittedItem.setCat_ID(categoryID);
         SubmittedItem.setPrice(price);
         SubmittedItem.setpicture(Pic);
         SubmittedItem.setDetails(details);
         SubmittedItem.setName(name);
-        SubmittedItem.setAccepted(Accepted);
->>>>>>> Stashed changes
         SubmittedItem.setSeller_ID(sellerID);
         SubmittedItem.setServed(reserved);
-        
         SubmittedItem.add();
         System.out.println("Item has been added successfully");
     }
@@ -157,15 +144,10 @@ public class Member extends SystemUser{
     	item.initializeItems();
     	ArrayList<Item> AllRetrunedItems = item.getItemList();
     	for (Item it: AllRetrunedItems) {
-<<<<<<< Updated upstream
-    			System.out.println(it.getServed());
-    			AcceptedItems.add(it);
-=======
-    		if (it.getAccepted() == 1 && it.getServed() == 0){   //accept and not served then can be in product menu
+    		if (it.getServed() == 0){   // not served then can be in product menu
     			System.out.println(it.getServed());
     			AcceptedItems.add(it);
     		}
->>>>>>> Stashed changes
     	}
 
     	return AcceptedItems;
@@ -203,10 +185,11 @@ public class Member extends SystemUser{
     	return CategoryItems;
     }
 
+    
     public ArrayList<Item>  searchOnSpecificProduct (String CategoryName , String itemName){
     	System.out.println(CategoryName);
     	System.out.println(itemName);
-    	int categoryID = 0;
+    	//int categoryID = 0;
     	Item item = new Item();
     	item.initializeItems();
     	Category category = new Category();
@@ -218,7 +201,7 @@ public class Member extends SystemUser{
     	for (Category c : AllCtegories) {
     		if (CategoryName.equals(c.getCat_Name())) {
     			System.out.println("found Category");
-    			categoryID = c.getId();
+    			//categoryID = c.getId();
     			for (Item obj : AllItems) {
     				if (obj.getItem_name().equals(itemName)){
     					System.out.println("found item &added");
@@ -239,6 +222,7 @@ public class Member extends SystemUser{
     	System.out.println("Bid submitted successfully successfully");
     }
 
+    ///
     public void init_participateditems(int id) {
     	participatedItems = new ArrayList<>();
     	DBInterface db = DBInterface.getInstance();

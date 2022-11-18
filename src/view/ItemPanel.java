@@ -25,13 +25,13 @@ public class ItemPanel extends JPanel {
 	private Item item;
 	private ActionListener itemListener;
 	
+	
 	public ItemPanel(Item item, ActionListener itemListener) {
 		this.item = item;
 		this.itemListener = itemListener;
 		setBackground(new Color(102, 204, 255));
 		setLayout(null);
 		this.setPreferredSize(new Dimension(186, 305));
-		
 		
 		JLabel imageItem = new JLabel();
 		imageItem.setIcon(getIcon("/pic/dell_latitude_3520.jpg"));
@@ -65,9 +65,7 @@ public class ItemPanel extends JPanel {
 		detailButton.addActionListener(itemListener);
 		add(detailButton);
 		
-	}
-	
-	public void setItemBidding() {
+		
 		JButton joinButton = new JButton("Join");
 		joinButton.setBounds(96, 274, 80, 21);
 		joinButton.addActionListener(itemListener);
@@ -81,6 +79,14 @@ public class ItemPanel extends JPanel {
 		add(currentPanel);
 	}
 	
+	public Item getItem() {
+		return item;
+	}
+	
+	public void setItemBidding() {
+		
+	}
+	
 	public void setItemBidded() {
 		JLabel currentPanel = new JLabel("Price");
 		currentPanel.setFont(new Font("Tahoma", Font.BOLD, 12));
@@ -91,11 +97,11 @@ public class ItemPanel extends JPanel {
 	}
 	
 	public void showDesciption() {
-		JDialog description = new JDialog((JFrame)this.getTopLevelAncestor());
-		description.setSize(400, 400);
-		description.setLocationRelativeTo(null);
-		description.setTitle(item.getDetails());
-		description.setVisible(true);
+//		 description = new JDialog((JFrame)this.getTopLevelAncestor());
+//		description.setSize(400, 400);
+//		description.setLocationRelativeTo(null);
+//		description.setTitle(item.getDetails());
+//		description.setVisible(true);
 	}
 	
 	private ImageIcon getIcon(String src) {

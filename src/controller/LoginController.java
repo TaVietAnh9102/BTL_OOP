@@ -2,6 +2,7 @@ package controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.ParseException;
 import java.time.LocalTime;
 import java.util.List;
 
@@ -29,11 +30,17 @@ public class LoginController {
 				String ev = e.getActionCommand();
 				switch (ev) {
 					case "Login": {
-						login();
+						client.getData();
+						try {
+							login();
+						} catch (ParseException e1) {
+							// TODO Auto-generated catch block
+						}
 						break;
 					}
 					case "Register":{
 						register();
+						loginView.dispose();
 						break;
 					}
 					case "Reset Password":{
@@ -47,7 +54,7 @@ public class LoginController {
 		
 	}
 	
-	public void login() {
+	public void login() throws ParseException {
 		int status = client.Login(loginView.getEmail(), loginView.getPassword());
 		String message = "";
 		switch (status) {
@@ -56,7 +63,7 @@ public class LoginController {
 //				 AdminController();
 			}
 			case 1:{
-				new CustomerController(new Member(client, client.getAuthorization()));
+				new CustomerController(new Member(client));
 				loginView.setVisible(false);
 				break;
 			}
