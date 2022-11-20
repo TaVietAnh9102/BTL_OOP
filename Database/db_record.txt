@@ -4,11 +4,11 @@
 -- Records of systemuser
 -- ----------------------------
 
-INSERT INTO `systemuser` VALUES ('21', 'a', 'a', 'a@gmail.com', 'a', '0', '1/1/2002', '0123456789');
-INSERT INTO `systemuser` VALUES ('22', 'b', 'b', 'b@gmail.com', 'b', '1', '1/1/2002', '0123456789');
-INSERT INTO `systemuser` VALUES ('23', 'c', 'c', 'c@gmail.com', 'c', '0', '1/1/2002', '0123456789');
-INSERT INTO `systemuser` VALUES ('24', 'd', 'd', 'd@gmail.com', 'd', '1', '1/1/2002', '0123456789');
-INSERT INTO `systemuser` VALUES ('25', 'e', 'e', 'e@gmail.com', 'e', '0', '1/1/2002', '0123456789');
+INSERT INTO `systemuser` VALUES ('1', 'a', 'a', 'a@gmail.com', 'a', '0', '1/1/2002', '0123456789');
+INSERT INTO `systemuser` VALUES ('2', 'b', 'b', 'b@gmail.com', 'b', '1', '1/1/2002', '0123456789');
+INSERT INTO `systemuser` VALUES ('3', 'c', 'c', 'c@gmail.com', 'c', '0', '1/1/2002', '0123456789');
+INSERT INTO `systemuser` VALUES ('4', 'd', 'd', 'd@gmail.com', 'd', '1', '1/1/2002', '0123456789');
+INSERT INTO `systemuser` VALUES ('5', 'e', 'e', 'e@gmail.com', 'e', '0', '1/1/2002', '0123456789');
 
 
 
@@ -25,56 +25,26 @@ INSERT INTO `category` VALUES ('3', 'Smart Phones');
 -- ----------------------------
 -- Records of sessions
 -- ----------------------------
-INSERT INTO `sessions` VALUES ('66', '22-11-2022', '1', '2', '1', null);
-INSERT INTO `sessions` VALUES ('67', '22-11-2022', '3', '4', '1', '35');
-INSERT INTO `sessions` VALUES ('68', '22-11-2022', '5', '6', '1', null);
-INSERT INTO `sessions` VALUES ('69', '22-11-2022', '7', '8', '1', null);
-INSERT INTO `sessions` VALUES ('70', '22-11-2022', '9', '10', '1', null);
-INSERT INTO `sessions` VALUES ('71', '22-11-2022', '11', '12', '1', null);
-INSERT INTO `sessions` VALUES ('72', '22-11-2022', '13', '14', '1', null);
-INSERT INTO `sessions` VALUES ('73', '22-11-2022', '15', '16', '1', null);
-INSERT INTO `sessions` VALUES ('74', '22-11-2022', '17', '18', '1', null);
-INSERT INTO `sessions` VALUES ('75', '22-11-2022', '19', '20', '1', null);
-INSERT INTO `sessions` VALUES ('76', '22-11-2022', '21', '22', '1', null);
-INSERT INTO `sessions` VALUES ('77', '22-11-2022', '23', '24', '1', null);
-INSERT INTO `sessions` VALUES ('78', '22-11-2022', '1', '2', '1', null);
-INSERT INTO `sessions` VALUES ('79', '22-11-2022', '3', '4', '1', null);
-INSERT INTO `sessions` VALUES ('80', '22-11-2022', '5', '6', '1', null);
-INSERT INTO `sessions` VALUES ('81', '22-11-2022', '7', '8', '1', null);
-INSERT INTO `sessions` VALUES ('82', '22-11-2022', '9', '10', '1', null);
-INSERT INTO `sessions` VALUES ('83', '22-11-2022', '11', '12', '1', null);
-INSERT INTO `sessions` VALUES ('84', '22-11-2022', '13', '14', '1', null);
-INSERT INTO `sessions` VALUES ('85', '22-11-2022', '15', '16', '1', null);
-INSERT INTO `sessions` VALUES ('86', '22-11-2022', '17', '18', '1', null);
-INSERT INTO `sessions` VALUES ('87', '22-11-2022', '19', '20', '1', null);
-INSERT INTO `sessions` VALUES ('88', '22-11-2022', '21', '22', '1', null);
-INSERT INTO `sessions` VALUES ('89', '22-11-2022', '23', '24', '1', null);
-INSERT INTO `sessions` VALUES ('90', '22-11-2022', '1', '2', '1', null);
-INSERT INTO `sessions` VALUES ('91', '22-11-2022', '3', '4', '1', null);
-INSERT INTO `sessions` VALUES ('92', '22-11-2022', '5', '6', '1', null);
-INSERT INTO `sessions` VALUES ('93', '22-11-2022', '7', '8', '1', null);
-INSERT INTO `sessions` VALUES ('94', '22-11-2022', '9', '10', '1', null);
-INSERT INTO `sessions` VALUES ('95', '22-11-2022', '11', '12', '1', null);
-INSERT INTO `sessions` VALUES ('96', '22-11-2022', '13', '14', '1', null);
-INSERT INTO `sessions` VALUES ('97', '22-11-2022', '15', '16', '1', null);
-INSERT INTO `sessions` VALUES ('98', '22-11-2022', '17', '18', '1', null);
-INSERT INTO `sessions` VALUES ('99', '22-11-2022', '19', '20', '1', null);
-INSERT INTO `sessions` VALUES ('100', '22-11-2022', '21', '22', '1', null);
-INSERT INTO `sessions` VALUES ('101', '22-11-2022', '23', '24', '1', null);
-INSERT INTO `sessions` VALUES ('102', '22-11-2022', '1', '2', '1', null);
-INSERT INTO `sessions` VALUES ('103', '22-11-2022', '3', '4', '1', null);
-INSERT INTO `sessions` VALUES ('104', '22-11-2022', '5', '6', '1', null);
-INSERT INTO `sessions` VALUES ('105', '22-11-2022', '7', '8', '1', null);
-INSERT INTO `sessions` VALUES ('106', '22-11-2022', '9', '10', '1', null);
-INSERT INTO `sessions` VALUES ('107', '22-11-2022', '11', '12', '1', null);
-INSERT INTO `sessions` VALUES ('108', '22-11-2022', '13', '14', '1', null);
-INSERT INTO `sessions` VALUES ('109', '22-11-2022', '15', '16', '1', null);
-INSERT INTO `sessions` VALUES ('110', '22-11-2022', '17', '18', '1', null);
-INSERT INTO `sessions` VALUES ('111', '22-11-2022', '19', '20', '1', null);
-INSERT INTO `sessions` VALUES ('112', '22-11-2022', '21', '22', '1', null);
-INSERT INTO `sessions` VALUES ('113', '22-11-2022', '23', '24', '1', null);
-INSERT INTO `sessions` VALUES ('114', '22-11-2022', '1', '2', '0', null);
-INSERT INTO `sessions` VALUES ('115', '22-11-2022', '23', '24', '0', null);
+INSERT INTO `sessions` VALUES ('1', '22-11-2022', '7', '9', '1', '5');
+INSERT INTO `sessions` VALUES ('2', '22-11-2022', '8', '12', '1', null);
+INSERT INTO `sessions` VALUES ('3', '22-11-2022', '9', '11', '1', null);
+INSERT INTO `sessions` VALUES ('4', '22-11-2022', '10', '11', '1', null);
+INSERT INTO `sessions` VALUES ('5', '22-11-2022', '10', '14', '1', null);
+INSERT INTO `sessions` VALUES ('6', '22-11-2022', '11', '12', '1', null);
+INSERT INTO `sessions` VALUES ('7', '22-11-2022', '13', '14', '1', null);
+INSERT INTO `sessions` VALUES ('8', '22-11-2022', '15', '16', '1', null);
+INSERT INTO `sessions` VALUES ('9', '22-11-2022', '17', '18', '1', null);
+INSERT INTO `sessions` VALUES ('10', '22-11-2022', '19', '20', '1', null);
+INSERT INTO `sessions` VALUES ('11', '22-11-2022', '21', '22', '1', null);
+INSERT INTO `sessions` VALUES ('12', '22-11-2022', '23', '24', '1', null);
+INSERT INTO `sessions` VALUES ('13', '23-11-2022', '1', '2', '1', null);
+INSERT INTO `sessions` VALUES ('14', '23-11-2022', '3', '4', '1', null);
+INSERT INTO `sessions` VALUES ('15', '23-11-2022', '5', '6', '1', null);
+INSERT INTO `sessions` VALUES ('16', '23-11-2022', '7', '8', '1', null);
+INSERT INTO `sessions` VALUES ('17', '23-11-2022', '9', '10', '1', null);
+INSERT INTO `sessions` VALUES ('18', '23-11-2022', '11', '12', '1', null);
+INSERT INTO `sessions` VALUES ('19', '23-11-2022', '13', '14', '1', null);
+INSERT INTO `sessions` VALUES ('20', '23-11-2022', '15', '16', '1', null);
 
 
 
@@ -83,30 +53,28 @@ INSERT INTO `sessions` VALUES ('115', '22-11-2022', '23', '24', '0', null);
 -- ----------------------------
 -- Records of item
 -- ----------------------------
-INSERT INTO `item` VALUES ('30', 'ASUS X750 17-Inch', 'new product', '../Resources/Images/shop/Laptops/l1.jpg', '8500', '1', '66', '21', '1');
-INSERT INTO `item` VALUES ('31', 'acer y70 15-Inch', 'new product', '../Resources/Images/shop/Laptops/l2.jpg', '6500', '1', '67', '21', '0');
-INSERT INTO `item` VALUES ('32', 'HP Pavilion x360', 'new product', '../Resources/Images/shop/Laptops/l3.jpg', '10500', '1', '68', '21', '0');
-INSERT INTO `item` VALUES ('33', 'HP 17-x021 i5', 'new product', '../Resources/Images/shop/Laptops/l4.jpg', '5000', '1', '69', '21', '0');
-INSERT INTO `item` VALUES ('34', 'lenovo y5070  17-Inch', 'new product', '../Resources/Images/shop/Laptops/l5.jpg', '12500', '1', '70', '21', '0');
-INSERT INTO `item` VALUES ('35', 'ASUS i3 - x540 ', 'new product', '../Resources/Images/shop/Laptops/l6.jpg', '4700', '1', '71', '21', '0');
-INSERT INTO `item` VALUES ('36', 'acer 15-inch Red ', 'new product', '../Resources/Images/shop/Laptops/l7.jpg', '5000', '1', '72', '21', '0');
-INSERT INTO `item` VALUES ('37', 'HP ultra Touch i7', 'new product', '../Resources/Images/shop/Laptops/l8.jpg', '12400', '1', '73', '21', '0');
-INSERT INTO `item` VALUES ('38', 'Acer i5 Red z715', 'new product', '../Resources/Images/shop/Laptops/l9.jpg', '7500', '1', '74', '21', '0');
-INSERT INTO `item` VALUES ('39', 'Apple MacBook  i7 b', 'new product', '../Resources/Images/shop/Laptops/l10.jpg', '20500', '1', '75', '21', '0');
-INSERT INTO `item` VALUES ('40', 'LG Smart TV 55-inch', 'new product', '../Resources/Images/shop/TVs/1.jpg', '9800', '2', '76', '21', '0');
-INSERT INTO `item` VALUES ('41', 'Samsung LED 42-Inch', 'new product', '../Resources/Images/shop/TVs/4.jpg', '6000', '2', '77', '21', '0');
-INSERT INTO `item` VALUES ('42', 'LG Smart TV android', 'new product', '../Resources/Images/shop/TVs/2.jpg', '10500', '2', '78', '21', '0');
-INSERT INTO `item` VALUES ('43', 'LG LED 42-Inch silver', 'new product', '../Resources/Images/shop/TVs/3.jpg', '5000', '2', '79', '21', '0');
-INSERT INTO `item` VALUES ('44', 'Samsung UHD 49-Inch', 'new product', '../Resources/Images/shop/TVs/5.jpg', '11000', '2', '80', '21', '0');
-INSERT INTO `item` VALUES ('45', 'Toshiba 32-inch LED', 'new product', '../Resources/Images/shop/TVs/6.jpg', '4500', '2', '81', '21', '0');
-INSERT INTO `item` VALUES ('46', 'Toshiba LCD 32-inch', 'new product', '../Resources/Images/shop/TVs/7.jpg', '3200', '2', '82', '21', '0');
-INSERT INTO `item` VALUES ('47', 'Toshiba Android Smart', 'new product', '../Resources/Images/shop/TVs/8.jpg', '9000', '2', '83', '21', '0');
-INSERT INTO `item` VALUES ('48', 'Kogan 32-Inch LED', 'new product', '../Resources/Images/shop/TVs/9.jpg', '5000', '2', '84', '21', '0');
-INSERT INTO `item` VALUES ('49', 'Panasonic 55cm LED', 'new product', '../Resources/Images/shop/TVs/10.jpg', '7000', '2', '85', '21', '0');
-INSERT INTO `item` VALUES ('63', 'HP Z50 i3 15.5 inch', 'new product', '../Resources/Images/shop/Laptops/l3.jpg', '7500', '1', '91', '23', '0');
-INSERT INTO `item` VALUES ('90', 'Smart tv', 'new product', '../Resources/Images/shop/TVs/2.jpg', '5000', '2', '114', '25', '0');
-INSERT INTO `item` VALUES ('91', 'Smart tv', 'new product', '../Resources/Images/shop/TVs/1.jpg', '8500', '2', '114', '22', '0');
-INSERT INTO `item` VALUES ('92', 'Smart Phone', 'new product', '../Resources/Images/shop/TVs/b7.jpg', '7500', '2', '114', '24', '0');
+
+INSERT INTO `item` VALUES ('1', 'acer y70 15-Inch', 'new product', '../Resources/Images/shop/Laptops/l2.jpg', '6500', '1', '1', '1', '1');
+INSERT INTO `item` VALUES ('2', 'HP Pavilion x360', 'new product', '../Resources/Images/shop/Laptops/l3.jpg', '10500', '1', '2', '1', '0');
+INSERT INTO `item` VALUES ('3', 'HP 17-x021 i5', 'new product', '../Resources/Images/shop/Laptops/l4.jpg', '5000', '1', '1', '2', '0');
+INSERT INTO `item` VALUES ('4', 'lenovo y5070  17-Inch', 'new product', '../Resources/Images/shop/Laptops/l5.jpg', '12500', '1', '4', '2', '0');
+INSERT INTO `item` VALUES ('5', 'ASUS i3 - x540 ', 'new product', '../Resources/Images/shop/Laptops/l6.jpg', '4700', '1', '5', '3', '0');
+INSERT INTO `item` VALUES ('6', 'acer 15-inch Red ', 'new product', '../Resources/Images/shop/Laptops/l7.jpg', '5000', '1', '6', '3', '0');
+INSERT INTO `item` VALUES ('7', 'HP ultra Touch i7', 'new product', '../Resources/Images/shop/Laptops/l8.jpg', '12400', '1', '7', '4', '0');
+INSERT INTO `item` VALUES ('8', 'Acer i5 Red z715', 'new product', '../Resources/Images/shop/Laptops/l9.jpg', '7500', '1', '8', '4', '0');
+INSERT INTO `item` VALUES ('9', 'Apple MacBook  i7 b', 'new product', '../Resources/Images/shop/Laptops/l10.jpg', '20500', '1', '9', '5', '0');
+INSERT INTO `item` VALUES ('10', 'LG Smart TV 55-inch', 'new product', '../Resources/Images/shop/TVs/1.jpg', '9800', '2', '10', '5', '0');
+INSERT INTO `item` VALUES ('11', 'Samsung LED 42-Inch', 'new product', '../Resources/Images/shop/TVs/4.jpg', '6000', '2', '11', '1', '0');
+INSERT INTO `item` VALUES ('12', 'LG Smart TV android', 'new product', '../Resources/Images/shop/TVs/2.jpg', '10500', '2', '12', '1', '0');
+INSERT INTO `item` VALUES ('13', 'LG LED 42-Inch silver', 'new product', '../Resources/Images/shop/TVs/3.jpg', '5000', '2', '13', '2', '0');
+INSERT INTO `item` VALUES ('14', 'Samsung UHD 49-Inch', 'new product', '../Resources/Images/shop/TVs/5.jpg', '11000', '2', '14', '2', '0');
+INSERT INTO `item` VALUES ('15', 'Toshiba 32-inch LED', 'new product', '../Resources/Images/shop/TVs/6.jpg', '4500', '2', '15', '3', '0');
+INSERT INTO `item` VALUES ('16', 'Toshiba LCD 32-inch', 'new product', '../Resources/Images/shop/TVs/7.jpg', '3200', '2', '16', '3', '0');
+INSERT INTO `item` VALUES ('17', 'Toshiba Android Smart', 'new product', '../Resources/Images/shop/TVs/8.jpg', '9000', '2', '17', '4', '0');
+INSERT INTO `item` VALUES ('18', 'Kogan 32-Inch LED', 'new product', '../Resources/Images/shop/TVs/9.jpg', '5000', '2', '84', '4', '0');
+INSERT INTO `item` VALUES ('19', 'Panasonic 55cm LED', 'new product', '../Resources/Images/shop/TVs/10.jpg', '7000', '2', '85', '5', '0');
+INSERT INTO `item` VALUES ('20', 'HP Z50 i3 15.5 inch', 'new product', '../Resources/Images/shop/Laptops/l3.jpg', '7500', '1', '20', '5', '0');
+
 
 
 
@@ -115,8 +83,8 @@ INSERT INTO `item` VALUES ('92', 'Smart Phone', 'new product', '../Resources/Ima
 -- ----------------------------
 -- Records of session_participants
 -- ----------------------------
-INSERT INTO `session_participants` VALUES ('67', '22', '31', '9000');
-INSERT INTO `session_participants` VALUES ('67', '24', '31', '8500');
-INSERT INTO `session_participants` VALUES ('67', '23', '31', '8000');
-INSERT INTO `session_participants` VALUES ('67', '25', '31', '20000');
-INSERT INTO `session_participants` VALUES ('67', '23', '31', '7000');
+INSERT INTO `session_participants` VALUES ('1', '2', '1', '9000');
+INSERT INTO `session_participants` VALUES ('1', '3', '1', '8500');
+INSERT INTO `session_participants` VALUES ('1', '4', '1', '8000');
+INSERT INTO `session_participants` VALUES ('1', '5', '1', '20000');
+INSERT INTO `session_participants` VALUES ('1', '3', '1', '7000');
