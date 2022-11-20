@@ -103,8 +103,20 @@ INSERT INTO `item` VALUES ('46', 'Toshiba LCD 32-inch', 'new product', '../Resou
 INSERT INTO `item` VALUES ('47', 'Toshiba Android Smart', 'new product', '../Resources/Images/shop/TVs/8.jpg', '9000', '2', '83', '21', '0');
 INSERT INTO `item` VALUES ('48', 'Kogan 32-Inch LED', 'new product', '../Resources/Images/shop/TVs/9.jpg', '5000', '2', '84', '21', '0');
 INSERT INTO `item` VALUES ('49', 'Panasonic 55cm LED', 'new product', '../Resources/Images/shop/TVs/10.jpg', '7000', '2', '85', '21', '0');
-INSERT INTO `item` VALUES ('63', 'HP Z50 i3 15.5 inch', 'new product', '../Resources/Images/shop/Laptops/l3.jpg', '7500', '1', '91', '27', '0');
+INSERT INTO `item` VALUES ('63', 'HP Z50 i3 15.5 inch', 'new product', '../Resources/Images/shop/Laptops/l3.jpg', '7500', '1', '91', '23', '0');
 INSERT INTO `item` VALUES ('90', 'Smart tv', 'new product', '../Resources/Images/shop/TVs/2.jpg', '5000', '2', '114', '25', '0');
-INSERT INTO `item` VALUES ('91', 'Smart tv', 'new product', '../Resources/Images/shop/TVs/1.jpg', '8500', '2', '114', '26', '0');
-INSERT INTO `item` VALUES ('92', 'Smart Phone', 'new product', '../Resources/Images/shop/TVs/b7.jpg', '7500', '2', '114', '26', '0');
+INSERT INTO `item` VALUES ('91', 'Smart tv', 'new product', '../Resources/Images/shop/TVs/1.jpg', '8500', '2', '114', '22', '0');
+INSERT INTO `item` VALUES ('92', 'Smart Phone', 'new product', '../Resources/Images/shop/TVs/b7.jpg', '7500', '2', '114', '24', '0');
 
+
+
+
+
+-- ----------------------------
+-- Records of session_participants
+-- ----------------------------
+INSERT INTO `session_participants` VALUES ('67', '22', '31', '9000');
+INSERT INTO `session_participants` VALUES ('67', '24', '31', '8500');
+INSERT INTO `session_participants` VALUES ('67', '23', '31', '8000');
+INSERT INTO `session_participants` VALUES ('67', '25', '31', '20000');
+INSERT INTO `session_participants` VALUES ('67', '23', '31', '7000');

@@ -26,15 +26,18 @@ public class Auction {
 //        }
 //		
 //		Member m = new Member();
-//		m.Login("b@gmail.com", "b");
+//		m.getData();
+//		SystemUser m = new SystemUser();
+//		m.Login("b@gmail.com", "123456");
 //		m.resetPassword("c@gmail.com");
+		//System.out.println(m.getParticipatedSessions(m.getId()));
 		
 		
 		Item m = new Item();
 		m.initializeItems();
 		ArrayList<Item> li= m.getItemList();
 		for (Item it : li) {
-			System.out.println(it.getCatName());
+			System.out.println(it.getItem_name());
 		}
 		
 	}

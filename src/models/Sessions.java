@@ -6,7 +6,7 @@ import java.util.ArrayList;
 public class Sessions extends DataManager{
 	
 	// attributes
-	protected int ID;
+	private int ID;
 	private String Session_date;
 	private int Start_time;
 	private int End_time;
