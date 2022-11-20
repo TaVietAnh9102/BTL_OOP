@@ -49,7 +49,7 @@ public abstract class DataManager {
         DBInterface dbInterface = DBInterface.getInstance();
         ArrayList<Object[]> results = null;
         String table = this.getClass().getSimpleName();
-
+        if (table.equals("Member")) table = "SystemUser";
 
         results = dbInterface.select(table);
 
