@@ -3,23 +3,37 @@ import java.util.ArrayList;
 
 
 public class Item extends DataManager {
+	private static int counter = 53;
     //Attributes
     private int ID, Cat_ID, session_ID, seller_ID;
     private String Item_name, details, picture;
     private int price;
     
-    private String state;
     private  ArrayList<Item> ItemList;
     
-    private Sessions session;
+    private Sessions session ;
     private Category category;
     private SystemUser seller;
     private String CatName, SellerName;
     private int StartTime, served;
-
+    
+//    "ID,Item_name,Details,picture,Price,Cat_ID,session_ID,seller_ID,Served";
+    
+    public Item(String name , String pic, String details , int price ,  int categoryID , int sessionId, int sellerID, int served) {
+    	this.ID = counter++;
+        this.Item_name = name;
+        this.details = details;
+        this.picture = pic;
+        this.price = price;
+        this.Cat_ID = categoryID;
+        this.session_ID = sessionId;
+        this.seller_ID = sellerID;
+        this.served = served;
+    }
+    
     //Constructor
-    public Item(int id, String name, String details, String pic, int price, 
-    			int category, int session, int seller, int served) {
+    public Item(int id, String name, String details, String pic, int price, int category,
+                int session, int seller, int served) {
         this.ID = id;
         this.Item_name = name;
         this.details = details;
@@ -38,7 +52,7 @@ public class Item extends DataManager {
         try {
             getData();   
         } catch (Exception e) {
-            System.out.println("Error in DB (Item)");
+            System.out.println("Error in DB");
         }
 
         Sessions x = new Sessions();
@@ -89,7 +103,7 @@ public class Item extends DataManager {
         return this.picture;
     }
     
-    public int getPrice() {
+    public long getPrice() {
     	return this.price;
     }
     
@@ -105,13 +119,6 @@ public class Item extends DataManager {
     	return this.seller_ID;
     }
     
-    public String getState() { 
-    	return this.state;
-    }
-    
-    public void setState(String s) { 
-    	this.state = s;
-    }
     
     public Sessions getSession() {
     	return this.session;
@@ -151,6 +158,10 @@ public class Item extends DataManager {
     
     public void setID(int id) {
         this.ID = id;
+    }
+    
+    public int getID() {
+    	return this.ID;
     }
     
     public void setName(String name) {
@@ -250,19 +261,25 @@ public class Item extends DataManager {
         DBInterface db = DBInterface.getInstance();
         return db.select(
           "systemuser,session_participants",
-                "ID,Fname,Lname,profilePic,phone,price,State",
+                "ID,Fname,Lname,phone,price",
                     "systemuser.ID = session_participants.bidder_ID and session_ID = "+sessionID+" and item_ID ="+itemID+" ORDER BY price DESC"
         );
     }
     
-    public double getCurrentPrice(int session_ID,int itemID) {
+    public long getCurrentPrice(int session_ID,int itemID) {
         DBInterface dbInterface = DBInterface.getInstance();
         ArrayList<Object[]> x = dbInterface.select(
           "session_participants",
                 "max(price)",
                 "session_ID = "+session_ID+" and item_ID = "+itemID
         );
-        return (double) x.get(0)[0];
+        long pr;
+        try {
+			pr = Long.parseLong((String)x.get(0)[0]);
+		} catch (Exception e) {
+			pr = this.getPrice();
+		}
+        return pr;
     }
     
     public void submitNewPrice(int session_ID,int item_ID,int bidder_ID,String price){
@@ -276,4 +293,6 @@ public class Item extends DataManager {
                 "item","Served","1","ID = "+itemID
         );
     }
+    
+    
 }

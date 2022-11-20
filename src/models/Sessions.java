@@ -5,6 +5,8 @@ import java.util.ArrayList;
 
 public class Sessions extends DataManager{
 	
+	private static int counter = 116;
+	
 	// attributes
 	private int ID;
 	private String Session_date;
@@ -16,8 +18,10 @@ public class Sessions extends DataManager{
 	public ArrayList<Sessions> SessionList = new ArrayList<>();	// get all sessions
 	
 	public Sessions() {
+		
 	}
-
+	
+	
 	public Sessions(int id, String session_date, int start_time, int end_time, int reserved) {
 		ID = id;
 		Session_date = session_date;
@@ -188,4 +192,6 @@ public class Sessions extends DataManager{
                 "1",
                 "sessions.ID = " + sessionid);
     }
+    
+    
 }

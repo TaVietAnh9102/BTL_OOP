@@ -5,7 +5,6 @@ import java.util.ArrayList;
 
 /*
  * 	LOGIN
- * 	(0)		Admin
  * 	(1)		Member
  * 
  * 	(-2)	pass is wrong
@@ -109,22 +108,6 @@ public class SystemUser extends DataManager {
     	System.out.println("done");
     }
     
-//    public ArrayList<String> getNotifications(int userID) {
-//        ArrayList<Object[]> AllUsersNotifications = new ArrayList<>();
-//        ArrayList<String> UserNotifications = new ArrayList<>();
-//
-//        // get instance from DBInterface to work on database
-//        DBInterface DB = DBInterface.getInstance();
-//
-//        // get all notifications
-//        AllUsersNotifications = DB.select("Notification" , "message" , userID);
-//
-//        for (Object[] obj : AllUsersNotifications) {
-//            UserNotifications.add(obj[0].toString());
-//        }
-//
-//        return UserNotifications;
-//    }
 
 
     //Getters and Setters
@@ -160,6 +143,9 @@ public class SystemUser extends DataManager {
     public void setPhone(String phone) {
         this.phone = phone;
     }
+
+    
+    
     
     
 
@@ -190,6 +176,7 @@ public class SystemUser extends DataManager {
     public String getPhone() {
         return phone;
     }
+    
    
     
     public ArrayList<SystemUser> getSystemUsersList() {
@@ -203,7 +190,7 @@ public class SystemUser extends DataManager {
 
     @Override
     protected String getValues() {
-        return "'" + Fname + "','" + Lname + "','" + email + "','" + pass + "'," + Gender + ",'" + Birthdate + "','" + phone + "'";
+        return "'" + Fname + "','" + Lname + "','" + email + "','" + pass + "'," + Gender + ",'" + Birthdate + "','" + phone + "'" ;
     }
 
     @Override

@@ -6,10 +6,10 @@ import java.util.ArrayList;
 public class DBInterface {
 	private static DBInterface instance;
 	
-    private String dbName = "auction_system";	// create database name auction
+    private String dbName = "auction";	// create database name auction
     private String dbURL = "jdbc:mysql://localhost:3306/" + dbName;
     private String dbUsername = "root";
-    private String dbPassword = "2112";	// your sql password
+    private String dbPassword = "Tranminhchau2";	// your sql password
     
     private Connection connection = null;
     private String query = null;
@@ -148,7 +148,9 @@ public class DBInterface {
           	
     	} catch (SQLException ex){
     		ex.printStackTrace();
-    	}
+    	} catch (NullPointerException e) {
+			// TODO: handle exception
+		}
     }
 
     private void extractResults(ResultSet resultSet) throws SQLException{
