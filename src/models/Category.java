@@ -40,8 +40,6 @@ public class Category extends DataManager {
     public String getCat_Name() {
     	return this.Cat_Name;
     }
-    
-
 
     @Override
     protected String getAttributes() {

@@ -31,6 +31,8 @@ public class ItemController {
 		//viewProducts
 		this.participatedController = participatedController;
 		this.participatedController.setItemListener(itemListener);
+		this.participatedController.addItems(member.getParticipatedItem());
+	
 		
 		this.SoldItemController = biddingController;
 		this.SoldItemController.setItemListener(itemListener);
@@ -53,7 +55,9 @@ public class ItemController {
 					dt.setVisible(true);
 				}
 				else {
-					BidderView bdv = new BidderView(pn.getItem(), member);
+					Item item = pn.getItem();
+					item.initializeItems();
+					BidderView bdv = new BidderView(item, member);
 					bdv.setVisible(true);
 				}
 			}

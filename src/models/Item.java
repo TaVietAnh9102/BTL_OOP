@@ -48,6 +48,10 @@ public class Item extends DataManager {
     public Item(){
     }
     
+    private void getCategory(int categoryID) {
+    	
+    }
+    
     public void initializeItems() {
         try {
             getData();   
@@ -91,9 +95,9 @@ public class Item extends DataManager {
         return this.Item_name;
     }
     
-    public void  setItem_name(String n) {
-    	this.Item_name = n;
-    }
+//    public void  setItem_name(String n) {
+//    	this.Item_name = n;
+//    }
     
     public String getDetails() {
         return this.details;
@@ -103,7 +107,7 @@ public class Item extends DataManager {
         return this.picture;
     }
     
-    public long getPrice() {
+    public int getPrice() {
     	return this.price;
     }
     
@@ -132,9 +136,9 @@ public class Item extends DataManager {
         return StartTime;
     }
     
-    public void setStartTime(int startTime) {
-        StartTime = startTime;
-    }
+//    public void setStartTime(int startTime) {
+//        StartTime = startTime;
+//    }
     
     public String getCatName() {
         return CatName;
@@ -201,7 +205,7 @@ public class Item extends DataManager {
     }
 
 
-    //Methods
+//    Methods
     @Override
     protected String getAttributes() {
         return "ID,Item_name,Details,picture,Price,Cat_ID,session_ID,seller_ID,Served";
@@ -266,17 +270,17 @@ public class Item extends DataManager {
         );
     }
     
-    public long getCurrentPrice(int session_ID,int itemID) {
+    public int getCurrentPrice(int session_ID,int itemID) {
         DBInterface dbInterface = DBInterface.getInstance();
         ArrayList<Object[]> x = dbInterface.select(
           "session_participants",
                 "max(price)",
                 "session_ID = "+session_ID+" and item_ID = "+itemID
         );
-        long pr;
+        int pr;
         try {
-			pr = Long.parseLong((String)x.get(0)[0]);
-		} catch (Exception e) {
+			pr = (int)x.get(0)[0];
+        } catch (NullPointerException e) {
 			pr = this.getPrice();
 		}
         return pr;

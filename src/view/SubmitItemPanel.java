@@ -47,7 +47,7 @@ public class SubmitItemPanel extends JPanel {
 		setBackground(new Color(102, 204, 255));
 		setBounds(152, 87, 800, 505);
 		setLayout(null);
-		
+		srcImage = "";
 		initLabels();
 		initInputView();
 	}
@@ -55,63 +55,63 @@ public class SubmitItemPanel extends JPanel {
 	private void initLabels() {
 		JLabel nameLabel = new JLabel("Name");
 		nameLabel.setFont(new Font("Tahoma", Font.BOLD, 13));
-		nameLabel.setBounds(260, 30, 129, 35);
+		nameLabel.setBounds(284, 30, 129, 35);
 		add(nameLabel);
 		
 		JLabel detailLabel = new JLabel("Detail");
 		detailLabel.setFont(new Font("Tahoma", Font.BOLD, 13));
-		detailLabel.setBounds(260, 80, 129, 35);
+		detailLabel.setBounds(284, 85, 129, 35);
 		add(detailLabel);
 		
 		JLabel priceLabel = new JLabel("Starting Price");
 		priceLabel.setFont(new Font("Tahoma", Font.BOLD, 13));
-		priceLabel.setBounds(260, 130, 129, 35);
+		priceLabel.setBounds(284, 130, 129, 35);
 		add(priceLabel);
 		
 		JLabel categoryLabel = new JLabel("Category");
 		categoryLabel.setFont(new Font("Tahoma", Font.BOLD, 13));
-		categoryLabel.setBounds(260, 180, 129, 35);
+		categoryLabel.setBounds(284, 180, 129, 35);
 		add(categoryLabel);
 		
 		JLabel dateLabel = new JLabel("Date");
 		dateLabel.setFont(new Font("Tahoma", Font.BOLD, 13));
-		dateLabel.setBounds(260, 230, 129, 35);
+		dateLabel.setBounds(284, 230, 129, 35);
 		add(dateLabel);
 		
 		JLabel startTimeLabel = new JLabel("Start Time");
 		startTimeLabel.setFont(new Font("Tahoma", Font.BOLD, 13));
-		startTimeLabel.setBounds(260, 280, 131, 35);
+		startTimeLabel.setBounds(284, 280, 131, 35);
 		add(startTimeLabel);
 		
 		JLabel endTimeLabel = new JLabel("End Time");
 		endTimeLabel.setFont(new Font("Tahoma", Font.BOLD, 13));
-		endTimeLabel.setBounds(260, 330, 129, 35);
+		endTimeLabel.setBounds(284, 330, 129, 35);
 		add(endTimeLabel);
 	}
 	
 	private void initInputView() {
 		
 		icon = new JButton("Add Image");
-		icon.setFont(new Font("Sylfaen", Font.BOLD, 16));
-		icon.setBounds(30, 30, 191, 235);
+		icon.setFont(new Font("Tahoma", Font.BOLD, 16));
+		icon.setBounds(30, 30, 212, 235);
 		icon.setBorderPainted(false);
 		icon.setBackground(Color.white);
 		add(icon);
 		
 		nameInput = new JTextField();
 		nameInput.setFont(new Font("Tahoma", Font.BOLD, 13));
-		nameInput.setBounds(440, 30, 240, 35);
+		nameInput.setBounds(440, 30, 320, 35);
 		add(nameInput);
 		
 		detailsInput = new JTextField();
 		detailsInput.setFont(new Font("Tahoma", Font.BOLD, 13));
-		detailsInput.setBounds(440, 80, 240, 35);
+		detailsInput.setBounds(440, 80, 320, 35);
 		add(detailsInput);
 		
 		
 		priceInput = new JTextField("");
 		priceInput.setFont(new Font("Tahoma", Font.BOLD, 13));
-		priceInput.setBounds(440, 130, 240, 35);
+		priceInput.setBounds(440, 130, 320, 35);
 		add(priceInput);
 		
 		categoryComboBox = new JComboBox();
@@ -165,7 +165,15 @@ public class SubmitItemPanel extends JPanel {
 		endTimeInput.setBounds(440, 330, 118, 35);
 		add(endTimeInput);
 		
-		
+	}
+	
+	public void reset() {
+		nameInput.setText("");
+		icon.setIcon(null);
+		detailsInput.setText("");
+		priceInput.setText("");
+		startTimeInput.setSelectedIndex(0);
+		endTimeInput.setSelectedIndex(0);
 	}
 	
 	public void setListyear() {
@@ -211,24 +219,30 @@ public class SubmitItemPanel extends JPanel {
 		icon.setIcon(getIcon(icon.getWidth(), icon.getHeight(), srcImage));
 	}
 	
+	public String getSrcImg() {
+		return srcImage;
+	}
+	
 	private ImageIcon getIcon(int w, int h, String src) {
-		ImageIcon icon = new ImageIcon(LoginView.class.getResource(src));
+		ImageIcon icon = new ImageIcon(src);
 		Image image = icon.getImage();
 		Image imgScale = image.getScaledInstance(w, h, Image.SCALE_SMOOTH);
 		return new ImageIcon(imgScale);
 	}
 	
+	
+	
 	public String[] getNewItem() {
-		String[] newItem = new String[7];
+		String[] newItem = new String[8];
 		newItem[0] = nameInput.getText();
 		newItem[1] = detailsInput.getText();
 		newItem[2] = priceInput.getText();
 		Category cate = (Category)categoryComboBox.getSelectedItem();
 		newItem[3] = cate.getId() +"";
-		
-		newItem[4] = (date.getSelectedIndex() + 1) + "-" + (month.getSelectedIndex() + 1) + "-" + (year.getSelectedIndex() + 2021);
-		newItem[5] = startTimeInput.getSelectedIndex() + "";
-		newItem[6] = endTimeInput.getSelectedIndex() + "";
+		newItem[4] = cate.getCat_Name();
+		newItem[5] = (String)(date.getSelectedItem()) + "-" + (String)(month.getSelectedItem()) + "-" + (String)(year.getSelectedItem());
+		newItem[6] = startTimeInput.getSelectedIndex() + "";
+		newItem[7] = endTimeInput.getSelectedIndex() + "";
 		return newItem;
 	}
 	

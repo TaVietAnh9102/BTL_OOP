@@ -23,7 +23,7 @@ public class SystemUser extends DataManager {
     private String Fname, Lname, email, pass, Birthdate, phone;
     
     // for class member
-    protected ArrayList<SystemUser> systemUsersList = new ArrayList<SystemUser>();
+    private ArrayList<SystemUser> systemUsersList = new ArrayList<SystemUser>();
     
 
     //Constructor
