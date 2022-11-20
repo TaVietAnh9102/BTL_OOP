@@ -3,6 +3,7 @@ package view;
 import javax.swing.JPanel;
 
 import models.Item;
+import models.Member;
 
 import javax.swing.JLabel;
 import java.awt.Color;
@@ -24,7 +25,8 @@ public class ItemPanel extends JPanel {
 	
 	private Item item;
 	private ActionListener itemListener;
-	
+	private DetailsItem description;
+	private BidderView bidderView;
 	
 	public ItemPanel(Item item, ActionListener itemListener) {
 		this.item = item;
@@ -40,9 +42,9 @@ public class ItemPanel extends JPanel {
 		
 		JLabel cost = new JLabel(item.getPrice() + "");
 		cost.setForeground(new Color(255, 255, 51));
-		cost.setHorizontalAlignment(SwingConstants.CENTER);
+		cost.setHorizontalAlignment(SwingConstants.LEFT);
 		cost.setFont(new Font("Tahoma", Font.BOLD, 13));
-		cost.setBounds(96, 234, 80, 23);
+		cost.setBounds(96, 224, 80, 23);
 		add(cost);
 		
 		JTextArea itemName = new JTextArea();
@@ -57,26 +59,31 @@ public class ItemPanel extends JPanel {
 		
 		itemName.setBackground(new Color(102, 204, 255));
 		itemName.setForeground(Color.BLACK);
-		itemName.setBounds(10, 189, 160, 35);
+		itemName.setBounds(10, 189, 160, 25);
 		add(itemName);
 		
 		JButton detailButton = new JButton("Detail");
-		detailButton.setBounds(10, 274, 80, 21);
+		detailButton.setFont(new Font("Tahoma", Font.BOLD, 13));
+		detailButton.setBounds(10, 265, 80, 27);
 		detailButton.addActionListener(itemListener);
 		add(detailButton);
 		
 		
 		JButton joinButton = new JButton("Join");
-		joinButton.setBounds(96, 274, 80, 21);
+		joinButton.setFont(new Font("Tahoma", Font.BOLD, 13));
+		
+		joinButton.setBounds(96, 265, 80, 27);
 		joinButton.addActionListener(itemListener);
 		add(joinButton);
 		
-		JLabel currentPanel = new JLabel("Current Price");
-		currentPanel.setFont(new Font("Tahoma", Font.BOLD, 12));
+		JLabel currentPanel = new JLabel("Price");
+		currentPanel.setFont(new Font("Tahoma", Font.BOLD, 13));
 		currentPanel.setForeground(Color.BLACK);
-		currentPanel.setHorizontalAlignment(SwingConstants.CENTER);
-		currentPanel.setBounds(10, 234, 81, 23);
+		currentPanel.setHorizontalAlignment(SwingConstants.LEFT);
+		currentPanel.setBounds(10, 224, 80, 23);
 		add(currentPanel);
+		
+		
 	}
 	
 	public Item getItem() {
@@ -96,13 +103,6 @@ public class ItemPanel extends JPanel {
 		add(currentPanel);
 	}
 	
-	public void showDesciption() {
-//		 description = new JDialog((JFrame)this.getTopLevelAncestor());
-//		description.setSize(400, 400);
-//		description.setLocationRelativeTo(null);
-//		description.setTitle(item.getDetails());
-//		description.setVisible(true);
-	}
 	
 	private ImageIcon getIcon(String src) {
 		ImageIcon icon = new ImageIcon(LoginView.class.getResource(src));

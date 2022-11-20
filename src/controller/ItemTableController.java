@@ -17,19 +17,13 @@ import view.ItemPanel;
 
 public class ItemTableController {
 	private ItemsTablePanel homePanel;
-	private ActionListener itemListener;
 	private ActionListener categoryListener;
-	private CustomerView customerView;
-	public ItemTableController(CustomerView customerView) {
-		
-		Category catMNG = new Category();
-		catMNG.initializeCategories();
-		List<Category> categories = catMNG.getCategoryList();
+	public ItemTableController(CustomerView customerView, Category catMNG) {
 		homePanel = new ItemsTablePanel();
 		createCategoryListener();
 		homePanel.setCategoryListener(categoryListener);
 		homePanel.addCategory(new Category(-1, "All"));
-		homePanel.addCategory(categories);
+		homePanel.addCategory(catMNG.getCategoryList());
 		homePanel.showTab("All");
 		homePanel.setVisible(false);
 		customerView.addPanel(homePanel);

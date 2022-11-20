@@ -11,6 +11,7 @@ import com.mysql.cj.Session;
 import models.Item;
 import models.Member;
 import view.BidderView;
+import view.DetailsItem;
 import view.ItemPanel;
 
 public class ItemController {
@@ -23,7 +24,6 @@ public class ItemController {
 	public ItemController(ItemTableController homeController,ItemTableController participatedController, ItemTableController biddingController, Member member) {
 		this.member = member;
 		createItemListener();
-		
 		
 		this.homeController = homeController;
 		this.homeController.setItemListener(itemListener);
@@ -49,11 +49,12 @@ public class ItemController {
 				ItemPanel pn = (ItemPanel) bt.getParent();
 				
 				if(src.equals("Detail")) {
-					pn.showDesciption();
+					DetailsItem dt = new DetailsItem(pn.getItem());
+					dt.setVisible(true);
 				}
 				else {
-					BidderView bd =	new BidderView(pn.getItem(), member);
-					bd.setVisible(true);
+					BidderView bdv = new BidderView(pn.getItem(), member);
+					bdv.setVisible(true);
 				}
 			}
 		};
@@ -65,6 +66,9 @@ public class ItemController {
 	}
 	
 	
-	
+	public void addNewItem(Item item) {
+		homeController.addItem(item);
+		SoldItemController.addItem(item);
+	}
 	
 }

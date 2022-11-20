@@ -86,6 +86,9 @@ public class Member extends SystemUser{
     
     //seller
 
+//    protected String getAttributes() {
+//        return "ID,Item_name,Details,picture,Price,Cat_ID,session_ID,seller_ID,Served";
+//    }
     // this params are required as it needed to be added in the DB .. admin will be static
     public void submitItem(int sellerID, String name , String Pic, String details , int price ,  int categoryID ,int reserved ) {
     	Item SubmittedItem = new Item();
@@ -99,6 +102,21 @@ public class Member extends SystemUser{
         SubmittedItem.add();
         System.out.println("Item has been added successfully");
     }
+    
+    
+    public void submitSessions(int startTime, int endTime, String date, int reserved){
+       Sessions sessions = new Sessions();
+       sessions.setStart_time(startTime);
+       sessions.setEnd_time(endTime);
+       sessions.setSession_date(date);
+       sessions.setReserved(reserved);
+       sessions.add();
+    }
+    
+//    public void submitItem(Item item) {
+//    	item.add();
+//        System.out.println("Item has been added successfully");
+//    }
 
 //    public Object[] getSessionItemBid(int hour) {
 //    	return new Object[0];
@@ -153,18 +171,32 @@ public class Member extends SystemUser{
     	return AcceptedItems;
     }
 
-    public Object[] getSessionItemBid(int hour) {
+    
+    public Object[] getSessionItemBid(int start, int end) {
     	Object[] INFO=null;
     	DBInterface DB = DBInterface.getInstance();
     	// this query to get All info from database ... if you want something else tell me or addit to the query
-    	ArrayList<Object[]> AllInfo = DB.select("item,Sessions,Set_Bids,Category", "item.ID,item.Item_name,item.Details,Category.Cat_Name,item.picture,item.price,Sessions.Start_time,Sessions.End_time,Max(Set_Bids.Bids)",
-                    "Category.ID =item.Cat_ID and Sessions.ID = Set_Bids.session_ID and item.ID = Set_Bids.Item_ID and Sessions.Start_time=" + hour);
+    	ArrayList<Object[]> AllInfo = DB.select("item,Sessions,systemuser,Category", "item.ID,item.Item_name,item.Details,item.picture,item.price,item.Cat_ID,Sessions.,Sessions.End_time",
+                    "Category.ID =item.Cat_ID and	systemuser.ID = item.seller_id  and Sessions.Start_time=" + start + " and Sessions.Start_time=" + end);
     	// to return object of all info
     	for (Object[] obj : AllInfo) {
     		INFO = obj; 
     	}
     	return INFO;
     }
+    
+//    public Object[] getSessionItemBid(int hour) {
+//    	Object[] INFO=null;
+//    	DBInterface DB = DBInterface.getInstance();
+//    	// this query to get All info from database ... if you want something else tell me or addit to the query
+//    	ArrayList<Object[]> AllInfo = DB.select("item,Sessions,Set_Bids,Category", "item.ID,item.Item_name,item.Details,Category.Cat_Name,item.picture,item.price,Sessions.Start_time,Sessions.End_time,Max(Set_Bids.Bids)",
+//                    "Category.ID =item.Cat_ID and Sessions.ID = Set_Bids.session_ID and item.ID = Set_Bids.Item_ID and Sessions.Start_time=" + hour);
+//    	// to return object of all info
+//    	for (Object[] obj : AllInfo) {
+//    		INFO = obj; 
+//    	}
+//    	return INFO;
+//    }
 
 
     public ArrayList<Item> SearchonProduct(int CategoryID) {
@@ -186,39 +218,18 @@ public class Member extends SystemUser{
     }
 
     
-    public ArrayList<Item>  searchOnSpecificProduct (String CategoryName , String itemName){
-    	System.out.println(CategoryName);
-    	System.out.println(itemName);
-    	//int categoryID = 0;
-    	Item item = new Item();
-    	item.initializeItems();
-    	Category category = new Category();
-    	category.initializeCategories();
-    	ArrayList<Item> AllItems;
-    	ArrayList<Item> WantedItems= new ArrayList<>();
-    	ArrayList<Category> AllCtegories = category.getCategoryList();
-    	AllItems = item.getItemList();
-    	for (Category c : AllCtegories) {
-    		if (CategoryName.equals(c.getCat_Name())) {
-    			System.out.println("found Category");
-    			//categoryID = c.getId();
-    			for (Item obj : AllItems) {
-    				if (obj.getItem_name().equals(itemName)){
-    					System.out.println("found item &added");
-    					WantedItems.add(obj);
-    				}
-    			}
-    		} else {
-    			System.out.println("Didn't find");
-    		}
-    	}
-    	return WantedItems;
-    }
 
-    public void SubmitBid(int bidder_id, int session_id, int item_id, double bid) {
+//    public void SubmitBid(int bidder_id, int session_id, int item_id, int bid) {
+//    	// Set_Bids
+//    	DBInterface DB = DBInterface.getInstance();
+//    	DB.insert("Set_Bids","Bidder_ID,session_ID,Item_ID,Bids",""+bidder_id+","+session_id+","+item_id+","+bid);
+//    	System.out.println("Bid submitted successfully successfully");
+//    }
+    
+    public void SubmitBid(int bidder_id, int session_id, int item_id, int bid) {
     	// Set_Bids
     	DBInterface DB = DBInterface.getInstance();
-    	DB.insert("Set_Bids","Bidder_ID,session_ID,Item_ID,Bids",""+bidder_id+","+session_id+","+item_id+","+bid);
+    	DB.insert("session_paticipants","Bidder_ID,session_ID,Item_ID,Bids",""+bidder_id+","+session_id+","+item_id+","+bid);
     	System.out.println("Bid submitted successfully successfully");
     }
 
@@ -255,4 +266,12 @@ public class Member extends SystemUser{
     	System.out.println("reinitializing Participated items List ..");
     }
 
+//    public static void main(String[] args) {
+//		Member member = new Member();
+//		Object[] all=member.getSessionItemBid(10, 11);
+//		for(Object obj : all) {
+//			System.out.println(obj);
+//		}
+//	}
+    
 }

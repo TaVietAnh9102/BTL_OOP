@@ -25,6 +25,7 @@ import java.awt.Label;
 import java.awt.ScrollPane;
 import java.awt.event.ActionListener;
 import javax.swing.border.CompoundBorder;
+import java.awt.Toolkit;
 
 public class CustomerView extends JFrame {
 
@@ -44,6 +45,7 @@ public class CustomerView extends JFrame {
 	private ItemsTablePanel homePanel;
 
 	public CustomerView() {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(CustomerView.class.getResource("/pic/icon_app.png")));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("Auction Application");
 		setResizable(false);

@@ -3,6 +3,7 @@ package controller;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.ParseException;
+import java.util.List;
 
 import models.Category;
 import models.Item;
@@ -13,24 +14,30 @@ import view.ItemsTablePanel;
 public class CustomerController {
 	private CustomerView customerView;
 	private Member member;
+	
 	private ItemController itemController;
+	
 	
 	private ItemTableController homeController;
 	private ItemTableController participatedController;
 	private ItemTableController soldItemController;
 	private PersonalDetailController personalDetailController;
+	private SubmitItemController submitItemController;
 	
 	private int current = 1;
 	
 	public CustomerController(Member member) throws ParseException {
 		this.member = member;
-		
+		Category catMNG = new Category();
+		catMNG.initializeCategories();
 		customerView = new CustomerView();
 		personalDetailController = new PersonalDetailController(customerView, member);
-		homeController =  new ItemTableController(customerView);
-		participatedController = new ItemTableController( customerView);
-		soldItemController = new ItemTableController(customerView);
+		homeController =  new ItemTableController(customerView, catMNG);
+		participatedController = new ItemTableController(customerView, catMNG);
+		soldItemController = new ItemTableController(customerView, catMNG);
 		itemController = new ItemController(homeController, participatedController, soldItemController, member);
+		submitItemController = new SubmitItemController(customerView, member, catMNG, itemController);
+		
 		
 		switchPage(true, false, false, false, false);
 		
@@ -50,10 +57,10 @@ public class CustomerController {
 				case "Sold product":
 					switchPage(false, false, true, false, false);
 					break;
-				case "Personal Detail":
+				case "Submit Item":
 					switchPage(false, false, false, true, false);
 					break;
-				case "Submit Item":
+				case "Personal Detail":
 					switchPage(false, false, false, false, true);
 					break;
 				case "LogOut":
@@ -66,10 +73,11 @@ public class CustomerController {
 		});
 	}
 	
-	private void switchPage(boolean home, boolean participated, boolean soldItem, boolean personalDetail, boolean b) {
+	private void switchPage(boolean home, boolean participated, boolean soldItem,boolean submitItem, boolean personalDetail ) {
 		homeController.showHomeView(home);
 		participatedController.showHomeView(participated);
 		soldItemController.showHomeView(soldItem);
+		submitItemController.showHomeView(submitItem);
 		personalDetailController.showHomeView(personalDetail);
 	}
 	

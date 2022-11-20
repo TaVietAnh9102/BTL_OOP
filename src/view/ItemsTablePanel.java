@@ -55,6 +55,7 @@ public class ItemsTablePanel extends JPanel {
 	private ActionListener categoryListener;
 	
 	public ItemsTablePanel() {
+		setBackground(new Color(255, 255, 255));
 		setLayout(null);
 		setBounds(152, 87, 810, 505);
 		initCategoryScroll();

@@ -97,4 +97,9 @@ public class Category extends DataManager {
         super.update();
     }
     
+    @Override
+    public String toString() {
+    	return getCat_Name();
+    }
+    
 }

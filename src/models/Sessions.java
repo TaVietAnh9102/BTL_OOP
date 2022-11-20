@@ -5,10 +5,10 @@ import java.util.ArrayList;
 
 public class Sessions extends DataManager{
 	
-	
+	private static int counter = 116;
 	
 	// attributes
-	protected int ID;
+	private int ID;
 	private String Session_date;
 	private int Start_time;
 	private int End_time;
@@ -18,8 +18,10 @@ public class Sessions extends DataManager{
 	public ArrayList<Sessions> SessionList = new ArrayList<>();	// get all sessions
 	
 	public Sessions() {
+		
 	}
-
+	
+	
 	public Sessions(int id, String session_date, int start_time, int end_time, int reserved) {
 		ID = id;
 		Session_date = session_date;

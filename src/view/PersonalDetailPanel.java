@@ -79,7 +79,8 @@ public class PersonalDetailPanel extends JPanel {
 	
 	private void initComponents() throws ParseException {
 		panel = new JPanel();
-		panel.setBounds(91, 36, 638, 432);
+		panel.setBackground(new Color(102, 204, 255));
+		panel.setBounds(60, 60, 690, 385);
 		add(panel);
 		panel.setLayout(null);
 		initLabels();
@@ -90,46 +91,46 @@ public class PersonalDetailPanel extends JPanel {
 	
 	private void initLabels() {
 		avatar = new JLabel("Avatar");
-		avatar.setBounds(20, 35, 148, 184);
+		avatar.setBounds(50, 50, 200, 282);
 		panel.add(avatar);
-		avatar.setIcon(getIcon(148, 184, "/pic/VAB.jpg"));
+		avatar.setIcon(getIcon(avatar.getWidth(), avatar.getHeight(), "/pic/VAB.jpg"));
 		firstNameLabel = new JLabel("First Name");
-		firstNameLabel.setBounds(236, 55, 96, 32);
+		firstNameLabel.setBounds(290, 50, 96, 32);
 		panel.add(firstNameLabel);
 		firstNameLabel.setFont(LABEL_FONT);
 		firstNameLabel.setForeground(LABEL_FORE_GROUND_COLOR);
 		firstNameLabel.setHorizontalAlignment(SwingConstants.LEFT);
 		
 		lastNameLabel = new JLabel("Last Name");
-		lastNameLabel.setBounds(236, 110, 96, 32);
+		lastNameLabel.setBounds(290, 100, 96, 32);
 		panel.add(lastNameLabel);
 		lastNameLabel.setFont(LABEL_FONT);
 		lastNameLabel.setForeground(LABEL_FORE_GROUND_COLOR);
 		lastNameLabel.setHorizontalAlignment(SwingConstants.LEFT);
 		
 		emailLabel = new JLabel("Email");
-		emailLabel.setBounds(236, 165, 96, 32);
+		emailLabel.setBounds(290, 150, 96, 32);
 		panel.add(emailLabel);
 		emailLabel.setFont(LABEL_FONT);
 		emailLabel.setForeground(LABEL_FORE_GROUND_COLOR);
 		emailLabel.setHorizontalAlignment(SwingConstants.LEFT);
 		
 		genderLabel = new JLabel("Gender");
-		genderLabel.setBounds(236, 220, 96, 32);
+		genderLabel.setBounds(290, 200, 96, 32);
 		panel.add(genderLabel);
 		genderLabel.setFont(LABEL_FONT);
 		genderLabel.setForeground(LABEL_FORE_GROUND_COLOR);
 		genderLabel.setHorizontalAlignment(SwingConstants.LEFT);;
 		
 		birthDayLabel = new JLabel("Birth Day");
-		birthDayLabel.setBounds(236, 275, 96, 32);
+		birthDayLabel.setBounds(290, 250, 96, 32);
 		panel.add(birthDayLabel);
 		birthDayLabel.setFont(LABEL_FONT);
 		birthDayLabel.setForeground(LABEL_FORE_GROUND_COLOR);
 		birthDayLabel.setHorizontalAlignment(SwingConstants.LEFT);
 		
 		phoneLabel = new JLabel("Phone");
-		phoneLabel.setBounds(236, 330, 96, 32);
+		phoneLabel.setBounds(290, 300, 96, 32);
 		panel.add(phoneLabel);
 		phoneLabel.setFont(LABEL_FONT);
 		phoneLabel.setForeground(LABEL_FORE_GROUND_COLOR);
@@ -141,21 +142,21 @@ public class PersonalDetailPanel extends JPanel {
 		
 		firstNameField = new JTextField(20);
 		firstNameField.setEditable(false);
-		firstNameField.setBounds(342, 55, 175, 32);
+		firstNameField.setBounds(425, 50, 215, 32);
 		panel.add(firstNameField);
 		firstNameField.setText(member.getFname());
 		firstNameField.setFont(FIELD_FONT);
 		
 		lastNameField = new JTextField();
 		lastNameField.setEditable(false);
-		lastNameField.setBounds(342, 110, 175, 32);
+		lastNameField.setBounds(425, 100, 215, 32);
 		panel.add(lastNameField);
 		lastNameField.setText(member.getLname());
 		lastNameField.setFont(FIELD_FONT);
 		
 		emailField = new JTextField();
 		emailField.setEditable(false);
-		emailField.setBounds(340, 165, 175, 32);
+		emailField.setBounds(425, 150, 215, 32);
 		panel.add(emailField);
 		emailField.setText(member.getEmail());
 		emailField.setFont(FIELD_FONT);
@@ -163,14 +164,14 @@ public class PersonalDetailPanel extends JPanel {
 		
 		phoneField = new JTextField();
 		phoneField.setEditable(false);
-		phoneField.setBounds(340, 330, 175, 32);
+		phoneField.setBounds(425, 300, 215, 32);
 		panel.add(phoneField);
 		phoneField.setText(member.getPhone());
 		phoneField.setFont(FIELD_FONT);
 		
 		genderField = new JTextField();
 		genderField.setEditable(false);
-		genderField.setBounds(340, 220, 175, 32);
+		genderField.setBounds(425, 200, 215, 32);
 		panel.add(genderField);
 		genderField.setText((member.getGender()==0)?"Male":"Female");
 		genderField.setFont(FIELD_FONT);
@@ -178,7 +179,7 @@ public class PersonalDetailPanel extends JPanel {
 		
 		birthDateField = new JTextField();
 		birthDateField.setEditable(false);
-		birthDateField.setBounds(340, 275, 175, 32);
+		birthDateField.setBounds(425, 250, 215, 32);
 		panel.add(birthDateField);
 		birthDateField.setText(member.getBirthdate());
 		birthDateField.setFont(FIELD_FONT);
