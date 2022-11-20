@@ -93,11 +93,11 @@ public class LoginController {
 		new ResetPasswordController();
 	}
 	
-	public static void main(String[] args) throws ClassNotFoundException, InstantiationException, IllegalAccessException, UnsupportedLookAndFeelException {
-		UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-		new LoginController();
-		//System.out.println(LocalTime.now());
-	}
+//	public static void main(String[] args) throws ClassNotFoundException, InstantiationException, IllegalAccessException, UnsupportedLookAndFeelException {
+//		UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+//		new LoginController();
+//		//System.out.println(LocalTime.now());
+//	}
 	
 	
 	
