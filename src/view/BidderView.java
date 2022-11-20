@@ -28,6 +28,7 @@ import javax.swing.SwingConstants;
 import javax.swing.Timer;
 import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
 
 import models.Item;
 import models.Member;
@@ -44,13 +45,13 @@ public class BidderView extends JFrame {
 	
 	private JTable table;
 	private Timer countDown;
-	private Date startTime;
-	private Date endTime;
-	private long hours;
-	private long minutes;
-	private long seconds;
-	private long timeNow;
-	private int option;
+//	private Date startTime;
+//	private Date endTime;
+//	private long hours;
+//	private long minutes;
+//	private long seconds;
+//	private long timeNow;
+//	private int option;
 	private JScrollPane scrollPane;
 	
 	
@@ -87,7 +88,9 @@ public class BidderView extends JFrame {
 		
 		DefaultTableModel model = new DefaultTableModel(new String[]{"ID", "First Name", "Last Name", "Price"}, 0);
 		table = new JTable(model);
-		
+		table.setFont(new Font("Tahoma", Font.BOLD, 13));
+		JTableHeader header = table.getTableHeader();
+		header.setFont(new Font("Tahoma", Font.BOLD, 13));
         ArrayList<Object[]> participantsBidder =  item.getParticipatedBidders(item.getSession_ID(), item.getId());
         for(Object[] infor : participantsBidder) {
         	model.addRow(new Object[]{infor[0], infor[1], infor[2], infor[4]});
@@ -129,7 +132,9 @@ public class BidderView extends JFrame {
 	private void updateTable() {
 		DefaultTableModel model = new DefaultTableModel(new String[]{"ID", "First Name", "Last Name", "Price"}, 0);
 		table = new JTable(model);
-		
+		table.setFont(new Font("Tahoma", Font.BOLD, 13));
+		JTableHeader header = table.getTableHeader();
+		header.setFont(new Font("Tahoma", Font.BOLD, 13));
         ArrayList<Object[]> participantsBidder =  item.getParticipatedBidders(item.getSession_ID(), item.getId());
         for(Object[] infor : participantsBidder) {
         	model.addRow(new Object[]{infor[0], infor[1], infor[2], infor[4]});
@@ -138,7 +143,7 @@ public class BidderView extends JFrame {
 	}
 	
 	public void createCountDownLabel() {
-		if(item.getServed() == 0) {
+		if(item.getServed() == 1) {
 			countDownLabel = new JLabel("End Time !!!");
 		}
 		else {
@@ -229,12 +234,13 @@ public class BidderView extends JFrame {
 						
 						}
 						else {
-							member.participate(item.getSession_ID(), item.getID(), newPrice);
-							//member.SubmitBid(member.getId(), item.getSession_ID(), item.getId(), newPrice);
+							member.participate(member.getId(), item.getID());
+							member.updatePrice(item.getSession_ID(), item.getId(), newPrice);
 							
 						}
 						currentPriceValueLabel.setText(""+item.getCurrentPrice(item.getSession_ID(), item.getID()));
 						newPriceField.setText("");
+						System.out.println(item.getCurrentPrice(item.getSession_ID(), item.getId()));
 						updateTable();
 						
 					}
@@ -258,60 +264,40 @@ public class BidderView extends JFrame {
 	
  		
 	public void createTimer() throws ParseException {
-	//	LocalDateTime now = LocalDateTime.now();
-		LocalDateTime dateNow = LocalDateTime.now();
-		SimpleDateFormat simleDateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
-		Date startTime = (Date) simleDateFormat.parse(item.getSession().getSession_date() + " " +String.format("%02d:00:00", item.getSession().getStart_time()));
-		Date endTime = (Date) simleDateFormat.parse(item.getSession().getSession_date() + " " +String.format("%02d:00:00", item.getSession().getEnd_time()));
-		Date dN = (Date) simleDateFormat.parse(String.format("%02d-%02d-%04d %02d:%02d:%02d", dateNow.getDayOfMonth(), dateNow.getMonth().getValue(), dateNow.getYear(), dateNow.getHour(), dateNow.getMinute(), dateNow.getSecond()));
-		long diff = (startTime.getTime() - dN.getTime())/1000;
-		if(diff > 0) {
-			seconds = (endTime.getTime() - startTime.getTime())/1000 + diff;
-			option = 0;
-		}
-		else {
-			option = 1;
-			seconds = Math.max(0, (endTime.getTime() - dN.getTime())/1000);
-		}
-		hours = seconds/3600;
-		minutes = (seconds - hours*3600)/60;
-		seconds -= hours * 3600 + minutes * 60;
-		
 		countDown = new Timer(1000, new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				seconds--;
-				if(hours == 0 && minutes == 0 && seconds <= 10) countDownLabel.setForeground(Color.RED);
-				if(seconds == -1) {
-					if(minutes == 0) {
-						if(hours == 0) {
-							countDown.stop();
-							countDownLabel.setText("End Time!!!");
-							submitButton.setVisible(false);
-							newPriceField.setVisible(false);
-							item.setServed(0);;
-							item.getSession().setReserved(0);
-							return;
-						}
-						else {
-							hours -= 1;
-							minutes =59;
-							seconds = 59;
-						}
+				SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm:sss");
+				LocalDateTime now = LocalDateTime.now();
+				try {
+					Date startTime = (Date) simpleDateFormat.parse(item.getSession().getSession_date() + " " +String.format("%02d:00:00", item.getSession().getStart_time()));
+					Date endTime = (Date) simpleDateFormat.parse(item.getSession().getSession_date() + " " +String.format("%02d:00:00", item.getSession().getEnd_time()));
+					Date dN = (Date) simpleDateFormat.parse(String.format("%02d-%02d-%04d %02d:%02d:%02d", now.getDayOfMonth(), now.getMonth().getValue(), now.getYear(), now.getHour(), now.getMinute(), now.getSecond()));
+					if(endTime.getTime() - dN.getTime() <= 10000) countDownLabel.setForeground(Color.RED);
+					if(dN.getTime() > endTime.getTime()) {
+						countDown.stop();
+						countDownLabel.setText("End Time!!!");
+						submitButton.setVisible(false);
+						newPriceField.setVisible(false);
+						item.setServed(0);;
+						item.getSession().setReserved(0);
+						return;
 					}
-					minutes--;
-					seconds = 59;
-				}
-				if(hours*3600 + minutes * 60 + seconds <= (endTime.getTime() - startTime.getTime())/1000) {
-					countDownLabel.setText(String.format("%02d:%02d:%02d", hours, minutes, seconds));
-					if(member.getId() != item.getSeller_ID()) {
+					else if(dN.getTime() >= startTime.getTime()) {
 						submitButton.setVisible(true);
 						newPriceField.setVisible(true);
+						long seconds = (endTime.getTime() - dN.getTime())/1000;
+						long hours = seconds/3600;
+						long minutes = (seconds - hours*3600)/60;
+						seconds = seconds - hours * 3600 - minutes * 60;
+						countDownLabel.setText(String.format("%02d:%02d:%02d", hours, minutes, seconds));
 					}
+					
+				} catch (ParseException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
 				}
 				
-//				System.out.println(startTime/3600 + " " + endTime/3600);
-				System.out.println(hours + ":" + minutes +":" +seconds);
 			}
 		});
 	}
@@ -323,4 +309,5 @@ public class BidderView extends JFrame {
 		Image imgScale = image.getScaledInstance(w, h, Image.SCALE_SMOOTH);
 		return new ImageIcon(imgScale);
 	}
+	
 }

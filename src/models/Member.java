@@ -199,7 +199,7 @@ public class Member extends SystemUser{
     	return false;
     }
 
-    public void participate(int bidderID , int itemID, int price) {
+    public void participate(int bidderID , int itemID) {
     	int sessionID = 0;
     	ArrayList<Item> AllItems;
     	Item item = new Item();
