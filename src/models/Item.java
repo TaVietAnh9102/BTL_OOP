@@ -3,7 +3,7 @@ import java.util.ArrayList;
 
 
 public class Item extends DataManager {
-	private static int counter = 50;
+	private static int counter = 53;
     //Attributes
     private int ID, Cat_ID, session_ID, seller_ID;
     private String Item_name, details, picture;
@@ -19,7 +19,7 @@ public class Item extends DataManager {
     
 //    "ID,Item_name,Details,picture,Price,Cat_ID,session_ID,seller_ID,Served";
     
-    public Item( String name , String pic, String details , int price ,  int categoryID , int sessionId, int sellerID, int served) {
+    public Item(String name , String pic, String details , int price ,  int categoryID , int sessionId, int sellerID, int served) {
     	this.ID = counter++;
         this.Item_name = name;
         this.details = details;

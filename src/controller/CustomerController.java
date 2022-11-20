@@ -37,8 +37,6 @@ public class CustomerController {
 		soldItemController = new ItemTableController(customerView, catMNG);
 		itemController = new ItemController(homeController, participatedController, soldItemController, member);
 		submitItemController = new SubmitItemController(customerView, member, catMNG, itemController);
-		
-		
 		switchPage(true, false, false, false, false);
 		
 		customerView.addListener(new ActionListener() {

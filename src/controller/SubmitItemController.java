@@ -48,6 +48,18 @@ public class SubmitItemController {
 				JButton bt = (JButton) e.getSource();
 				SubmitItemPanel pn = (SubmitItemPanel)bt.getParent();
 				
+				
+//				String[] newItem = new String[7];
+//				newItem[0] = nameInput.getText();
+//				newItem[1] = detailsInput.getText();
+//				newItem[2] = priceInput.getText();
+//				Category cate = (Category)categoryComboBox.getSelectedItem();
+//				newItem[3] = cate.getId() +"";
+//				
+//				newItem[4] = (date.getSelectedIndex() + 1) + "-" + (month.getSelectedIndex() + 1) + "-" + (year.getSelectedIndex() + 2021);
+//				newItem[5] = startTimeInput.getSelectedIndex() + "";
+//				newItem[6] = endTimeInput.getSelectedIndex() + "";
+				
 				String src = e.getActionCommand();
 				System.out.println(e.getActionCommand());
 				if(src.equals("Submit")) {
@@ -59,9 +71,14 @@ public class SubmitItemController {
 					List<Sessions> ls = sessions.getSessionList();
 					sessions = ls.get(ls.size()-1);
 					Item item = new Item(newItem[0], "", newItem[1], Integer.parseInt(newItem[2]), Integer.parseInt(newItem[3]), sessions.getId(), member.getId(), 0);
-					item.add();
-					itemController.addNewItem(item);
-					
+					item.getData();
+					List<Item> lsItem = item.getItemList();
+					item.setID(lsItem.get(lsItem.size() - 1).getId() + 1);
+					//item.add();
+					item.initializeItems();
+					//System.out.println(item.getCat_ID() + " " + item.getCatName());
+					System.out.println(item.getCategory());
+					itemController.addNewItem(item);	
 				}
 				else {
 					

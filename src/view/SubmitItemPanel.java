@@ -225,6 +225,7 @@ public class SubmitItemPanel extends JPanel {
 		newItem[2] = priceInput.getText();
 		Category cate = (Category)categoryComboBox.getSelectedItem();
 		newItem[3] = cate.getId() +"";
+		
 		newItem[4] = (date.getSelectedIndex() + 1) + "-" + (month.getSelectedIndex() + 1) + "-" + (year.getSelectedIndex() + 2021);
 		newItem[5] = startTimeInput.getSelectedIndex() + "";
 		newItem[6] = endTimeInput.getSelectedIndex() + "";
