@@ -23,7 +23,7 @@ public class DetailsItem extends JDialog {
 	
 	public DetailsItem(Item item) {
 		setTitle("Item Details");
-		setIconImage(Toolkit.getDefaultToolkit().getImage(DetailsItem.class.getResource(item.getPicture())));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(DetailsItem.class.getResource("/pic/icon_app.png")));
 		this.item = item;
 		setSize(537, 275);
 		setLocationRelativeTo(null);
@@ -36,7 +36,7 @@ public class DetailsItem extends JDialog {
 		
 		JLabel icon = new JLabel("Icon");
 		icon.setBounds(30, 30, 166, 176);
-		icon.setIcon(getIcon(icon.getWidth(), icon.getHeight(), "/pic/dell_latitude_3520.jpg"));
+		icon.setIcon(getIcon(icon.getWidth(), icon.getHeight(), item.getPicture() ));
 		
 		contentPanel.add(icon);
 		
