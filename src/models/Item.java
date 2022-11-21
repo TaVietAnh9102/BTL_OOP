@@ -3,10 +3,9 @@ import java.util.ArrayList;
 
 
 public class Item extends DataManager {
-	private static int counter = 53;
     //Attributes
-    private int ID, Cat_ID, session_ID, seller_ID;
-    private String Item_name, details, picture;
+    private int ID, categoryID, sessionID, sellerID;
+    private String name, details, picture;
     private int price;
     
     private  ArrayList<Item> ItemList;
@@ -14,20 +13,23 @@ public class Item extends DataManager {
     private Sessions session ;
     private Category category;
     private SystemUser seller;
-    private String CatName, SellerName;
-    private int StartTime, served;
+    private String catName, sellerName;
+    private int startTime, served;
     
-//    "ID,Item_name,Details,picture,Price,Cat_ID,session_ID,seller_ID,Served";
+//    "ID,name,Details,picture,Price,categoryID,sessionID,sellerID,Served";
+    
+//    public Item(int sellerID, String name , String Pic, String details , int price ,  int categoryID ,int reserved ) {
+//    	
+//    }
     
     public Item(String name , String pic, String details , int price ,  int categoryID , int sessionId, int sellerID, int served) {
-    	this.ID = counter++;
-        this.Item_name = name;
+        this.name = name;
         this.details = details;
         this.picture = pic;
         this.price = price;
-        this.Cat_ID = categoryID;
-        this.session_ID = sessionId;
-        this.seller_ID = sellerID;
+        this.categoryID = categoryID;
+        this.sessionID = sessionId;
+        this.sellerID = sellerID;
         this.served = served;
     }
     
@@ -35,22 +37,19 @@ public class Item extends DataManager {
     public Item(int id, String name, String details, String pic, int price, int category,
                 int session, int seller, int served) {
         this.ID = id;
-        this.Item_name = name;
+        this.name = name;
         this.details = details;
         this.picture = pic;
         this.price = price;
-        this.Cat_ID = category;
-        this.session_ID = session;
-        this.seller_ID = seller;
+        this.categoryID = category;
+        this.sessionID = session;
+        this.sellerID = seller;
         this.served = served;
     }
     
     public Item(){
     }
     
-    private void getCategory(int categoryID) {
-    	
-    }
     
     public void initializeItems() {
         try {
@@ -70,40 +69,37 @@ public class Item extends DataManager {
 
         for(Item i :ItemList) {
             for (Sessions s : sessionList) {
-                if (s.getId() == i.session_ID){
+                if (s.getId() == i.sessionID){
                     i.session = s;
-                    i.StartTime = s.getStart_time();
+                    i.startTime = s.getStart_time();
                 }
             }
             for(Category c: CategoryList) {
-                if(c.getId()==i.Cat_ID) {
+                if(c.getId()==i.categoryID) {
                     i.category=c;
-                    i.CatName = c.getCat_Name();
+                    i.catName = c.getCat_Name();
                 }
             }
             for (SystemUser u: UsersList) {
-                if (u.getId() == i.seller_ID) {
+                if (u.getId() == i.sellerID) {
                     i.seller = u;
-                    i.SellerName = u.getFname() + " " + u.getLname();
+                    i.sellerName = u.getFname() + " " + u.getLname();
                 }
             }
         }
 
     }
     
-    public String getItem_name() {
-        return this.Item_name;
+    public String getName() {
+        return this.name;
     }
     
-//    public void  setItem_name(String n) {
-//    	this.Item_name = n;
-//    }
     
     public String getDetails() {
         return this.details;
     }
     
-    public String getpicture() {
+    public String getPicture() {
         return this.picture;
     }
     
@@ -111,16 +107,16 @@ public class Item extends DataManager {
     	return this.price;
     }
     
-    public int getCat_ID() {
-    	return this.Cat_ID;
+    public int getCatID() {
+    	return this.categoryID;
     }
     
-    public int getSession_ID() {
-    	return this.session_ID;
+    public int getSessionID() {
+    	return this.sessionID;
     }
     
-    public int getSeller_ID() {
-    	return this.seller_ID;
+    public int getSellerID() {
+    	return this.sellerID;
     }
     
     
@@ -132,28 +128,20 @@ public class Item extends DataManager {
     	return this.category;
     }
     
-    public int getStartTime() {
-        return StartTime;
-    }
-    
-//    public void setStartTime(int startTime) {
-//        StartTime = startTime;
-//    }
-    
     public String getCatName() {
-        return CatName;
+        return catName;
     }
     
     public String getSellerName() {
-        return SellerName;
+        return sellerName;
     }
     
     public void setCatName(String catName) {
-        CatName = catName;
+        catName = catName;
     }
     
     public void setSellerName(String sellerName) {
-        this.SellerName = sellerName;
+        this.sellerName = sellerName;
     }
     
     public SystemUser getSeller() {
@@ -169,14 +157,14 @@ public class Item extends DataManager {
     }
     
     public void setName(String name) {
-    	this.Item_name = name;
+    	this.name = name;
     }
     
     public void setDetails(String details) {
         this.details = details;
     }
     
-    public void setpicture(String pic) {
+    public void setPicture(String pic) {
     	this.picture = pic;
     }
     
@@ -184,16 +172,16 @@ public class Item extends DataManager {
         this.price = price;
     }
     
-    public void setCat_ID(int category) {
-    	this.Cat_ID=category;
+    public void setCategoryID(int category) {
+    	this.categoryID=category;
     }
     
-    public void setSession_ID(int session) {
-    	this.session_ID=session;
+    public void setSessionID(int session) {
+    	this.sessionID=session;
     }
     
-    public void setSeller_ID(int seller) {
-    	this.seller_ID=seller;
+    public void setSellerID(int seller) {
+    	this.sellerID=seller;
     }
     
     public void setServed(int i){
@@ -208,12 +196,12 @@ public class Item extends DataManager {
 //    Methods
     @Override
     protected String getAttributes() {
-        return "ID,Item_name,Details,picture,Price,Cat_ID,session_ID,seller_ID,Served";
+        return "ID,item_name,Details,picture,Price,Cat_ID,session_ID,seller_ID,Served";
     }
     
     @Override
     protected String getValues() {
-        return   ID + ",'" + Item_name + "','" + details + "','"+picture+"',"+price+","+Cat_ID+","+session_ID+","+seller_ID+","+served;
+        return   ID + ",'" + name + "','" + details + "','"+picture+"',"+price+","+categoryID+","+sessionID+","+sellerID+","+served;
     }
 
     @Override
@@ -270,12 +258,12 @@ public class Item extends DataManager {
         );
     }
     
-    public int getCurrentPrice(int session_ID,int itemID) {
+    public int getCurrentPrice(int sessionID,int itemID) {
         DBInterface dbInterface = DBInterface.getInstance();
         ArrayList<Object[]> x = dbInterface.select(
           "session_participants",
                 "max(price)",
-                "session_ID = "+session_ID+" and item_ID = "+itemID
+                "session_ID = "+sessionID+" and item_ID = "+itemID
         );
         int pr;
         try {
@@ -286,9 +274,9 @@ public class Item extends DataManager {
         return pr;
     }
     
-    public void submitNewPrice(int session_ID,int item_ID,int bidder_ID,String price){
+    public void submitNewPrice(int sessionID,int item_ID,int bidder_ID,String price){
         DBInterface db = DBInterface.getInstance();
-        db.update("session_participants","price",price," session_ID = "+session_ID+" and item_ID = "+
+        db.update("session_participants","price",price," session_ID = "+sessionID+" and item_ID = "+
                 item_ID +" and bidder_ID = "+bidder_ID);
     }
     

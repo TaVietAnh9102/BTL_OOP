@@ -57,7 +57,7 @@ public class ItemController {
 				else {
 					Item item = pn.getItem();
 					item.initializeItems();
-					BidderView bdv = new BidderView(item, member);
+					BidderView bdv = new BidderView(item, member, participatedController );
 					bdv.setVisible(true);
 				}
 			}

@@ -28,7 +28,10 @@ import javax.swing.SwingConstants;
 import javax.swing.Timer;
 import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
 
+import controller.ItemController;
+import controller.ItemTableController;
 import models.Item;
 import models.Member;
 
@@ -42,19 +45,23 @@ public class BidderView extends JFrame {
 	private JButton submitButton;
 	private JLabel currentPriceValueLabel;
 	
+	private ItemTableController itemController;
+	
 	private JTable table;
 	private Timer countDown;
-	private Date startTime;
-	private Date endTime;
-	private long hours;
-	private long minutes;
-	private long seconds;
-	private long timeNow;
-	private int option;
+//	private Date startTime;
+//	private Date endTime;
+//	private long hours;
+//	private long minutes;
+//	private long seconds;
+//	private long timeNow;
+//	private int option;
 	private JScrollPane scrollPane;
+private JLabel winnerLabel;
 	
 	
-	public BidderView(Item item, Member member) {
+	public BidderView(Item item, Member member, ItemTableController itemController) {
+		this.itemController = itemController;
 		this.member = member;
 		setTitle("Auction App");
 		setResizable(false);
@@ -87,8 +94,10 @@ public class BidderView extends JFrame {
 		
 		DefaultTableModel model = new DefaultTableModel(new String[]{"ID", "First Name", "Last Name", "Price"}, 0);
 		table = new JTable(model);
-		
-        ArrayList<Object[]> participantsBidder =  item.getParticipatedBidders(item.getSession_ID(), item.getId());
+		table.setFont(new Font("Tahoma", Font.BOLD, 13));
+		JTableHeader header = table.getTableHeader();
+		header.setFont(new Font("Tahoma", Font.BOLD, 13));
+        ArrayList<Object[]> participantsBidder =  item.getParticipatedBidders(item.getSessionID(), item.getId());
         for(Object[] infor : participantsBidder) {
         	model.addRow(new Object[]{infor[0], infor[1], infor[2], infor[4]});
         }
@@ -129,8 +138,10 @@ public class BidderView extends JFrame {
 	private void updateTable() {
 		DefaultTableModel model = new DefaultTableModel(new String[]{"ID", "First Name", "Last Name", "Price"}, 0);
 		table = new JTable(model);
-		
-        ArrayList<Object[]> participantsBidder =  item.getParticipatedBidders(item.getSession_ID(), item.getId());
+		table.setFont(new Font("Tahoma", Font.BOLD, 13));
+		JTableHeader header = table.getTableHeader();
+		header.setFont(new Font("Tahoma", Font.BOLD, 13));
+        ArrayList<Object[]> participantsBidder =  item.getParticipatedBidders(item.getSessionID(), item.getId());
         for(Object[] infor : participantsBidder) {
         	model.addRow(new Object[]{infor[0], infor[1], infor[2], infor[4]});
         }
@@ -138,7 +149,7 @@ public class BidderView extends JFrame {
 	}
 	
 	public void createCountDownLabel() {
-		if(item.getServed() == 0) {
+		if(item.getServed() == 1) {
 			countDownLabel = new JLabel("End Time !!!");
 		}
 		else {
@@ -176,7 +187,7 @@ public class BidderView extends JFrame {
 		itemNameLabel.setBounds(265, 25, 101, 30);
 		contentPane.add(itemNameLabel);
 		
-		JLabel itemNameValue = new JLabel(item.getItem_name());
+		JLabel itemNameValue = new JLabel(item.getName());
 		itemNameValue.setFont(new Font("Tahoma", Font.BOLD, 13));
 		itemNameValue.setBounds(376, 25, 190, 30);
 		contentPane.add(itemNameValue);
@@ -198,7 +209,7 @@ public class BidderView extends JFrame {
 		
 		currentPriceValueLabel = new JLabel("New label");
 		currentPriceValueLabel.setForeground(new Color(255, 255, 51));
-		currentPriceValueLabel.setText(item.getCurrentPrice(item.getSession_ID(), item.getID()) + "");
+		currentPriceValueLabel.setText(item.getCurrentPrice(item.getSessionID(), item.getID()) + "");
 		currentPriceValueLabel.setFont(new Font("Tahoma", Font.BOLD, 13));
 		currentPriceValueLabel.setBounds(376, 250, 133, 30);
 		contentPane.add(currentPriceValueLabel);
@@ -219,24 +230,24 @@ public class BidderView extends JFrame {
 				try {
 					item.initializeItems();
 					int newPrice = Integer.parseInt(price);
-					if(newPrice <= item.getCurrentPrice(item.getSession_ID(), item.getId())) {
+					if(newPrice <= item.getCurrentPrice(item.getSessionID(), item.getId())) {
 						JOptionPane.showMessageDialog(new JFrame(), "The new price must be greater than the current price", "", JOptionPane.ERROR_MESSAGE);
 					}
 					else {
 						System.out.println(member.isParticipated(item.getId()));
 						if(member.isParticipated(item.getId())) {
-							member.updatePrice(item.getSession_ID(), item.getId(), newPrice);
-						
-						}
-						else {
-							member.participate(item.getSession_ID(), item.getID(), newPrice);
-							//member.SubmitBid(member.getId(), item.getSession_ID(), item.getId(), newPrice);
+							member.updatePrice(item.getSessionID(), item.getId(), newPrice);
 							
 						}
-						currentPriceValueLabel.setText(""+item.getCurrentPrice(item.getSession_ID(), item.getID()));
+						else {
+							member.participate(member.getId(), item.getID());
+							member.updatePrice(item.getSessionID(), item.getId(), newPrice);
+							itemController.addItem(item);
+						}
+						currentPriceValueLabel.setText(""+item.getCurrentPrice(item.getSessionID(), item.getID()));
 						newPriceField.setText("");
+						System.out.println(item.getCurrentPrice(item.getSessionID(), item.getId()));
 						updateTable();
-						
 					}
 				} catch (NumberFormatException e2) {
 					JOptionPane.showMessageDialog(new JFrame(), "Only integer number", "", JOptionPane.ERROR_MESSAGE);
@@ -252,66 +263,63 @@ public class BidderView extends JFrame {
 		contentPane.add(newPriceField);
 		newPriceField.setColumns(10);
 		
+		winnerLabel = new JLabel("");
+		winnerLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		winnerLabel.setFont(new Font("Tahoma", Font.BOLD, 18));
+		winnerLabel.setBounds(66, 290, 443, 33);
+		contentPane.add(winnerLabel);
+		winnerLabel.setVisible(false);
 		
 	}
 	
 	
  		
 	public void createTimer() throws ParseException {
-	//	LocalDateTime now = LocalDateTime.now();
-		LocalDateTime dateNow = LocalDateTime.now();
-		SimpleDateFormat simleDateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
-		Date startTime = (Date) simleDateFormat.parse(item.getSession().getSession_date() + " " +String.format("%02d:00:00", item.getSession().getStart_time()));
-		Date endTime = (Date) simleDateFormat.parse(item.getSession().getSession_date() + " " +String.format("%02d:00:00", item.getSession().getEnd_time()));
-		Date dN = (Date) simleDateFormat.parse(String.format("%02d-%02d-%04d %02d:%02d:%02d", dateNow.getDayOfMonth(), dateNow.getMonth().getValue(), dateNow.getYear(), dateNow.getHour(), dateNow.getMinute(), dateNow.getSecond()));
-		long diff = (startTime.getTime() - dN.getTime())/1000;
-		if(diff > 0) {
-			seconds = (endTime.getTime() - startTime.getTime())/1000 + diff;
-			option = 0;
-		}
-		else {
-			option = 1;
-			seconds = Math.max(0, (endTime.getTime() - dN.getTime())/1000);
-		}
-		hours = seconds/3600;
-		minutes = (seconds - hours*3600)/60;
-		seconds -= hours * 3600 + minutes * 60;
-		
-		countDown = new Timer(1000, new ActionListener() {
+		countDown = new Timer(10, new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				seconds--;
-				if(hours == 0 && minutes == 0 && seconds <= 10) countDownLabel.setForeground(Color.RED);
-				if(seconds == -1) {
-					if(minutes == 0) {
-						if(hours == 0) {
-							countDown.stop();
-							countDownLabel.setText("End Time!!!");
-							submitButton.setVisible(false);
-							newPriceField.setVisible(false);
-							item.setServed(0);;
-							item.getSession().setReserved(0);
-							return;
+				SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm:sss");
+				LocalDateTime now = LocalDateTime.now();
+				try {
+					Date startTime = (Date) simpleDateFormat.parse(item.getSession().getSession_date() + " " +String.format("%02d:00:00", item.getSession().getStart_time()));
+					Date endTime = (Date) simpleDateFormat.parse(item.getSession().getSession_date() + " " +String.format("%02d:00:00", item.getSession().getEnd_time()));
+					Date timeNow = (Date) simpleDateFormat.parse(String.format("%02d-%02d-%04d %02d:%02d:%02d", now.getDayOfMonth(), now.getMonth().getValue(), now.getYear(), now.getHour(), now.getMinute(), now.getSecond()));
+					if(endTime.getTime() - timeNow.getTime() <= 10000) countDownLabel.setForeground(Color.RED);
+					if(timeNow.getTime() > endTime.getTime()) {
+						countDown.stop();
+						countDownLabel.setText("End Time!!!");
+						submitButton.setVisible(false);
+						newPriceField.setVisible(false);
+						item.setServed(0);
+						item.getSession().setReserved(0);
+						if(table.getRowCount() == 0) {
+							winnerLabel.setText("There is no winner");
 						}
 						else {
-							hours -= 1;
-							minutes =59;
-							seconds = 59;
+							String text = "Winner is: " + table.getModel().getValueAt(0, 1) + " " + table.getModel().getValueAt(0, 2);
+							winnerLabel.setText(text);
 						}
+						winnerLabel.setVisible(true);
+						return;
 					}
-					minutes--;
-					seconds = 59;
-				}
-				if(hours*3600 + minutes * 60 + seconds <= (endTime.getTime() - startTime.getTime())/1000) {
-					countDownLabel.setText(String.format("%02d:%02d:%02d", hours, minutes, seconds));
-					if(member.getId() != item.getSeller_ID()) {
-						submitButton.setVisible(true);
-						newPriceField.setVisible(true);
+					else if(timeNow.getTime() >= startTime.getTime()) {
+						if(item.getSellerID() != member.getId()) {
+							submitButton.setVisible(true);
+							newPriceField.setVisible(true);
+						}
+						
+						long seconds = (endTime.getTime() - timeNow.getTime())/1000;
+						long hours = seconds/3600;
+						long minutes = (seconds - hours*3600)/60;
+						seconds = seconds - hours * 3600 - minutes * 60;
+						countDownLabel.setText(String.format("%02d:%02d:%02d", hours, minutes, seconds));
 					}
+					
+				} catch (ParseException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
 				}
 				
-//				System.out.println(startTime/3600 + " " + endTime/3600);
-				System.out.println(hours + ":" + minutes +":" +seconds);
 			}
 		});
 	}

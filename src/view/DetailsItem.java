@@ -51,7 +51,7 @@ public class DetailsItem extends JDialog {
 		nameLabel.setBounds(229, 30, 97, 35);
 		contentPanel.add(nameLabel);
 		
-		JTextField nameValue = new JTextField(item.getItem_name());
+		JTextField nameValue = new JTextField(item.getName());
 		nameValue.setBounds(336, 30, 165, 35);
 		nameValue.setFont(FONT);
 		nameValue.setEditable(false);
