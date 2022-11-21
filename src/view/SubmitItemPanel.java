@@ -122,21 +122,21 @@ public class SubmitItemPanel extends JPanel {
 		add(submitButton);
 		
 		year = new JComboBox();
-		year.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		year.setFont(new Font("Tahoma", Font.BOLD, 13));
 		setListyear();
 		year.setBounds(589, 230, 92, 35);
 		year.setSelectedIndex(0);
 		add(year);
 		
 		month = new JComboBox();
-		month.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		month.setFont(new Font("Tahoma", Font.BOLD, 13));
 		setListmonth();
 		month.setBounds(516, 230, 63, 35);
 		month.setSelectedIndex(0);
 		add(month);
 		
 		date = new JComboBox();
-		date.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		date.setFont(new Font("Tahoma", Font.BOLD, 13));
 		setListdate(31);
 		date.setBounds(441, 230, 65, 35);
 		date.setSelectedIndex(0);

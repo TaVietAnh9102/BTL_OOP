@@ -214,6 +214,7 @@ public class RegisterView extends JDialog {
 	
 	private void initBirthDayBox() {
 		birthYear = new JComboBox();
+		birthYear.setFont(new Font("Arial", Font.BOLD, 15));
 		setListBirthYear();
 		birthYear.setBounds(275, 230, 66, 27);
 		birthYear.setSelectedIndex(0);
@@ -221,12 +222,14 @@ public class RegisterView extends JDialog {
 		
 		birthMonth = new JComboBox();
 		setListBirthMonth();
+		birthMonth.setFont(new Font("Arial", Font.BOLD, 15));
 		birthMonth.setBounds(210, 230, 55, 27);
 		birthMonth.setSelectedIndex(0);
 		mainPanel.add(birthMonth);
 		
 		birthDate = new JComboBox();
 		setListBirthDate(31);
+		birthDate.setFont(new Font("Arial", Font.BOLD, 15));
 		birthDate.setBounds(156, 230, 44, 27);
 		birthDate.setSelectedIndex(0);
 		mainPanel.add(birthDate);
