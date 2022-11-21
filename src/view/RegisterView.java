@@ -142,14 +142,14 @@ public class RegisterView extends JDialog {
 		maleButton = new JRadioButton("Male");
 		maleButton.setBounds(156, 190, 87, 27);
 		maleButton.setBackground(new Color(65, 105, 225));
-		maleButton.setFont(LABEL_FONT);
+		maleButton.setFont(new Font("Arial", Font.BOLD, 15));
 		buttonGroupGender.add(maleButton);
 		mainPanel.add(maleButton);
 		
 		femaleButton = new JRadioButton("Female");
 		femaleButton.setBounds(254, 190, 87, 27);
 		femaleButton.setBackground(new Color(255, 102, 204));
-		femaleButton.setFont(LABEL_FONT);
+		femaleButton.setFont(new Font("Arial", Font.BOLD, 15));
 		buttonGroupGender.add(femaleButton);
 		mainPanel.add(femaleButton);
 		
@@ -159,7 +159,7 @@ public class RegisterView extends JDialog {
 	
 	private void initLabels() {
 		firstNameLabel = new JLabel("First Name");
-		firstNameLabel.setFont(LABEL_FONT);
+		firstNameLabel.setFont(new Font("Arial", Font.BOLD, 13));
 		firstNameLabel.setForeground(LABEL_FORE_GROUND_COLOR);
 		firstNameLabel.setHorizontalAlignment(SwingConstants.LEFT);
 		firstNameLabel.setBounds(49, 30, 70, 27);
@@ -214,18 +214,21 @@ public class RegisterView extends JDialog {
 	
 	private void initBirthDayBox() {
 		birthYear = new JComboBox();
+		birthYear.setFont(new Font("Arial", Font.BOLD, 15));
 		setListBirthYear();
 		birthYear.setBounds(275, 230, 66, 27);
 		birthYear.setSelectedIndex(0);
 		mainPanel.add(birthYear);
 		
 		birthMonth = new JComboBox();
+		birthMonth.setFont(new Font("Arial", Font.BOLD, 15));
 		setListBirthMonth();
 		birthMonth.setBounds(210, 230, 55, 27);
 		birthMonth.setSelectedIndex(0);
 		mainPanel.add(birthMonth);
 		
 		birthDate = new JComboBox();
+		birthDate.setFont(new Font("Arial", Font.BOLD, 15));
 		setListBirthDate(31);
 		birthDate.setBounds(156, 230, 44, 27);
 		birthDate.setSelectedIndex(0);
