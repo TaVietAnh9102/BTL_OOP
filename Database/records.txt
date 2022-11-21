@@ -24,8 +24,8 @@ INSERT INTO `category` VALUES ('6', 'KeyBoard');
 -- ----------------------------
 -- Records of sessions
 -- ----------------------------
-INSERT INTO `sessions` VALUES ('1', '22-11-2022', '8', '10', '1', '4');
-INSERT INTO `sessions` VALUES ('2', '22-11-2022', '9', '11', '1', null);
+INSERT INTO `sessions` VALUES ('1', '22-11-2022', '7', '9', '1', '4');
+INSERT INTO `sessions` VALUES ('2', '22-11-2022', '8', '12', '1', null);
 INSERT INTO `sessions` VALUES ('3', '22-11-2022', '9', '11', '1', null);
 INSERT INTO `sessions` VALUES ('4', '22-11-2022', '10', '11', '1', null);
 INSERT INTO `sessions` VALUES ('5', '22-11-2022', '10', '14', '1', null);
@@ -41,16 +41,15 @@ INSERT INTO `sessions` VALUES ('14', '23-11-2022', '3', '4', '1', null);
 INSERT INTO `sessions` VALUES ('15', '23-11-2022', '5', '6', '1', null);
 INSERT INTO `sessions` VALUES ('16', '23-11-2022', '7', '8', '1', null);
 INSERT INTO `sessions` VALUES ('17', '23-11-2022', '9', '10', '1', null);
-INSERT INTO `sessions` VALUES ('18', '23-11-2022', '10', '11', '1', null);
 
 -- ----------------------------
 -- Records of item
 -- ----------------------------
 
 INSERT INTO `item` VALUES ('1', 'Lenovo ThinkPad E14', 'new product', '/pic/thinkpad_e14.jpg', '10000', '1', '1', '1', '0');
-INSERT INTO `item` VALUES ('2', 'Acer Nitro 5 Eagle', 'new product', '/pic/acer_nitro_5.jpg', '10500', '1', '2', '1', '0');
-INSERT INTO `item` VALUES ('3', 'Lenovo Legion 5 Pro', 'new product', '/pic/legion_5_pro.jpg', '20000', '1', '3', '1', '0');
-INSERT INTO `item` VALUES ('4', 'Dell Latitude 3520', 'new product', '/pic/dell_latitude_3520.jpg', '8500', '1', '4', '1', '0'); 
+INSERT INTO `item` VALUES ('2', 'Acer Nitro 5 Eagle', 'new product', '/pic/acer_nitro_5.jpg', '10500', '1', '1', '1', '0');
+INSERT INTO `item` VALUES ('3', 'Lenovo Legion 5 Pro', 'new product', '/pic/legion_5_pro.jpg', '20000', '1', '1', '1', '0');
+INSERT INTO `item` VALUES ('4', 'Dell Latitude 3520', 'new product', '/pic/dell_latitude_3520.jpg', '8500', '1', '1', '1', '0'); 
 INSERT INTO `item` VALUES ('5', 'Asus ROG Swift', 'new product', '/pic/monitor_asus_rog_swift.jpg', '30000', '2', '5', '2', '0');
 INSERT INTO `item` VALUES ('6', 'Acer Predator X27', 'new product', '/pic/monitor_acer_predator_x27.jpg', '20000', '2', '6', '2', '0');
 INSERT INTO `item` VALUES ('7', 'Dell P322QE', 'new product', '/pic/monitor_dell_p322qe.jpg', '12400', '2', '7', '2', '0');
@@ -64,4 +63,4 @@ INSERT INTO `item` VALUES ('14', 'LG OLED 55-inch', 'new product', '/pic/tv_lg_o
 INSERT INTO `item` VALUES ('15', 'SamSung 65-inch', 'new product', '/pic/tv_samsung_65ru7100.png', '11000', '4', '15', '4', '0');
 INSERT INTO `item` VALUES ('16', 'LG Ultra HD 49-inch', 'new product', '/pic/tv_lg_ultra_hd_49ub850t.jpg', '11000', '4', '16', '4', '0');
 INSERT INTO `item` VALUES ('17', 'Sony WH-1000xm4bme', 'new product', '/pic/sony_wh_black.png', '9000', '5', '17', '5', '0');
-INSERT INTO `item` VALUES ('18', 'Dell Alienware M15', 'new product', '/pic/dell_alienware_m15.jpg', '30000', '1', '18', '1', '0');
+INSERT INTO `item` VALUES ('18', 'Dell Alienware M15', 'new product', '/pic/dell_alienware_m15.jpg', '30000', '1', '1', '1', '0');
