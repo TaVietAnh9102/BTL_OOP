@@ -6,6 +6,6 @@
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="D:/gitBTL/BTL_OOP/Database/mysql-connector-j-8.0.31.jar"/>
+	<classpathentry kind="lib" path="D:/btloop/mysql-connector-j-8.0.31.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
