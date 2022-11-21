@@ -108,21 +108,32 @@ public class Member extends SystemUser{
 //        return "ID,Item_name,Details,picture,Price,Cat_ID,session_ID,seller_ID,Served";
 //    }
     // this params are required as it needed to be added in the DB .. admin will be static
-    public void submitItem(int sellerID, String name , String Pic, String details , int price ,  int categoryID ,int reserved ) {
-    	Item SubmittedItem = new Item();
-        SubmittedItem.setCat_ID(categoryID);
-        SubmittedItem.setPrice(price);
-        SubmittedItem.setpicture(Pic);
-        SubmittedItem.setDetails(details);
-        SubmittedItem.setName(name);
-        SubmittedItem.setSeller_ID(sellerID);
-        SubmittedItem.setServed(reserved);
-        SubmittedItem.add();
+    public void submitItem(int sellerID, String name , String details, String pic , int price ,  int categoryID ,String date, int startTime, int endTime) {
+    	submitSessions(startTime, endTime, date, 0);
+    	Sessions sessions = new Sessions();
+    	sessions.getData();
+    	List<Sessions> sessionsList = sessions.getSessionList();
+    	sessions = sessionsList.get(sessionsList.size() - 1);
+    	
+    	Item itemMNG = new Item();
+    	itemMNG.getData();
+    	List<Item> itemList = itemMNG.getItemList();
+    	
+    	Item newItem = new Item(itemList.get(itemList.size()-1).getId() + 1, name, details, pic, price, categoryID,  sessions.getId(), sellerID, 0);
+//        SubmittedItem.setCategoryID(categoryID);
+//        SubmittedItem.setPrice(price);
+//        SubmittedItem.setPicture(Pic);
+//        SubmittedItem.setDetails(details);
+//        SubmittedItem.setName(name);
+//        SubmittedItem.setSellerID(sellerID);
+//        SubmittedItem.setServed(reserved);
+//        SubmittedItem.add();
+    	newItem.add();
         System.out.println("Item has been added successfully");
     }
     
     
-    public void submitSessions(int startTime, int endTime, String date, int reserved){
+    private void submitSessions(int startTime, int endTime, String date, int reserved){
        Sessions sessions = new Sessions();
        sessions.setStart_time(startTime);
        sessions.setEnd_time(endTime);
@@ -141,7 +152,7 @@ public class Member extends SystemUser{
     	ArrayList<Item> AllRetrunedItems = item.getItemList();
 
     	for (Item x: AllRetrunedItems) {
-    		if (sellerID == x.getSeller_ID()){
+    		if (sellerID == x.getSellerID()){
     			SellerItems.add(x);
     		}
     	}
@@ -207,8 +218,8 @@ public class Member extends SystemUser{
     	AllItems = item.getItemList();
     	for (Item it : AllItems) {
     		if (it.getId() == itemID) {
-    			System.out.println(it.getSession_ID());
-    			sessionID = it.getSession_ID();
+    			System.out.println(it.getSessionID());
+    			sessionID = it.getSessionID();
     		}
     	}
     	SubmitBid(bidderID, sessionID, itemID);

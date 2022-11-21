@@ -140,7 +140,7 @@ public class ItemsTablePanel extends JPanel {
 	public void addItem(Item item) {
 		if(tabs.containsKey(item.getCatName())) {
 			ItemPanel itemPanel = new ItemPanel(item, itemListener);
-			itemPanel.setItemBidding();
+//			itemPanel.setItemBidding();
 			tabs.get(item.getCatName()).addItemPanel(new ItemPanel(item, itemListener));
 			tabs.get("All").addItemPanel(itemPanel);
 		}
