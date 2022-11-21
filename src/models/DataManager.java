@@ -22,7 +22,7 @@ public abstract class DataManager {
     public void add() {
         DBInterface dbInterface = DBInterface.getInstance();
         String table = this.getClass().getSimpleName(); 	// get name of class: Admin, Member .... 
-
+        if (table.equals("Member")) table = "SystemUser";
         String attributes = getAttributes();
         String values = getValues();
 
@@ -32,7 +32,7 @@ public abstract class DataManager {
     public void delete() {
         DBInterface dbInterface = DBInterface.getInstance();
         String table = this.getClass().getSimpleName();
-
+        if (table.equals("Member")) table = "SystemUser";
 
         dbInterface.delete(table, this.getId());
     }
@@ -40,7 +40,7 @@ public abstract class DataManager {
     public void update() {
         DBInterface dbInterface = DBInterface.getInstance();
         String table = this.getClass().getSimpleName();
-
+        if (table.equals("Member")) table = "SystemUser";
 
         dbInterface.update(table, this.getOptions(), this.getId(), this.getWhere());
     }
@@ -61,7 +61,7 @@ public abstract class DataManager {
         DBInterface dbInterface = DBInterface.getInstance();
         ArrayList<Object[]> results = null;
         String table = this.getClass().getSimpleName();
-
+        if (table.equals("Member")) table = "SystemUser";
 
         results = dbInterface.select(table, this.getOptions());
 
@@ -73,7 +73,7 @@ public abstract class DataManager {
         DBInterface dbInterface = DBInterface.getInstance();
         ArrayList<Object[]> results = null;
         String table = this.getClass().getSimpleName();
-
+        if (table.equals("Member")) table = "SystemUser";
 
         results = dbInterface.select(table, this.getOptions(), this.getWhere());
 
