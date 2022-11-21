@@ -32,7 +32,6 @@ public class ItemController {
 		this.participatedController = participatedController;
 		this.participatedController.setItemListener(itemListener);
 		this.participatedController.addItems(member.getParticipatedItem());
-	
 		
 		this.SoldItemController = biddingController;
 		this.SoldItemController.setItemListener(itemListener);

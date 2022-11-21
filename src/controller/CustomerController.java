@@ -3,50 +3,41 @@ package controller;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.ParseException;
-import java.util.List;
-
 import models.Category;
-import models.Item;
 import models.Member;
 import view.CustomerView;
-import view.ItemsTablePanel;
 
 public class CustomerController {
 	private CustomerView customerView;
 	private Member member;
-	
 	private ItemController itemController;
-	
-	
 	private ItemTableController homeController;
 	private ItemTableController participatedController;
 	private ItemTableController soldItemController;
 	private PersonalDetailController personalDetailController;
 	private SubmitItemController submitItemController;
-	
-	private int current = 1;
-	
+
 	public CustomerController(Member member) throws ParseException {
 		this.member = member;
 		Category catMNG = new Category();
 		catMNG.initializeCategories();
 		customerView = new CustomerView();
 		personalDetailController = new PersonalDetailController(customerView, member);
-		homeController =  new ItemTableController(customerView, catMNG);
+		homeController = new ItemTableController(customerView, catMNG);
 		participatedController = new ItemTableController(customerView, catMNG);
 		soldItemController = new ItemTableController(customerView, catMNG);
 		itemController = new ItemController(homeController, participatedController, soldItemController, member);
 		submitItemController = new SubmitItemController(customerView, member, catMNG, itemController);
 		switchPage(true, false, false, false, false);
-		
+
 		customerView.addListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				String ev = e.getActionCommand();
 				System.out.println(ev);
 				switch (ev) {
-				case "Home": 
+				case "Home":
 					switchPage(true, false, false, false, false);
 					break;
 				case "Participated":
@@ -70,13 +61,14 @@ public class CustomerController {
 			}
 		});
 	}
-	
-	private void switchPage(boolean home, boolean participated, boolean soldItem,boolean submitItem, boolean personalDetail ) {
+
+	private void switchPage(boolean home, boolean participated, boolean soldItem, boolean submitItem,
+			boolean personalDetail) {
 		homeController.showHomeView(home);
 		participatedController.showHomeView(participated);
 		soldItemController.showHomeView(soldItem);
 		submitItemController.showHomeView(submitItem);
 		personalDetailController.showHomeView(personalDetail);
 	}
-	
+
 }

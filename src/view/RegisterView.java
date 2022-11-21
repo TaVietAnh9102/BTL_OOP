@@ -1,38 +1,27 @@
 package view;
 
-import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.Border;
-import javax.swing.border.EmptyBorder;
-import javax.swing.plaf.BorderUIResource;
-import javax.swing.plaf.IconUIResource;
-import javax.swing.text.IconView;
-import javax.swing.JTextField;
-import javax.swing.JPasswordField;
 import java.awt.Color;
-import java.awt.Component;
-
-import javax.swing.JLabel;
-
+import java.awt.Font;
 import java.awt.Image;
-import java.awt.event.ActionEvent;
+import java.awt.Toolkit;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemListener;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.ButtonGroup;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import java.awt.Font;
-import javax.swing.JRadioButton;
-import javax.swing.SwingConstants;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
-import javax.swing.DefaultComboBoxModel;
-import java.awt.Toolkit;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JPasswordField;
+import javax.swing.JRadioButton;
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
+import javax.swing.border.EmptyBorder;
 
 public class RegisterView extends JDialog {
 

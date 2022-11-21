@@ -3,7 +3,6 @@ package controller;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.ParseException;
-
 import models.Member;
 import view.CustomerView;
 import view.PersonalDetailPanel;
@@ -13,6 +12,7 @@ public class PersonalDetailController {
 	private PersonalDetailPanel personalDetailPanel;
 	private CustomerView customerView;
 	private ActionListener actionListener;
+
 	public PersonalDetailController(CustomerView customerView, Member member) throws ParseException {
 		this.member = member;
 		createActionListener();
@@ -23,17 +23,16 @@ public class PersonalDetailController {
 
 	private void createActionListener() {
 		actionListener = new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
+				//change information user in future
 			}
 		};
 	}
-	
+
 	public void showHomeView(boolean ok) {
 		personalDetailPanel.setVisible(ok);
 	}
-	
-	
+
 }

@@ -8,11 +8,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 
 import javax.swing.ImageIcon;
@@ -30,7 +27,6 @@ import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 
-import controller.ItemController;
 import controller.ItemTableController;
 import models.Item;
 import models.Member;
@@ -40,24 +36,14 @@ public class BidderView extends JFrame {
 	private JPanel contentPane;
 	private Item item;
 	private JLabel countDownLabel;
-	
 	private JTextField newPriceField;
 	private JButton submitButton;
 	private JLabel currentPriceValueLabel;
-	
 	private ItemTableController itemController;
-	
 	private JTable table;
 	private Timer countDown;
-//	private Date startTime;
-//	private Date endTime;
-//	private long hours;
-//	private long minutes;
-//	private long seconds;
-//	private long timeNow;
-//	private int option;
 	private JScrollPane scrollPane;
-private JLabel winnerLabel;
+	private JLabel winnerLabel;
 	
 	
 	public BidderView(Item item, Member member, ItemTableController itemController) {
@@ -178,7 +164,7 @@ private JLabel winnerLabel;
 		JLabel imageItem = new JLabel("Icon");
 		imageItem.setHorizontalAlignment(SwingConstants.CENTER);
 		imageItem.setBounds(23, 23, 196, 200);
-		imageItem.setIcon(getIcon(imageItem.getWidth(), imageItem.getHeight(), "/pic/dell_latitude_3520.jpg"));
+		imageItem.setIcon(getIcon(imageItem.getWidth(), imageItem.getHeight(), item.getPicture()));
 		
 		contentPane.add(imageItem);
 		

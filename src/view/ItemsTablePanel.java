@@ -1,50 +1,25 @@
 package view;
 
-import javax.swing.JButton;
-import javax.swing.JPanel;
+import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.Font;
+import java.awt.Point;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.font.FontRenderContext;
-import java.awt.font.GlyphVector;
-import java.awt.geom.AffineTransform;
-import java.awt.image.BufferedImage;
-import java.awt.image.BufferedImageOp;
-import java.awt.image.ImageObserver;
-import java.awt.image.RenderedImage;
-import java.awt.image.renderable.RenderableImage;
-import java.text.AttributedCharacterIterator;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
+import javax.swing.JButton;
+import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JViewport;
+import javax.swing.ScrollPaneConstants;
+import javax.swing.border.EmptyBorder;
+import javax.swing.border.LineBorder;
 
 import models.Category;
 import models.Item;
-
-import java.awt.Color;
-import java.awt.Composite;
-import java.awt.Dimension;
-import javax.swing.ScrollPaneConstants;
-import java.awt.event.ActionEvent;
-import javax.swing.SwingConstants;
-import java.awt.Font;
-import java.awt.FontMetrics;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.GraphicsConfiguration;
-import java.awt.Image;
-import java.awt.Paint;
-import java.awt.Point;
-import java.awt.Rectangle;
-import java.awt.RenderingHints;
-import java.awt.Shape;
-import java.awt.Stroke;
-import java.awt.RenderingHints.Key;
-
-import javax.swing.border.EmptyBorder;
-import javax.swing.border.LineBorder;
 
 public class ItemsTablePanel extends JPanel {
 	
@@ -160,11 +135,11 @@ public class ItemsTablePanel extends JPanel {
 	public void addCategory(Category category) {
 		if(!tabs.containsKey(category.getCat_Name())) {
 			JButton button = new JButton(category.getCat_Name());
-			button.setPreferredSize(new Dimension(75,34));
+			button.setPreferredSize(new Dimension(150,34));
 			button.addActionListener(categoryListener);
 			categoryPanel.add(button);
 			button.setForeground(new Color(93,97,140));
-			button.setFont(new Font("Arial", Font.BOLD, 10));
+			button.setFont(new Font("Arial", Font.BOLD, 15));
 			button.setBorder(new LineBorder(new Color(93,97,140)));
 			ItemTableScrollPane tab = new ItemTableScrollPane();
 			tab.setBounds(0, 35, 810, 470);

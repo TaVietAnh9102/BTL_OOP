@@ -1,25 +1,20 @@
 package view;
 
-import javax.swing.JPanel;
-
-import models.Item;
-import models.Member;
-
-import javax.swing.JLabel;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Image;
 import java.awt.event.ActionListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JDialog;
-import javax.swing.JFrame;
-
-import java.awt.Font;
-import javax.swing.SwingConstants;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.JTextArea;
-import java.awt.Component;
+import javax.swing.SwingConstants;
+
+import models.Item;
 
 public class ItemPanel extends JPanel {
 	
@@ -30,15 +25,15 @@ public class ItemPanel extends JPanel {
 	
 	public ItemPanel(Item item, ActionListener itemListener) {
 		this.item = item;
-		this.item.initializeItems();
 		this.itemListener = itemListener;
 		setBackground(new Color(102, 204, 255));
 		setLayout(null);
 		this.setPreferredSize(new Dimension(186, 305));
 		
 		JLabel imageItem = new JLabel();
-		imageItem.setIcon(getIcon(".."+item.getPicture()));
+		
 		imageItem.setBounds(10, 10, 166, 169);
+		imageItem.setIcon(getIcon(imageItem.getWidth(), imageItem.getHeight(), item.getPicture()));
 		add(imageItem);
 		
 		JLabel cost = new JLabel(item.getPrice() + "");
@@ -102,10 +97,10 @@ public class ItemPanel extends JPanel {
 	}
 	
 	
-	private ImageIcon getIcon(String src) {
-		ImageIcon icon = new ImageIcon(src);
+	private ImageIcon getIcon(int w, int h, String src) {
+		ImageIcon icon = new ImageIcon(ItemPanel.class.getResource(src));
 		Image image = icon.getImage();
-		Image imgScale = image.getScaledInstance(166, 169, Image.SCALE_SMOOTH);
+		Image imgScale = image.getScaledInstance(w, h, Image.SCALE_SMOOTH);
 		return new ImageIcon(imgScale);
 	}
 }

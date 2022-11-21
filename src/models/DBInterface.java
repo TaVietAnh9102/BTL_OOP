@@ -6,10 +6,10 @@ import java.util.ArrayList;
 public class DBInterface {
 	private static DBInterface instance;
 	
-    private String dbName = "auction";	// create database name auction
+    private String dbName = "auction";
     private String dbURL = "jdbc:mysql://localhost:3306/" + dbName;
     private String dbUsername = "root";
-    private String dbPassword = "Tranminhchau2";	// your sql password
+    private String dbPassword = "Tranminhchau2";
     
     private Connection connection = null;
     private String query = null;
@@ -17,7 +17,6 @@ public class DBInterface {
     
     // Contructor
     private DBInterface() {
-    	// remember add .jar file
         try {
             connection = DriverManager.getConnection(dbURL, dbUsername, dbPassword);
             System.out.println("Connected (DBInterface)");
@@ -35,7 +34,6 @@ public class DBInterface {
         return instance;
     }
     
-    // Methods
     public void insert(String table, String attributes, String values) {
         query = "INSERT INTO " + table + "(" + attributes + ") VALUES(" + values + ")";
 
@@ -111,13 +109,6 @@ public class DBInterface {
         return resultList;
     }
     
-//    public ArrayList<Object[]> select(String table, String options ,int userID ) {
-//    	// use for notifiction and user_notification in SystemUser
-//        table += " INNER JOIN User_notification on Notification.ID = User_notification.notification_ID WHERE User_notification.User_ID = " + userID;
-//        query = prepareQuery(table,options,"");
-//        executeQuery(query, true);
-//        return resultList;
-//    }
 
     //Helper Methods
     private String prepareQuery(String table,String options, String whereStatement) {

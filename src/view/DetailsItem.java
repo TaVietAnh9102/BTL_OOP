@@ -1,25 +1,19 @@
 package view;
 
 import java.awt.BorderLayout;
-import java.awt.FlowLayout;
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.Image;
+import java.awt.Toolkit;
 
 import javax.swing.ImageIcon;
-import javax.swing.JButton;
 import javax.swing.JDialog;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
 import models.Item;
-
-import javax.swing.JLabel;
-import javax.swing.JTextArea;
-import javax.swing.JTextField;
-import javax.swing.JTextPane;
-
-import java.awt.Color;
-import java.awt.Toolkit;
 
 public class DetailsItem extends JDialog {
 
@@ -29,7 +23,7 @@ public class DetailsItem extends JDialog {
 	
 	public DetailsItem(Item item) {
 		setTitle("Item Details");
-		setIconImage(Toolkit.getDefaultToolkit().getImage(DetailsItem.class.getResource("/pic/icon_app.png")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(DetailsItem.class.getResource(item.getPicture())));
 		this.item = item;
 		setSize(537, 275);
 		setLocationRelativeTo(null);
