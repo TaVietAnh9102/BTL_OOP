@@ -30,13 +30,14 @@ public class ItemPanel extends JPanel {
 	
 	public ItemPanel(Item item, ActionListener itemListener) {
 		this.item = item;
+		this.item.initializeItems();
 		this.itemListener = itemListener;
 		setBackground(new Color(102, 204, 255));
 		setLayout(null);
 		this.setPreferredSize(new Dimension(186, 305));
 		
 		JLabel imageItem = new JLabel();
-		imageItem.setIcon(getIcon("/pic/dell_latitude_3520.jpg"));
+		imageItem.setIcon(getIcon(".."+item.getPicture()));
 		imageItem.setBounds(10, 10, 166, 169);
 		add(imageItem);
 		
@@ -44,7 +45,7 @@ public class ItemPanel extends JPanel {
 		cost.setForeground(new Color(255, 255, 51));
 		cost.setHorizontalAlignment(SwingConstants.LEFT);
 		cost.setFont(new Font("Tahoma", Font.BOLD, 13));
-		cost.setBounds(96, 224, 80, 23);
+		cost.setBounds(109, 224, 67, 23);
 		add(cost);
 		
 		JTextArea itemName = new JTextArea();
@@ -54,7 +55,7 @@ public class ItemPanel extends JPanel {
 		itemName.setRows(3);
 		itemName.setColumns(20);
 		itemName.setLineWrap(true);
-		itemName.setText(item.getItem_name());
+		itemName.setText(item.getName());
 		itemName.setFont(new Font("Tahoma", Font.BOLD, 13));
 		
 		itemName.setBackground(new Color(102, 204, 255));
@@ -76,11 +77,11 @@ public class ItemPanel extends JPanel {
 		joinButton.addActionListener(itemListener);
 		add(joinButton);
 		
-		JLabel currentPanel = new JLabel("Price");
+		JLabel currentPanel = new JLabel("Starting Price");
 		currentPanel.setFont(new Font("Tahoma", Font.BOLD, 13));
 		currentPanel.setForeground(Color.BLACK);
 		currentPanel.setHorizontalAlignment(SwingConstants.LEFT);
-		currentPanel.setBounds(10, 224, 80, 23);
+		currentPanel.setBounds(10, 224, 96, 23);
 		add(currentPanel);
 		
 		
@@ -90,9 +91,6 @@ public class ItemPanel extends JPanel {
 		return item;
 	}
 	
-	public void setItemBidding() {
-		
-	}
 	
 	public void setItemBidded() {
 		JLabel currentPanel = new JLabel("Price");
@@ -105,7 +103,7 @@ public class ItemPanel extends JPanel {
 	
 	
 	private ImageIcon getIcon(String src) {
-		ImageIcon icon = new ImageIcon(LoginView.class.getResource(src));
+		ImageIcon icon = new ImageIcon(src);
 		Image image = icon.getImage();
 		Image imgScale = image.getScaledInstance(166, 169, Image.SCALE_SMOOTH);
 		return new ImageIcon(imgScale);

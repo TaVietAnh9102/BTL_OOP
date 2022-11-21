@@ -67,18 +67,18 @@ public class SubmitItemController {
 				System.out.println(e.getActionCommand());
 				if(src.equals("Submit")) {
 					String[] newItem = pn.getNewItem();
-					System.out.println(newItem[5]);
-					member.submitSessions(Integer.parseInt(newItem[6]), Integer.parseInt(newItem[7]), newItem[5], 1);
-					Sessions sessions = new Sessions();
-					sessions.getData();
-					sessions.getSessionList();
-					List<Sessions> ls = sessions.getSessionList();
-					sessions = ls.get(ls.size()-1);
-					Item item = new Item(newItem[0], "", newItem[1], Integer.parseInt(newItem[2]), Integer.parseInt(newItem[3]), sessions.getId(), member.getId(), 0);
+//					System.out.println(newItem[5]);
+//					member.submitSessions(Integer.parseInt(newItem[6]), Integer.parseInt(newItem[7]), newItem[5], 1);
+//					Sessions sessions = new Sessions();
+//					sessions.getData();
+//					sessions.getSessionList();
+//					List<Sessions> ls = sessions.getSessionList();
+//					sessions = ls.get(ls.size()-1);
+					member.submitItem(member.getId(), newItem[0], newItem[1], "",Integer.parseInt(newItem[2]), Integer.parseInt(newItem[3]), newItem[5],Integer.parseInt(newItem[6]), Integer.parseInt(newItem[7]) );
+					Item item = new Item();
 					item.getData();
+					item.initializeItems();
 					List<Item> lsItem = item.getItemList();
-					item.setID(lsItem.get(lsItem.size() - 1).getId() + 1);
-					item.add();
 					item.initializeItems();
 					lsItem = item.getItemList();
 					item = lsItem.get(lsItem.size() - 1);
