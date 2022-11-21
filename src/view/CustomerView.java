@@ -1,31 +1,19 @@
 package view;
 
-import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
-import javax.swing.border.EmptyBorder;
 import java.awt.Color;
 import java.awt.Dimension;
-
-import javax.swing.border.LineBorder;
-import javax.swing.plaf.BorderUIResource;
-import javax.swing.JLabel;
-import javax.swing.SwingConstants;
-import java.awt.Font;
-import javax.swing.JButton;
-import javax.swing.ScrollPaneConstants;
 import java.awt.FlowLayout;
-import java.awt.BorderLayout;
-import javax.swing.JTable;
-import java.awt.GridLayout;
-import java.awt.Label;
-import java.awt.ScrollPane;
-import java.awt.event.ActionListener;
-import javax.swing.border.CompoundBorder;
+import java.awt.Font;
 import java.awt.Toolkit;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.SwingConstants;
+import javax.swing.border.EmptyBorder;
+import javax.swing.border.LineBorder;
 
 public class CustomerView extends JFrame {
 

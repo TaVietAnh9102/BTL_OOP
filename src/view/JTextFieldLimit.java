@@ -3,7 +3,7 @@ package view;
 import javax.swing.text.PlainDocument;
 import javax.swing.text.AttributeSet;
 import javax.swing.text.BadLocationException;
-
+//set limit jtextfield
 public class JTextFieldLimit extends PlainDocument {
 	private int limit;
 

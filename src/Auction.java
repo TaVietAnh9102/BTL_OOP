@@ -4,9 +4,9 @@ import javax.swing.UnsupportedLookAndFeelException;
 import controller.LoginController;
 
 public class Auction {
-	public static void main(String[] args) throws ClassNotFoundException, InstantiationException, IllegalAccessException, UnsupportedLookAndFeelException {
+	public static void main(String[] args) throws ClassNotFoundException, InstantiationException,
+			IllegalAccessException, UnsupportedLookAndFeelException {
 		UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 		new LoginController();
-		//System.out.println(LocalTime.now());
 	}
 }

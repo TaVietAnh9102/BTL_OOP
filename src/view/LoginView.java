@@ -1,42 +1,22 @@
 package view;
 
 import java.awt.Color;
-import java.awt.EventQueue;
-import java.awt.Image;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.JLabel;
-import javax.swing.ImageIcon;
-import javax.swing.SwingConstants;
-import java.awt.event.ComponentAdapter;
-import java.awt.event.ComponentEvent;
-import java.awt.image.BufferedImage;
-import javax.swing.UIManager;
-
-import controller.LoginController;
-
-import javax.swing.JTextField;
-import javax.swing.JButton;
-import javax.swing.BoxLayout;
-import java.awt.CardLayout;
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
-import java.awt.GridBagLayout;
-import java.awt.GridBagConstraints;
-import java.awt.Insets;
-import java.awt.GridLayout;
 import java.awt.Font;
-import javax.swing.JPasswordField;
-import javax.swing.DropMode;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
+import java.awt.Image;
 import java.awt.Toolkit;
+import java.awt.event.ActionListener;
+
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 
 public class LoginView extends JFrame {
-	/**
-	 * Launch the application.
-	 */
+	
 	private static Color TEXTFIELD_BACKGROUND_COLOR = Color.DARK_GRAY;
 	private static Color FOREGROUND_COLOR = Color.WHITE;
 	private static Font FONT = new Font("Comic Sans MS", Font.BOLD, 18);

@@ -136,34 +136,34 @@ public class Sessions extends DataManager{
 	}
 	
 	
-	// select
-	public SystemUser GetWinnerUser(int end_time) {
-		
-        DBInterface db = DBInterface.getInstance();
-        ArrayList<Object[]> winnerinfo = null;
-        initializeSessions();
-        
-        for (Sessions s : SessionList) {
-            if (s.getEnd_time() == end_time) {
-                winnerinfo = db.select(
-                        "systemuser, sessions",
-                        "systemuser.ID, systemuser.Fname, systemuser.Lname, systemuser.phone",
-                        "sessions.Winner_ID = systemuser.ID and sessions.End_time = " + end_time);
-                System.out.println("after select winner in db winnerinfo list is " + winnerinfo);
-                break;
-            }
-        }
-
-        if (!winnerinfo.isEmpty()){
-            winner = new SystemUser();
-            winner.setId((int) winnerinfo.get(0)[0]);
-            winner.setFname((String) winnerinfo.get(0)[1]);
-            winner.setLname((String) winnerinfo.get(0)[2]);
-            System.out.println("winter is set 100%");
-        }
-
-        return winner;
-    }
+//	// select
+//	public SystemUser GetWinnerUser(int end_time) {
+//		
+//        DBInterface db = DBInterface.getInstance();
+//        ArrayList<Object[]> winnerinfo = null;
+//        initializeSessions();
+//        
+//        for (Sessions s : SessionList) {
+//            if (s.getEnd_time() == end_time) {
+//                winnerinfo = db.select(
+//                        "systemuser, sessions",
+//                        "systemuser.ID, systemuser.Fname, systemuser.Lname, systemuser.phone",
+//                        "sessions.Winner_ID = systemuser.ID and sessions.End_time = " + end_time);
+//                System.out.println("after select winner in db winnerinfo list is " + winnerinfo);
+//                break;
+//            }
+//        }
+//
+//        if (!winnerinfo.isEmpty()){
+//            winner = new SystemUser();
+//            winner.setId((int) winnerinfo.get(0)[0]);
+//            winner.setFname((String) winnerinfo.get(0)[1]);
+//            winner.setLname((String) winnerinfo.get(0)[2]);
+//            System.out.println("winter is set 100%");
+//        }
+//
+//        return winner;
+//    }
 	
     public void setWinnerUser(int sessionid , int winnerid) {
         DBInterface dbInterface = DBInterface.getInstance();

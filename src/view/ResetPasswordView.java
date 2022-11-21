@@ -1,26 +1,18 @@
 package view;
 
-import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import javax.swing.JTextField;
-import javax.swing.JPasswordField;
 import java.awt.Color;
-
-import javax.swing.JLabel;
-
+import java.awt.Font;
 import java.awt.Image;
 import java.awt.event.ActionListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JDialog;
-
-import java.awt.Font;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
 import javax.swing.SwingConstants;
-import javax.swing.JTextArea;
+import javax.swing.border.EmptyBorder;
 
 public class ResetPasswordView extends JDialog {
 
@@ -31,9 +23,7 @@ public class ResetPasswordView extends JDialog {
 	private JLabel iconEmail;
 	private JLabel statusLabel;
 	private JButton resetButton;
-	/**
-	 * Launch the application.
-	 */
+	
 	public ResetPasswordView() {
 		getContentPane().setBackground(new Color(248, 248, 255));
 		setDefaultCloseOperation(JDialog.HIDE_ON_CLOSE);
