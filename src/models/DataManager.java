@@ -21,7 +21,7 @@ public abstract class DataManager {
 	//Methods
     public void add() {
         DBInterface dbInterface = DBInterface.getInstance();
-        String table = this.getClass().getSimpleName(); 	// get name of class: Admin, Member .... 
+        String table = this.getClass().getSimpleName(); 	// get name of class
         if (table.equals("Member")) table = "SystemUser";
         String attributes = getAttributes();
         String values = getValues();
