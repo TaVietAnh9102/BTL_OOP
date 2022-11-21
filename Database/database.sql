@@ -1,17 +1,3 @@
-
--- Source Server         : localhost_3306
--- Source Host           : localhost:3306
--- Source Database       : aution_system
-
-
-
-SET FOREIGN_KEY_CHECKS=0;
-
-
--- ----------------------------
--- Table structure for systemuser
--- ----------------------------
-
 DROP TABLE IF EXISTS `systemuser`;
 CREATE TABLE `systemuser` (
   `ID` int(11) NOT NULL AUTO_INCREMENT,
@@ -26,12 +12,6 @@ CREATE TABLE `systemuser` (
 ) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=utf8;
 
 
-
-
--- ----------------------------
--- Table structure for category
--- ----------------------------
-
 DROP TABLE IF EXISTS `category`;
 CREATE TABLE `category` (
   `ID` int(11) NOT NULL AUTO_INCREMENT,
@@ -40,10 +20,6 @@ CREATE TABLE `category` (
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
 
-
--- ----------------------------
--- Table structure for sessions
--- ----------------------------
 DROP TABLE IF EXISTS `sessions`;
 CREATE TABLE `sessions` (
   `ID` int(11) NOT NULL AUTO_INCREMENT,
@@ -58,38 +34,13 @@ CREATE TABLE `sessions` (
 ) ENGINE=InnoDB AUTO_INCREMENT=116 DEFAULT CHARSET=utf8;
 
 
-
-
--- ----------------------------
--- Table structure for session_participants
--- ----------------------------
-DROP TABLE IF EXISTS `session_participants`;
-CREATE TABLE `session_participants` (
-  `session_ID` int(11) NOT NULL,
-  `bidder_ID` int(11) NOT NULL,
-  `item_ID` int(11) NOT NULL,
-  `price` int(11) DEFAULT '0',
-  PRIMARY KEY (`session_ID`,`bidder_ID`,`item_ID`),
-  KEY `Bidder_ID` (`bidder_ID`),
-  KEY `session_participants_ibfk_3` (`item_ID`),
-  CONSTRAINT `session_participants_ibfk_1` FOREIGN KEY (`session_ID`) REFERENCES `sessions` (`ID`),
-  CONSTRAINT `session_participants_ibfk_2` FOREIGN KEY (`bidder_ID`) REFERENCES `systemuser` (`ID`),
-  CONSTRAINT `session_participants_ibfk_3` FOREIGN KEY (`item_ID`) REFERENCES `item` (`ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-
-
-
--- ----------------------------
--- Table structure for item
--- ----------------------------
 DROP TABLE IF EXISTS `item`;
 CREATE TABLE `item` (
   `ID` int(11) NOT NULL AUTO_INCREMENT,
   `Item_name` varchar(30) DEFAULT NULL,
   `Details` varchar(500) DEFAULT NULL,
   `picture` varchar(50) DEFAULT NULL,
-  `price` int DEFAULT NULL,
+  `price` int(11) DEFAULT NULL,
   `Cat_ID` int(11) DEFAULT NULL,
   `session_ID` int(11) DEFAULT NULL,
   `seller_ID` int(11) DEFAULT NULL,
@@ -103,3 +54,17 @@ CREATE TABLE `item` (
   CONSTRAINT `item_ibfk_3` FOREIGN KEY (`seller_ID`) REFERENCES `systemuser` (`ID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=94 DEFAULT CHARSET=utf8;
 
+
+DROP TABLE IF EXISTS `session_participants`;
+CREATE TABLE `session_participants` (
+  `session_ID` int(11) NOT NULL,
+  `bidder_ID` int(11) NOT NULL,
+  `item_ID` int(11) NOT NULL,
+  `price` int(11) DEFAULT '0',
+  PRIMARY KEY (`session_ID`,`bidder_ID`,`item_ID`),
+  KEY `Bidder_ID` (`bidder_ID`),
+  KEY `session_participants_ibfk_3` (`item_ID`),
+  CONSTRAINT `session_participants_ibfk_1` FOREIGN KEY (`session_ID`) REFERENCES `sessions` (`ID`),
+  CONSTRAINT `session_participants_ibfk_2` FOREIGN KEY (`bidder_ID`) REFERENCES `systemuser` (`ID`),
+  CONSTRAINT `session_participants_ibfk_3` FOREIGN KEY (`item_ID`) REFERENCES `item` (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;

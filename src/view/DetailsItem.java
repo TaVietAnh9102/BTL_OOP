@@ -1,25 +1,19 @@
 package view;
 
 import java.awt.BorderLayout;
-import java.awt.FlowLayout;
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.Image;
+import java.awt.Toolkit;
 
 import javax.swing.ImageIcon;
-import javax.swing.JButton;
 import javax.swing.JDialog;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
 import models.Item;
-
-import javax.swing.JLabel;
-import javax.swing.JTextArea;
-import javax.swing.JTextField;
-import javax.swing.JTextPane;
-
-import java.awt.Color;
-import java.awt.Toolkit;
 
 public class DetailsItem extends JDialog {
 
@@ -42,7 +36,7 @@ public class DetailsItem extends JDialog {
 		
 		JLabel icon = new JLabel("Icon");
 		icon.setBounds(30, 30, 166, 176);
-		icon.setIcon(getIcon(icon.getWidth(), icon.getHeight(), "/pic/dell_latitude_3520.jpg"));
+		icon.setIcon(getIcon(icon.getWidth(), icon.getHeight(), item.getPicture() ));
 		
 		contentPanel.add(icon);
 		

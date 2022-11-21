@@ -11,7 +11,6 @@ public class Member extends SystemUser{
     }
 
     public Member(SystemUser loginClient ){
-      //  this.systemUsersList = loginClient.getSystemUsersList();
         this.setEmail(loginClient.getEmail());
         this.setFname(loginClient.getFname());
         this.setLname(loginClient.getLname());
@@ -22,13 +21,7 @@ public class Member extends SystemUser{
         this.setPhone(loginClient.getPhone());
     }
 
-    //Methods
-//    public void editInfo (SystemUser user , String EditedFname , String EditedLname , String EditedPassword) {
-//        user.setFname(EditedFname);
-//        user.setLname(EditedLname);
-//        user.setPassword(EditedPassword);
-//        user.update();
-//    }
+  
     
     public boolean canRegister(String email){
         ArrayList<String> checkEmails = this.GetEmails();
@@ -59,7 +52,7 @@ public class Member extends SystemUser{
     public Item viewDetails(int itemId) {
 
         Item item = new Item();
-        item.initializeItems();  //init
+        item.initializeItems();  
         ArrayList<Item> AllRetrunedItems = item.getItemList();
 
         Item neededItem = null;
@@ -78,6 +71,7 @@ public class Member extends SystemUser{
     	//return all his session time
     	ArrayList<Object[]> records = DB.select("session_participants", "item_ID",
                     			"bidder_id =" + this.getId());
+    	//record is itemId list
     	for (Object[] e: records) {
     		info.add((Integer)e[0]);
     	}
@@ -104,10 +98,6 @@ public class Member extends SystemUser{
  
     //seller
 
-//    protected String getAttributes() {
-//        return "ID,Item_name,Details,picture,Price,Cat_ID,session_ID,seller_ID,Served";
-//    }
-    // this params are required as it needed to be added in the DB .. admin will be static
     public void submitItem(int sellerID, String name , String details, String pic , int price ,  int categoryID ,String date, int startTime, int endTime) {
     	submitSessions(startTime, endTime, date, 0);
     	Sessions sessions = new Sessions();
@@ -120,14 +110,6 @@ public class Member extends SystemUser{
     	List<Item> itemList = itemMNG.getItemList();
     	
     	Item newItem = new Item(itemList.get(itemList.size()-1).getId() + 1, name, details, pic, price, categoryID,  sessions.getId(), sellerID, 0);
-//        SubmittedItem.setCategoryID(categoryID);
-//        SubmittedItem.setPrice(price);
-//        SubmittedItem.setPicture(Pic);
-//        SubmittedItem.setDetails(details);
-//        SubmittedItem.setName(name);
-//        SubmittedItem.setSellerID(sellerID);
-//        SubmittedItem.setServed(reserved);
-//        SubmittedItem.add();
     	newItem.add();
         System.out.println("Item has been added successfully");
     }

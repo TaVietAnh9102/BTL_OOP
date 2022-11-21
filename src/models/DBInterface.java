@@ -6,10 +6,10 @@ import java.util.ArrayList;
 public class DBInterface {
 	private static DBInterface instance;
 	
-    private String dbName = "auction_system";	// create database name auction
+    private String dbName = "auction_system";
     private String dbURL = "jdbc:mysql://localhost:3306/" + dbName;
     private String dbUsername = "root";
-    private String dbPassword = "2112";	// your sql password
+    private String dbPassword = "2112";
     
     private Connection connection = null;
     private String query = null;
@@ -17,7 +17,6 @@ public class DBInterface {
     
     // Contructor
     private DBInterface() {
-    	// remember add .jar file
         try {
             connection = DriverManager.getConnection(dbURL, dbUsername, dbPassword);
             System.out.println("Connected (DBInterface)");
@@ -35,7 +34,6 @@ public class DBInterface {
         return instance;
     }
     
-    // Methods
     public void insert(String table, String attributes, String values) {
         query = "INSERT INTO " + table + "(" + attributes + ") VALUES(" + values + ")";
 
@@ -110,6 +108,7 @@ public class DBInterface {
 
         return resultList;
     }
+    
 
     //Helper Methods
     private String prepareQuery(String table,String options, String whereStatement) {

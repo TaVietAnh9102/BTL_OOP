@@ -3,7 +3,6 @@ import java.util.ArrayList;
 
 
 public class Item extends DataManager {
-    //Attributes
     private int ID, categoryID, sessionID, sellerID;
     private String name, details, picture;
     private int price;
@@ -16,22 +15,6 @@ public class Item extends DataManager {
     private String catName, sellerName;
     private int startTime, served;
     
-//    "ID,name,Details,picture,Price,categoryID,sessionID,sellerID,Served";
-    
-//    public Item(int sellerID, String name , String Pic, String details , int price ,  int categoryID ,int reserved ) {
-//    	
-//    }
-    
-    public Item(String name , String pic, String details , int price ,  int categoryID , int sessionId, int sellerID, int served) {
-        this.name = name;
-        this.details = details;
-        this.picture = pic;
-        this.price = price;
-        this.categoryID = categoryID;
-        this.sessionID = sessionId;
-        this.sellerID = sellerID;
-        this.served = served;
-    }
     
     //Constructor
     public Item(int id, String name, String details, String pic, int price, int category,
@@ -137,7 +120,7 @@ public class Item extends DataManager {
     }
     
     public void setCatName(String catName) {
-        catName = catName;
+       this.catName = catName;
     }
     
     public void setSellerName(String sellerName) {

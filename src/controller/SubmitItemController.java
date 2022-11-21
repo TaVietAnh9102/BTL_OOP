@@ -8,9 +8,6 @@ import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.StandardCopyOption;
 import java.util.List;
 
 import javax.imageio.ImageIO;
@@ -22,7 +19,6 @@ import javax.swing.JOptionPane;
 import models.Category;
 import models.Item;
 import models.Member;
-import models.Sessions;
 import view.CustomerView;
 import view.SubmitItemPanel;
 
@@ -30,7 +26,9 @@ public class SubmitItemController {
 	private SubmitItemPanel submitItemPanel;
 	private ItemController itemController;
 	private ActionListener actionListener;
+	private String pathImage;
 	private Member member;
+	
 	
 	public SubmitItemController( CustomerView customerView, Member member, Category catMNG, ItemController itemController) {
 		this.member = member;
@@ -74,7 +72,7 @@ public class SubmitItemController {
 //					sessions.getSessionList();
 //					List<Sessions> ls = sessions.getSessionList();
 //					sessions = ls.get(ls.size()-1);
-					member.submitItem(member.getId(), newItem[0], newItem[1], "",Integer.parseInt(newItem[2]), Integer.parseInt(newItem[3]), newItem[5],Integer.parseInt(newItem[6]), Integer.parseInt(newItem[7]) );
+					member.submitItem(member.getId(), newItem[0], newItem[1], pathImage ,Integer.parseInt(newItem[2]), Integer.parseInt(newItem[3]), newItem[5],Integer.parseInt(newItem[6]), Integer.parseInt(newItem[7]) );
 					Item item = new Item();
 					item.getData();
 					item.initializeItems();
@@ -95,6 +93,7 @@ public class SubmitItemController {
 						copyImage(file);
 						//System.out.println("/pic/" + file.getName());
 						pn.setImageItem(file.getPath());
+						pathImage = "/pic/" + file.getName();
 					}
 					
 					//System.out.println(file.getPath());
@@ -113,7 +112,7 @@ public class SubmitItemController {
 		try {
 			imageURL = new URL("file:///" + src.getPath());
 			bi = ImageIO.read(imageURL);
-			File des = new File("D:\\gitBTL\\BTL_OOP\\src\\pic\\"+  src.getName());
+			File des = new File("D:\\Program File\\Git\\BTL_OOP\\src\\pic\\"+  src.getName());
 			des.createNewFile();
 			ImageIO.write(bi, "jpg", des);
 		}catch (MalformedURLException e1) {
