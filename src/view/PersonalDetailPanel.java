@@ -125,7 +125,7 @@ public class PersonalDetailPanel extends JPanel {
 		
 		emailField = new JTextField();
 		emailField.setEditable(false);
-		emailField.setBounds(425, 155, 215, 32);
+		emailField.setBounds(425, 150, 215, 32);
 		panel.add(emailField);
 		emailField.setText(member.getEmail());
 		emailField.setFont(FIELD_FONT);
