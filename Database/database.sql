@@ -1,4 +1,3 @@
-CREATE DATABASE auction;
 DROP TABLE IF EXISTS `systemuser`;
 CREATE TABLE `systemuser` (
   `ID` int(11) NOT NULL AUTO_INCREMENT,
