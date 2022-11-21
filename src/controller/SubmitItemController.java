@@ -49,29 +49,11 @@ public class SubmitItemController {
 				SubmitItemPanel pn = (SubmitItemPanel)bt.getParent();
 				
 				
-//				String[] newItem = new String[8];
-//				newItem[0] = nameInput.getText();
-//				newItem[1] = detailsInput.getText();
-//				newItem[2] = priceInput.getText();
-//				Category cate = (Category)categoryComboBox.getSelectedItem();
-//				newItem[3] = cate.getId() +"";
-//				newItem[4] = cate.getCat_Name();
-//				newItem[5] = (date.getSelectedIndex() + 1) + "-" + (month.getSelectedIndex() + 1) + "-" + (year.getSelectedIndex() + 2021);
-//				newItem[6] = startTimeInput.getSelectedIndex() + "";
-//				newItem[7] = endTimeInput.getSelectedIndex() + "";
 				
-//				int startTime, int endTime, String date, int reserved
 				String src = e.getActionCommand();
 				System.out.println(e.getActionCommand());
 				if(src.equals("Submit")) {
 					String[] newItem = pn.getNewItem();
-//					System.out.println(newItem[5]);
-//					member.submitSessions(Integer.parseInt(newItem[6]), Integer.parseInt(newItem[7]), newItem[5], 1);
-//					Sessions sessions = new Sessions();
-//					sessions.getData();
-//					sessions.getSessionList();
-//					List<Sessions> ls = sessions.getSessionList();
-//					sessions = ls.get(ls.size()-1);
 					member.submitItem(member.getId(), newItem[0], newItem[1], pathImage ,Integer.parseInt(newItem[2]), Integer.parseInt(newItem[3]), newItem[5],Integer.parseInt(newItem[6]), Integer.parseInt(newItem[7]) );
 					Item item = new Item();
 					item.getData();
@@ -112,7 +94,7 @@ public class SubmitItemController {
 		try {
 			imageURL = new URL("file:///" + src.getPath());
 			bi = ImageIO.read(imageURL);
-			File des = new File("D:\\Program File\\Git\\BTL_OOP\\src\\pic\\"+  src.getName());
+			File des = new File("D:\\gitBTL\\BTL_OOP\\src\\pic\\"+  src.getName());
 			des.createNewFile();
 			ImageIO.write(bi, "jpg", des);
 		}catch (MalformedURLException e1) {
