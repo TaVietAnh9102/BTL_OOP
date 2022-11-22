@@ -1,6 +1,8 @@
 package models;
 
 import java.util.ArrayList;
+import java.util.List;
+import com.mysql.cj.x.protobuf.MysqlxDatatypes.Array;
 
 public class Member extends SystemUser{
 
@@ -8,25 +10,25 @@ public class Member extends SystemUser{
     public Member(){
     }
 
-    public Member(SystemUser LoginClient ){
-        this.systemUsersList = LoginClient.getSystemUsersList();
-        this.setEmail(LoginClient.getEmail());
-        this.setFname(LoginClient.getFname());
-        this.setLname(LoginClient.getLname());
-        this.setPassword(LoginClient.getPassword());
-        this.setBirthdate(LoginClient.getBirthdate());
-        this.setId(LoginClient.getId());
-        this.setGender(LoginClient.getGender());
-        this.setPhone(LoginClient.getPhone());
+    public Member(SystemUser loginClient ){
+      //  this.systemUsersList = loginClient.getSystemUsersList();
+        this.setEmail(loginClient.getEmail());
+        this.setFname(loginClient.getFname());
+        this.setLname(loginClient.getLname());
+        this.setPassword(loginClient.getPassword());
+        this.setBirthdate(loginClient.getBirthdate());
+        this.setId(loginClient.getId());
+        this.setGender(loginClient.getGender());
+        this.setPhone(loginClient.getPhone());
     }
 
     //Methods
-    public void editInfo (SystemUser user , String EditedFname , String EditedLname , String EditedPassword) {
-        user.setFname(EditedFname);
-        user.setLname(EditedLname);
-        user.setPassword(EditedPassword);
-        user.update();
-    }
+//    public void editInfo (SystemUser user , String EditedFname , String EditedLname , String EditedPassword) {
+//        user.setFname(EditedFname);
+//        user.setLname(EditedLname);
+//        user.setPassword(EditedPassword);
+//        user.update();
+//    }
     
     public boolean canRegister(String email){
         ArrayList<String> checkEmails = this.GetEmails();
@@ -70,20 +72,36 @@ public class Member extends SystemUser{
     }
     
     
-    public ArrayList<Integer> getParticipatedSessions(int userID) {
+    public ArrayList<Integer> getParticipatedSessions() {
     	ArrayList<Integer> info = new ArrayList<>();
     	DBInterface DB = DBInterface.getInstance();
     	//return all his session time
-    	ArrayList<Object[]> records = DB.select("sessions,item", "Start_time",
-                    			"sessions.ID = item.session_ID and  item.seller_ID =" + userID);
+    	ArrayList<Object[]> records = DB.select("session_participants", "item_ID",
+                    			"bidder_id =" + this.getId());
     	for (Object[] e: records) {
     		info.add((Integer)e[0]);
     	}
-    	
     	return info;
     }
     
     
+    public ArrayList<Item> getParticipatedItem() {
+    	ArrayList<Item> participatedItem = new ArrayList<>();
+    	ArrayList<Integer> paticipatedSessions = getParticipatedSessions();
+    	Item item = new Item();
+    	item.initializeItems();
+    	ArrayList<Item> AllITem = item.getItemList();
+    	for (Item x: AllITem) {
+    		if(paticipatedSessions.contains(x.getId())) {
+    			participatedItem.add(x);
+    			System.out.println(x.getId());
+    		}
+    	}
+    	return participatedItem;
+    }
+    
+ 	
+ 
     //seller
 
 //    protected String getAttributes() {
@@ -112,16 +130,7 @@ public class Member extends SystemUser{
        sessions.setReserved(reserved);
        sessions.add();
     }
-    
-//    public void submitItem(Item item) {
-//    	item.add();
-//        System.out.println("Item has been added successfully");
-//    }
-
-//    public Object[] getSessionItemBid(int hour) {
-//    	return new Object[0];
-//    }
-
+   
 
     //Get all item Products of Seller
     public ArrayList<Item> viewSellerItems(int sellerID) {
@@ -136,10 +145,11 @@ public class Member extends SystemUser{
     			SellerItems.add(x);
     		}
     	}
-
     	return SellerItems;
     }
 
+   
+    
 
     public ArrayList<Object[]> getParticipatedBidder(int itemID) {
     	ArrayList<Object[]> bidders = new ArrayList<>();
@@ -153,7 +163,6 @@ public class Member extends SystemUser{
         
     //Bidder
         
-    private ArrayList<Integer> participatedItems;
 
     //Get all Products to show to user
     public ArrayList<Item> viewProducts() {
@@ -170,84 +179,27 @@ public class Member extends SystemUser{
 
     	return AcceptedItems;
     }
-
     
-    public Object[] getSessionItemBid(int start, int end) {
-    	Object[] INFO=null;
-    	DBInterface DB = DBInterface.getInstance();
-    	// this query to get All info from database ... if you want something else tell me or addit to the query
-    	ArrayList<Object[]> AllInfo = DB.select("item,Sessions,systemuser,Category", "item.ID,item.Item_name,item.Details,item.picture,item.price,item.Cat_ID,Sessions.,Sessions.End_time",
-                    "Category.ID =item.Cat_ID and	systemuser.ID = item.seller_id  and Sessions.Start_time=" + start + " and Sessions.Start_time=" + end);
-    	// to return object of all info
-    	for (Object[] obj : AllInfo) {
-    		INFO = obj; 
-    	}
-    	return INFO;
-    }
     
-//    public Object[] getSessionItemBid(int hour) {
-//    	Object[] INFO=null;
-//    	DBInterface DB = DBInterface.getInstance();
-//    	// this query to get All info from database ... if you want something else tell me or addit to the query
-//    	ArrayList<Object[]> AllInfo = DB.select("item,Sessions,Set_Bids,Category", "item.ID,item.Item_name,item.Details,Category.Cat_Name,item.picture,item.price,Sessions.Start_time,Sessions.End_time,Max(Set_Bids.Bids)",
-//                    "Category.ID =item.Cat_ID and Sessions.ID = Set_Bids.session_ID and item.ID = Set_Bids.Item_ID and Sessions.Start_time=" + hour);
-//    	// to return object of all info
-//    	for (Object[] obj : AllInfo) {
-//    		INFO = obj; 
-//    	}
-//    	return INFO;
-//    }
-
-
-    public ArrayList<Item> SearchonProduct(int CategoryID) {
-    	Item item = new Item();
-    	item.initializeItems();
-    	Category category = new Category();
-    	category.initializeCategories();
-
-    	ArrayList<Item> AllItems , CategoryItems = new ArrayList<>();
-    	AllItems = item.getItemList();
-
-    	for (Item obj : AllItems) {
-    		if (obj.getCat_ID() == CategoryID){
-    			CategoryItems.add(obj);
-    		}
-    	}
-    	System.out.println(CategoryItems.size());
-    	return CategoryItems;
-    }
-
     
-
-//    public void SubmitBid(int bidder_id, int session_id, int item_id, int bid) {
-//    	// Set_Bids
-//    	DBInterface DB = DBInterface.getInstance();
-//    	DB.insert("Set_Bids","Bidder_ID,session_ID,Item_ID,Bids",""+bidder_id+","+session_id+","+item_id+","+bid);
-//    	System.out.println("Bid submitted successfully successfully");
-//    }
-    
-    public void SubmitBid(int bidder_id, int session_id, int item_id, int bid) {
+    public void SubmitBid(int bidder_id, int session_id, int item_id) {
     	// Set_Bids
     	DBInterface DB = DBInterface.getInstance();
-    	DB.insert("session_paticipants","Bidder_ID,session_ID,Item_ID,Bids",""+bidder_id+","+session_id+","+item_id+","+bid);
+    	DB.insert("session_participants","session_ID,Bidder_ID,Item_ID",""+session_id+","+bidder_id+","+item_id);
     	System.out.println("Bid submitted successfully successfully");
     }
 
-    ///
-    public void init_participateditems(int id) {
-    	participatedItems = new ArrayList<>();
-    	DBInterface db = DBInterface.getInstance();
-    	ArrayList<Object[]> result = db.select("session_participants","item_ID","bidder_ID = "+id);
-    	for (Object[] record: result) {
-    		participatedItems.add((Integer) record[0]);
-    	}
-    }
-
     public boolean isParticipated(int itemID){
-    	return participatedItems.contains(itemID);
+    	ArrayList<Item> participatedItem = getParticipatedItem();
+    	for(Item item : participatedItem) {
+    		if(item.getId() == itemID) {
+    			return true;
+    		}
+    	}
+    	return false;
     }
 
-    public void participate(int bidderID , int itemID) {
+    public void participate(int bidderID , int itemID, int price) {
     	int sessionID = 0;
     	ArrayList<Item> AllItems;
     	Item item = new Item();
@@ -259,19 +211,14 @@ public class Member extends SystemUser{
     			sessionID = it.getSession_ID();
     		}
     	}
-    	DBInterface DB = DBInterface.getInstance();
-    	DB.insert("session_Participants", "session_ID,bidder_ID,item_ID", "" + sessionID + "," + bidderID+","+ itemID);
-    	System.out.println("participate successfully");
-    	init_participateditems(bidderID);
-    	System.out.println("reinitializing Participated items List ..");
+    	SubmitBid(bidderID, sessionID, itemID);
     }
 
-//    public static void main(String[] args) {
-//		Member member = new Member();
-//		Object[] all=member.getSessionItemBid(10, 11);
-//		for(Object obj : all) {
-//			System.out.println(obj);
-//		}
-//	}
+    public void updatePrice(int session_ID,int item_ID, int price){
+        DBInterface db = DBInterface.getInstance();
+        db.update("session_participants","price ",  price + ""," session_ID = "+session_ID+" and item_ID = "+
+                item_ID +" and bidder_ID = "+this.getId());
+    }
+
     
 }

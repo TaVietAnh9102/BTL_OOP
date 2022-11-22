@@ -87,7 +87,7 @@ public class Sessions extends DataManager{
 
 	@Override
 	protected String getValues() {
-		return Session_date + "," + Start_time + "," + End_time + "," + reserved;
+		return "'"+Session_date + "'," + Start_time + "," + End_time + "," + reserved;
 	}
 
 	@Override

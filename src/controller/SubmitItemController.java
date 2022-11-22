@@ -16,6 +16,8 @@ import java.util.List;
 import javax.imageio.ImageIO;
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 import models.Category;
 import models.Item;
@@ -49,22 +51,24 @@ public class SubmitItemController {
 				SubmitItemPanel pn = (SubmitItemPanel)bt.getParent();
 				
 				
-//				String[] newItem = new String[7];
+//				String[] newItem = new String[8];
 //				newItem[0] = nameInput.getText();
 //				newItem[1] = detailsInput.getText();
 //				newItem[2] = priceInput.getText();
 //				Category cate = (Category)categoryComboBox.getSelectedItem();
 //				newItem[3] = cate.getId() +"";
-//				
-//				newItem[4] = (date.getSelectedIndex() + 1) + "-" + (month.getSelectedIndex() + 1) + "-" + (year.getSelectedIndex() + 2021);
-//				newItem[5] = startTimeInput.getSelectedIndex() + "";
-//				newItem[6] = endTimeInput.getSelectedIndex() + "";
+//				newItem[4] = cate.getCat_Name();
+//				newItem[5] = (date.getSelectedIndex() + 1) + "-" + (month.getSelectedIndex() + 1) + "-" + (year.getSelectedIndex() + 2021);
+//				newItem[6] = startTimeInput.getSelectedIndex() + "";
+//				newItem[7] = endTimeInput.getSelectedIndex() + "";
 				
+//				int startTime, int endTime, String date, int reserved
 				String src = e.getActionCommand();
 				System.out.println(e.getActionCommand());
 				if(src.equals("Submit")) {
 					String[] newItem = pn.getNewItem();
-					member.submitSessions(Integer.parseInt(newItem[5]), Integer.parseInt(newItem[6]), newItem[4], 1);
+					System.out.println(newItem[5]);
+					member.submitSessions(Integer.parseInt(newItem[6]), Integer.parseInt(newItem[7]), newItem[5], 1);
 					Sessions sessions = new Sessions();
 					sessions.getData();
 					sessions.getSessionList();
@@ -74,11 +78,13 @@ public class SubmitItemController {
 					item.getData();
 					List<Item> lsItem = item.getItemList();
 					item.setID(lsItem.get(lsItem.size() - 1).getId() + 1);
-					//item.add();
+					item.add();
 					item.initializeItems();
-					//System.out.println(item.getCat_ID() + " " + item.getCatName());
-					System.out.println(item.getCategory());
+					lsItem = item.getItemList();
+					item = lsItem.get(lsItem.size() - 1);
 					itemController.addNewItem(item);	
+					pn.reset();
+					JOptionPane.showMessageDialog(new JFrame(), "Item is added", "", JOptionPane.INFORMATION_MESSAGE);
 				}
 				else {
 					
@@ -87,7 +93,8 @@ public class SubmitItemController {
 					if(op == JFileChooser.FILES_ONLY){
 						File file = jFileChooser.getSelectedFile();
 						copyImage(file);
-						System.out.println("/pic/" + file.getName());
+						//System.out.println("/pic/" + file.getName());
+						pn.setImageItem(file.getPath());
 					}
 					
 					//System.out.println(file.getPath());

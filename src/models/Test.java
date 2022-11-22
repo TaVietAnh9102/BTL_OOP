@@ -1,7 +1,9 @@
 package models;
 
 import java.awt.EventQueue;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.JScrollPane;
@@ -17,7 +19,8 @@ import javax.swing.table.TableRowSorter;
 public class Test {
 
     public static void main(String[] args) {
-        new Test();
+        LocalDateTime now = LocalDateTime.now();
+        
     }
 
     public Test() {
